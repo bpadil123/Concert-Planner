@@ -1,22 +1,30 @@
+// API key	a63e099b17dfc041516f78ab8c3e3d5c
+// Shared secret	50430e261d47ee60d575c432c912c0e5
+
+var lstFmKey = "a63e099b17dfc041516f78ab8c3e3d5c";
+
+
 var searchTerm;
 
-function getWikipedia() {
+
+
+
+function getLastFm() {
     searchTerm = $("#search-input").val().trim();
-
-
-    url = "https://www.wikipedia.org//w/api.php?action=query&format=json&list=search&srsearch=" +
-        searchTerm +
-        "&srnamespace=0&srlimit=10&callback=?"
+    url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + searchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
 
 
     $.getJSON(url, function (data) {
         console.log(url);
-        console.log(data.query.search[0].snippet);
+        console.log(data);
+        console.log(data.artist.bio.content);
 
     })
 }
 
 
+
 $("#search-btn").on("click", function () {
-    getWikipedia();
+    
+    getLastFm();
 })
