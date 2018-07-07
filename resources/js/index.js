@@ -4,15 +4,15 @@
 var lstFmKey = "a63e099b17dfc041516f78ab8c3e3d5c";
 
 
-var searchTerm;
+var artistTerm;
 var cityTerm;
-var startDateTerm;
-var endDateTerm;
+var startGlobal;
+var endGlobal;
 
 // ______________________________ LAST FM DATA API CALL _____________________________________________
 function getLastFm() {
-    searchTerm = $("#search-input").val().trim();
-    var replacedSearchTerm = searchTerm.replace(' ', '%20');
+    artistTerm = $("#artist-input").val().trim();
+    var replacedSearchTerm = artistTerm.replace(' ', '%20');
     url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + replacedSearchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
 
 
@@ -28,7 +28,48 @@ function getLastFm() {
 
 $("#search-btn").on("click", function () {
     event.preventDefault();
-    getLastFm();
+    // getLastFm();
+})
+
+//_____________BAND IN TOWN
+
+
+function bandsInTown() {
+    artistTerm = $("#artist-input").val().trim();
+    searchVenue = $("#city-input").val().trim();
+    var replacedSearchTerm = artistTerm.replace(' ', '%20');
+    // searchStartDate = $("#dates-input").val().trim();
+    // searchEndDate = $("#end-input").val().trim();
+
+
+    // var artist = searchArtist.replace(' ', '%20');
+    var event = searchVenue.replace(' ', '%20');
+
+
+    // var url = "https://rest.bandsintown.com" + "/artists/" + replacedSearchTerm + "/events?app_id=9ac9ab26c18a220660a4a733194e08fc" + "date=" + startGlobal + "%2C" + endGlobal
+
+    // url = "https://rest.bandsintown.com/artists/sage%20francis/events?app_id=9ac9ab26c18a220660a4a733194e08fc&date=2018-01-01%2C2018-12-31";
+
+    url = "https://rest.bandsintown.com/artists/"+ replacedSearchTerm + "/events?app_id=9ac9ab26c18a220660a4a733194e08fc&";
+
+
+    $.getJSON(url, function (data) {
+        console.log(data);
+        console.log(url);
+        // console.log(url);
+        // console.log(data);
+        // console.log(data.artist.bio.content);
+        // console.log(data.artist.image[2]);
+
+    })
+}
+
+
+
+$("#search-btn").on("click", function () {
+    event.preventDefault();
+    console.log("search was pressed");
+    bandsInTown();
 })
 
 // ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
@@ -49,23 +90,22 @@ $("#search-btn").on("click", function () {
 
 //_________________________ CALENDAR POP UP FOR INPUT _____________________________
 $('input[name="dates-input"]').daterangepicker();
-var startGlobal;
-var endGlobal;
 
-$(function() {
+
+$(function () {
     $('input[name="calendar-pop-up"]').daterangepicker({
-      opens: 'left',
-      autoApply: true,
-      
-    }, function(start, end) {
-      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-      startGlobal = start.format('YYYY-MM-DD');
-      endGlobal = end.format('YYYY-MM-DD')
+        opens: 'left',
+        autoApply: true,
+
+    }, function (start, end) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+        startGlobal = start.format('YYYY-MM-DD');
+        endGlobal = end.format('YYYY-MM-DD')
     });
-  });
-  
-  
-  $("#search-btn").on("click", function () {
+});
+
+
+$("#search-btn").on("click", function () {
     event.preventDefault();
     console.log(startGlobal);
     console.log(endGlobal);
