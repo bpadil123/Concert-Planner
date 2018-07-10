@@ -1,4 +1,3 @@
- 
 
 
 // for last fm Shared secret	50430e261d47ee60d575c432c912c0e5
@@ -161,27 +160,6 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
 
 
-
-
-
-
-
-
-        
-
-
-
 });
 
  
-
-
-
-
-
-
-
-
-
-
-
