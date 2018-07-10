@@ -32,7 +32,20 @@ body{
 }
 #search-results{
     margin:0 auto;
+
+}
+
+.modal-open{
+    overflow: scroll;
 }
 th{
     text-align:center;
+}
+
+
+/* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
+.oneResult{
+    border:1px black solid;
+    background-color:white;
+    margin-top:20px;
 }
