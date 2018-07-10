@@ -53,17 +53,15 @@ $("#search-btn").on("click", function () {
 function bandsInTown() {
     artistTerm = $("#artist-input").val().trim();
     // searchVenue = $("#city-input").val().trim();
-    var replacedSearchTerm = artistTerm.replace(' ', '%20');
-    // searchStartDate = $("#dates-input").val().trim();
-    // searchEndDate = $("#end-input").val().trim();
+    var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') &&artistTerm.replace('*', ' %252A')  || artistTerm.replace('"', ' %27C') ;
 
 
-    // var artist = searchArtist.replace(' ', '%20');
+
+
     // var event = searchVenue.replace(' ', '%20');
 
 
 
-    // url = "https://rest.bandsintown.com/artists/sage%20francis/events?app_id=9ac9ab26c18a220660a4a733194e08fc&date=2018-01-01%2C2018-12-31";
 
     url = "https://rest.bandsintown.com/artists/"+ replacedSearchTerm + "/events?app_id=9ac9ab26c18a220660a4a733194e08fc";
 
@@ -71,19 +69,45 @@ function bandsInTown() {
     $.getJSON(url, function (data) {
         console.log(data);
         console.log(url);
-        // console.log(url);
-        // console.log(data);
-        // console.log(data.artist.bio.content);
-        // console.log(data.artist.image[2]);
+var results = data.response
 
-    })
-}
+//loop to go through all results
+for (var i=0; i<data.length; i++){
+
+        //image of artist/event from LastFM **** 
+
+
+        //name of event/artist
+        console.log(data[i].description)
+        var eventName = $(".searchresult").text(data[i].description);
+
+        //name of venue
+        console.log(data[i].venue.name);
+var venueName = $(".searchresult").text(data[i].venue.name);
+
+        //city and state of venue
+        console.log(data[i].venue.city)
+        console.log(data[i].venue.region)
+var venueLocation = $(".searchresult").text(data[i].venue.city + data[i].venue.region);
+
+        //date/time of event
+        console.log(data[i].datetime)  //need to use moment to convert into appropriate layout
+eventDateTime = $(".searchresult").text(data[i].datetime);
+
+//Clears previous stuff and appends new content
+$(".searchresult").empty();
+$(".searchresult").append(eventName, venueName, venueLocation, eventDateTime);
+};
+});
+};
+
 
 
 
 $("#search-btn").on("click", function () {
     event.preventDefault();
     console.log("search was pressed");
+    $(".modal").hide();
     bandsInTown();
 })
 
