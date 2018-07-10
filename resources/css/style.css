@@ -1,0 +1,38 @@
+body{
+    width:100%;
+    margin: 0 auto;
+    background: url("../images/background.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+    
+
+#login-page{
+    float:none;
+    background-color:grey;
+    margin-top:200px;
+    padding:40px;
+    text-align: center;
+}
+.nav-logo{
+    float:left;
+}
+.nav-icons{
+    float:right;
+    text-align: right;
+}
+.navbar{
+    padding: 15px 0;
+    background-color: grey;
+}
+.search, .favorites, .artist-page{
+    margin-top:75px;
+}
+#search-results{
+    margin:0 auto;
+}
+th{
+    text-align:center;
+}
