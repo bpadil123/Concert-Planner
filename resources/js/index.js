@@ -1,3 +1,5 @@
+
+
 // for last fm Shared secret	50430e261d47ee60d575c432c912c0e5
 //band in town id 9ac9ab26c18a220660a4a733194e08fc
   
@@ -155,6 +157,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
      .addClass('signIn')
      .html('Sign In With Google');
  });
+
 
 
 });
