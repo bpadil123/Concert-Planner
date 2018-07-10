@@ -52,14 +52,14 @@ $("#search-btn").on("click", function () {
 
 function bandsInTown() {
     artistTerm = $("#artist-input").val().trim();
-    searchVenue = $("#city-input").val().trim();
+    // searchVenue = $("#city-input").val().trim();
     var replacedSearchTerm = artistTerm.replace(' ', '%20');
     // searchStartDate = $("#dates-input").val().trim();
     // searchEndDate = $("#end-input").val().trim();
 
 
     // var artist = searchArtist.replace(' ', '%20');
-    var event = searchVenue.replace(' ', '%20');
+    // var event = searchVenue.replace(' ', '%20');
 
 
 
