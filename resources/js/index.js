@@ -44,7 +44,7 @@ function getLastFm() {
 
 $("#search-btn").on("click", function () {
     event.preventDefault();
-    // getLastFm();
+    getLastFm();
 })
 
 //_____________BAND IN TOWN
@@ -89,44 +89,44 @@ $("#search-btn").on("click", function () {
 
 // ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
 
-var input = document.getElementById('city-input');
-// show only cities
-var options = {
-    types: ['(cities)'],
-};
+// var input = document.getElementById('city-input');
+// // show only cities
+// var options = {
+//     types: ['(cities)'],
+// };
 
-var autocompleteData = new google.maps.places.Autocomplete(input, options);
-
-
-$("#search-btn").on("click", function () {
-    event.preventDefault();
-    console.log($("#city-input").val());
-})
-
-//_________________________ CALENDAR POP UP FOR INPUT _____________________________
-$('input[name="dates-input"]').daterangepicker();
+// var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
-$(function () {
-    $('input[name="calendar-pop-up"]').daterangepicker({
-        opens: 'left',
-        autoApply: true,
+// $("#search-btn").on("click", function () {
+//     event.preventDefault();
+//     console.log($("#city-input").val());
+// })
 
-    }, function (start, end) {
-        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        startGlobal = start.format('YYYY-MM-DD');
-        endGlobal = end.format('YYYY-MM-DD')
-    });
-});
+// //_________________________ CALENDAR POP UP FOR INPUT _____________________________
+// $('input[name="dates-input"]').daterangepicker();
 
 
-$("#search-btn").on("click", function () {
-    event.preventDefault();
-    console.log(startGlobal);
-    console.log(endGlobal);
-})
+// $(function () {
+//     $('input[name="calendar-pop-up"]').daterangepicker({
+//         opens: 'left',
+//         autoApply: true,
 
-//_________ GOOGLE SIGN IN
+//     }, function (start, end) {
+//         console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+//         startGlobal = start.format('YYYY-MM-DD');
+//         endGlobal = end.format('YYYY-MM-DD')
+//     });
+// });
+
+
+// $("#search-btn").on("click", function () {
+//     event.preventDefault();
+//     console.log(startGlobal);
+//     console.log(endGlobal);
+// })
+
+//_________ GOOGLE SIGN IN_____________________________________//
 
 var provider = new firebase.auth.GoogleAuthProvider();
  provider.addScope('profile');
@@ -138,8 +138,9 @@ var provider = new firebase.auth.GoogleAuthProvider();
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-    $('.content').show();
+    // $('.content').show();
     loggedIn();
+    window.location = 'https://bpadil123.github.io/Concert-Planner/search.html'
    
    });
    $(this).removeClass('signIn')
@@ -149,13 +150,13 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
  $(document).on('click', '.signOut', function () {
    firebase.auth().signOut().then(function() {
-     $('.content').hide();
+    //  $('.content').hide();
    }, function(error) {
      // An error happened.
    });
    $(this).removeClass('signOut')
      .addClass('signIn')
-     .html('Sign In With Google');
+    //  .html('Sign In With Google');
  });
 
 
