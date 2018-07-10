@@ -65,37 +65,39 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-            console.log(data);
-            console.log(url);
+            // console.log(data);
+            // console.log(url);
             var eventResults = data.response
 
             //loop to go through all results
             for (var i = 0; i < data.length; i++) {
-
+                var oneResult = $("<div>");
+                oneResult.addClass("oneResult");
                 //image of artist/event from LastFM **** 
 
 
                 //name of event/artist
-                console.log(data[i].description)
-                var eventName = $("<h1>").text(data[i].description);
+                // console.log(data[i].description)
+                var eventName = $("<p>").text(data[i].description);
 
                 //name of venue
-                console.log(data[i].venue.name);
-                var venueName = $("<h1>").text(data[i].venue.name);
+                // console.log(data[i].venue.name);
+                var venueName = $("<p>").text(data[i].venue.name);
 
                 //city and state of venue
-                console.log(data[i].venue.city)
-                console.log(data[i].venue.region)
-                var venueLocation = $("<h1>").text(data[i].venue.city + data[i].venue.region);
+                // console.log(data[i].venue.city)
+                // console.log(data[i].venue.region)
+                var venueLocation = $("<p>").text(data[i].venue.city + data[i].venue.region);
 
                 //date/time of event
-                console.log(data[i].datetime) //need to use moment to convert into appropriate layout
-                eventDateTime = $("<h1>").text(data[i].datetime);
+                // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
+                eventDateTime = $("<p>").text(data[i].datetime);
 
 
 
                 //Clears previous stuff and appends new content
-                $(".searchresult").append(eventName, venueName, venueLocation, eventDateTime);
+                oneResult.append(eventName, venueName, venueLocation, eventDateTime);
+                $(".searchresult").append(oneResult);
             };
         });
     };
@@ -114,21 +116,18 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-            console.log(data);
-            console.log(url);
-            var artistResults = data.response
+           console.log(data);
+            // console.log(url);
 
-            //loop to go through all results
-            for (var i = 0; i < data.length; i++) {
-console.log(data[i].name)
-                //image of artist/event from Artist URL **** 
-                var artistImage = $("<img>").attr("src", data[i].thumb_url);             
-                
+            console.log(data.thumb_url)
+            //image of artist/event from Artist URL **** 
+            var artistImage = $("<img>").attr("src", data.thumb_url);
 
 
-                //Clears previous stuff and appends new content
-                $(".searchresult").append(artistImage);
-            };
+
+            //Clears previous stuff and appends new content
+            $(".oneResult").append(artistImage);
+
         });
     };
 
@@ -147,8 +146,8 @@ console.log(data[i].name)
         $(".modal").hide();
         $(".fade").hide();
         $(".searchresult").empty();
-        bandsInTownArtist();
         bandsInTownEvent();
+        bandsInTownArtist();
     })
 
 
@@ -159,42 +158,42 @@ console.log(data[i].name)
 
     // ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
 
-    var input = document.getElementById('city-input');
-    // show only cities
-    var options = {
-        types: ['(cities)'],
-    };
+    // var input = document.getElementById('city-input');
+    // // show only cities
+    // var options = {
+    //     types: ['(cities)'],
+    // };
 
-    var autocompleteData = new google.maps.places.Autocomplete(input, options);
+    // var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
-    $("#search-btn").on("click", function () {
-        event.preventDefault();
-        console.log($("#city-input").val());
-    })
+    // $("#search-btn").on("click", function () {
+    //     event.preventDefault();
+    //     console.log($("#city-input").val());
+    // })
 
     //_________________________ CALENDAR POP UP FOR INPUT _____________________________
-    $('input[name="dates-input"]').daterangepicker();
+    // $('input[name="dates-input"]').daterangepicker();
 
 
-    $(function () {
-        $('input[name="calendar-pop-up"]').daterangepicker({
-            opens: 'left',
-            autoApply: true,
+    // $(function () {
+    //     $('input[name="calendar-pop-up"]').daterangepicker({
+    //         opens: 'left',
+    //         autoApply: true,
 
-        }, function (start, end) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-            startGlobal = start.format('YYYY-MM-DD');
-            endGlobal = end.format('YYYY-MM-DD')
-        });
-    });
+    //     }, function (start, end) {
+    //         console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    //         startGlobal = start.format('YYYY-MM-DD');
+    //         endGlobal = end.format('YYYY-MM-DD')
+    //     });
+    // });
 
 
-    $("#search-btn").on("click", function () {
-        event.preventDefault();
-        console.log(startGlobal);
-        console.log(endGlobal);
-    })
+    // $("#search-btn").on("click", function () {
+    //     event.preventDefault();
+    //     console.log(startGlobal);
+    //     console.log(endGlobal);
+    // })
 
     //_________ GOOGLE SIGN IN
 
