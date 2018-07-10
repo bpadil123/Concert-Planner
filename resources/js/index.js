@@ -164,7 +164,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
 
 
-
+ div.search-button div.selected a { color: #fff; }
 
 
         

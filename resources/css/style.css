@@ -6,18 +6,74 @@ body{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: 'Roboto Condensed', sans-serif;
 }
     
+#login-page h1{
+    font-size:48px;
+    color:orange;
+}
+#login-page p{
+    color:#fff;
+    margin-top:.5em;
+    margin-bottom: .5em;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    font-style: italic;
+    font-size: small;
+}
+a > .fas, a > .far{
+    text-decoration: none;
+    color: rgb(204, 204, 204);
+    font-size: x-large;
+    margin-left:10px;
+    
+    
+    
+}
 
+.fas:hover{
+    color:orange;
+}
+.fas:visited{
+    color:#298692;
+}
+.far:visited{
+    color:#298692;
+}
+.far:hover{
+    color:orange;
+}
+a:hover{
+    color:orange;
+}
 #login-page{
     float:none;
-    background-color:grey;
+    background-color:rgba(1, 30, 37, 0.705);
     margin-top:200px;
     padding:40px;
     text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+text-decoration:none;
+    
+    
+
+}
+
+#login-page button{
+    border-radius: 3px;
+    border: none;
+    background-color: #298692;
+    color: #fff;
+    padding: 10px 20px;
 }
 .nav-logo{
     float:left;
+    font-size:20px;
+    color:#2f6b77;
 }
 .nav-icons{
     float:right;
@@ -35,4 +91,29 @@ body{
 }
 th{
     text-align:center;
+}
+.search-button,.hr{
+    margin: 0 auto;
+}
+.search-button button{
+    float:right;
+    background-color:#e6b500;
+    border: none;
+    color: #285a65;
+    margin-top:100px;
+    padding:10px;
+}
+.search-button button:hover{
+    background-color:grey;
+}
+hr{
+    border-top: 1px solid rgb(138, 140, 140);
+}
+.searchresult{
+    margin: 0 auto;
+    text-align:center;
+    color:rgba(255, 255, 255, 0.62);
+}
+.searchresult p{
+    margin-top: 40px;
 }
