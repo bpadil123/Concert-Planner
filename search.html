@@ -45,11 +45,12 @@
             <nav class="navbar fixed-top navbar-light bg-light col-lg-12">
 
                 <div class="col-lg-8 nav-logo">HARMONIZE</div>
-                <div class="col-lg-4 nav-icons ">
-                    <a href="#">
+                <div class="col-lg-4 nav-icons">
+                    
+                    <a href="search.html" class="navbar-icon">
                         <i class="fas fa-search"></i>
                     </a>
-                    <a href="#">
+                    <a href="favorites.html" class="navbar-icon">
                         <i class="far fa-heart"></i>
 
                     </a>
@@ -58,66 +59,48 @@
             </nav>
         </div>
     </div>
-    <!-- <div class="container search">
-        <div class="row">
-            <form>
-                <label> artist search </label>
-                <input id="artist-input" placeholder="Search artist">
-
-                <label> city search </label>
-                <input id="city-input">
-
-                <label> dates </label>
-                <input name="calendar-pop-up" id="dates-input">
-
-
-                <button id="search-btn">search</button>
-            </form>
-        </div>
-    </div> -->
+    
 
     
 
-    <!-- Button trigger modal -->
-    <button type="button" id="modal-button" class="btn btn-primary search" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
+    
+    <div class="row">
+        <div class="col-lg-8  search-button">
+    <button type="button" class="btn btn-primary search" data-toggle="modal" data-target="#exampleModal">
+        New Search
     </button>
+</div>
+</div>
+<div class="sidenav">
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <div class="searchresult col-lg-8">
+        <p>No Results Found</p> 
+     </div>
+  </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    
+    <containter>
+        <div class="row col-lg-10">
+                <div class="col-lg-4">
+                        <img src="" alt="">
                 </div>
-                <div class="modal-body">
-                        <form>
-                                <label> artist search </label>
-                                <input id="artist-input" placeholder="Search artist">
-                
-                                <!-- <label> city search </label>
-                                <input id="city-input">
-                
-                                <label> dates </label>
-                                <input name="calendar-pop-up" id="dates-input">
-                 -->
-                
-                                <button id="search-btn">search</button>
-                            </form>
+                <div class="col-lg-6">
+                    <p>
+                        About Artist goes here
+                    </p>
                 </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div> -->
-            </div>
+                
         </div>
-    </div>
-    <div class="searchresult">
+        
+    </containter>
+    
 
-    </div>
+    
+    
+
 
 
     
