@@ -141,4 +141,42 @@ hr{
 
 
 /* SIDEBAR CSS*/
+.sidebar{
+    margin-top: 50px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background-color: #9c9c9c7d;
+}
+.sidebar-sticky{
+    position: sticky;
+    top: 48px;
+    height: calc(100vh - 48px);
+    padding-top: 50px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.form-inline{
 
+    display: block;
+    width:90%;
+    margin: 0 auto;
+}
+.form-inline > div{
+    margin-bottom: 20px;
+}
+.form-inline .form-control{
+    width:100%;
+
+}
+.btn-outline-success{
+    color: #fff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fff;
+
+}
