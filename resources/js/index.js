@@ -1,5 +1,6 @@
 // for last fm Shared secret	50430e261d47ee60d575c432c912c0e5
 //band in town id 9ac9ab26c18a220660a4a733194e08fc
+//create an array to store all city matches, if array has results, display them, if no results display sign no match
 
 $(document).ready(function () {
     // Initialize Firebase
@@ -21,8 +22,7 @@ $(document).ready(function () {
     var artistTerm;
     var cityTerm;
     var citySelected = false;
-    // var startGlobal;
-    // var endGlobal;
+    var cityMatchArr = [];
 
     // ______________________________ LAST FM DATA API CALL _____________________________________________
     function getLastFm() {
@@ -85,45 +85,33 @@ $(document).ready(function () {
                 // console.log(data[i].venue.name);
                 var venueName = $("<p>").text(data[i].venue.name);
 
-                //city and state of venue
-                // console.log(data[i].venue.city)
-                // console.log(data[i].venue.region)
-                // var venueLocation = $("<h1>").text(data[i].venue.city + data[i].venue.region);
 
-                //date/time of event
-                // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
                 eventDateTime = $("<p>").text(data[i].datetime);
 
-
-
-                //Clears previous stuff and appends new content
-
-                // if(citySelcted == false){
-                //     oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
-                //         oneResult.append(eventName, venueName, eventDateTime);
-                //         $(".searchresult").append(oneResult);
-                // } else {
-
-                // }
 
                 if (citySelected == true) {
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
                         console.log("it's a match");
-                        oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
-                        oneResult.append(eventName, venueName, eventDateTime);
-                        $(".searchresult").append(oneResult);
-                    } else {
-                        oneResult.text("your city did not match any concerts");
+                        // oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
+                        // oneResult.append(eventName, venueName, eventDateTime);
+                        // $(".searchresult").append(oneResult);
                     }
-                    
+
+
                 } else {
-                    oneResult.text(data[i].venue.city + " " + data[i].venue.region );
+                    oneResult.text(data[i].venue.city + " " + data[i].venue.region);
                     oneResult.append(eventName, venueName, eventDateTime);
                     $(".searchresult").append(oneResult);
                 }
             };
         });
     };
+
+    function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+    }
 
 
     //_____________BAND IN TOWN ARTIST SEARCH
@@ -172,7 +160,7 @@ $(document).ready(function () {
         if (cityTerm != "") {
             citySelected = true;
         } else {
-            citySelcted = false;
+            citySelected = false;
         }
         // console.log("search was pressed");
         // $(".modal").hide();
@@ -194,7 +182,9 @@ $(document).ready(function () {
     // show only cities
     var options = {
         types: ['(cities)'],
-        componentRestrictions: {country: "us"}
+        componentRestrictions: {
+            country: "us"
+        }
 
     };
 
