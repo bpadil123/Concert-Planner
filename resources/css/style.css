@@ -135,8 +135,13 @@ hr{
 
 
 
-
-
+.artist-img img{
+    width:200px;
+    height:200px;
+}
+main{
+    float:right;
+}
 
 
 
@@ -165,6 +170,7 @@ hr{
     display: block;
     width:90%;
     margin: 0 auto;
+    margin-bottom: 50px;
 }
 .form-inline > div{
     margin-bottom: 20px;

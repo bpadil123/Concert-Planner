@@ -78,7 +78,11 @@ $(document).ready(function () {
                 var venueName = $("<p>").text(data[i].venue.name);
 
 
-                var eventDateTime = $("<p>").text(data[i].datetime);
+
+                //date/time of event
+                // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
+                eventDateTime = $("<p>").text(data[i].datetime);
+                eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm a");
 
 
                 if (citySelected == true) {
@@ -286,3 +290,22 @@ $(document).ready(function () {
 
 
 });
+
+
+//MAPS//
+// Initialize and add the map
+function initMap() {
+    // The location of Uluru
+    var uluru = {lat: -25.344, lng: 131.036};
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 4, center: uluru});
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({position: uluru, map: map});
+  }
+//   <!--Load the API from the specified URL
+//     * The async attribute allows the browser to render the page while the API loads
+//     * The key parameter will contain your own API key (which is not needed for this tutorial)
+//     * The callback parameter executes the initMap() function
+//     -->
+

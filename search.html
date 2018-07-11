@@ -102,20 +102,24 @@
                 <button class="btn btn-outline-success my-2 my-sm-0"  id="search-btn" type="submit">Search</button>
             
             </form>
-            <div class="searchresult col-lg-8">
+            <div class="searchresult col-lg-12">
                 <p>No Results Found</p>
             </div>
         </div>
     </nav>
 
 
-    <containter>
+    <main role="main" class="col-lg-8 ">
         <div class="row col-lg-10">
+
+            <!-- <div class="col-lg-4 artist-img">
+                <img src="resources/images/background.jpg" alt="filler"> -->
             <div class="col-lg-4">
 
                 <img class="artist-image" src="" alt="">
 
                 <img src="" alt="">
+
 
             </div>
             <div class="col-lg-6">
@@ -124,9 +128,15 @@
                 </p>
             </div>
 
+
+        </div>
+        <div class="row col-lg-10">
+            <div class="map">
+
+            </div>
         </div>
 
-    </containter>
+    </main>
 
 
 
@@ -138,6 +148,8 @@
     <script src="./resources/js/index.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOoNYhJml77XYXNv1wtc-sJFM3P79-jO4&callback=initMap"></script>
+
 </body>
 
 </html>
