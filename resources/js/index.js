@@ -98,6 +98,13 @@ $(document).ready(function () {
 
                 //Clears previous stuff and appends new content
 
+                // if(citySelcted == false){
+                //     oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
+                //         oneResult.append(eventName, venueName, eventDateTime);
+                //         $(".searchresult").append(oneResult);
+                // } else {
+
+                // }
 
                 if (citySelected == true) {
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
@@ -106,8 +113,13 @@ $(document).ready(function () {
                         oneResult.append(eventName, venueName, eventDateTime);
                         $(".searchresult").append(oneResult);
                     } else {
-                        console.log("it's  not a match");
+                        oneResult.text("your city did not match any concerts");
                     }
+                    
+                } else {
+                    oneResult.text(data[i].venue.city + " " + data[i].venue.region );
+                    oneResult.append(eventName, venueName, eventDateTime);
+                    $(".searchresult").append(oneResult);
                 }
             };
         });
@@ -182,6 +194,8 @@ $(document).ready(function () {
     // show only cities
     var options = {
         types: ['(cities)'],
+        componentRestrictions: {country: "us"}
+
     };
 
     var autocompleteData = new google.maps.places.Autocomplete(input, options);
