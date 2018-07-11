@@ -20,8 +20,9 @@ $(document).ready(function () {
 
     var artistTerm;
     var cityTerm;
-    var startGlobal;
-    var endGlobal;
+    var citySelected = false;
+    // var startGlobal;
+    // var endGlobal;
 
     // ______________________________ LAST FM DATA API CALL _____________________________________________
     function getLastFm() {
@@ -65,8 +66,8 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-            // console.log(data);
-            // console.log(url);
+            console.log(data);
+            console.log(url);
             var eventResults = data.response
 
             //loop to go through all results
@@ -87,7 +88,7 @@ $(document).ready(function () {
                 //city and state of venue
                 // console.log(data[i].venue.city)
                 // console.log(data[i].venue.region)
-                var venueLocation = $("<p>").text(data[i].venue.city + data[i].venue.region);
+                // var venueLocation = $("<h1>").text(data[i].venue.city + data[i].venue.region);
 
                 //date/time of event
                 // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
@@ -96,8 +97,18 @@ $(document).ready(function () {
 
 
                 //Clears previous stuff and appends new content
-                oneResult.append(eventName, venueName, venueLocation, eventDateTime);
-                $(".searchresult").append(oneResult);
+
+
+                if (citySelected == true) {
+                    if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
+                        console.log("it's a match");
+                        oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
+                        oneResult.append(eventName, venueName, eventDateTime);
+                        $(".searchresult").append(oneResult);
+                    } else {
+                        console.log("it's  not a match");
+                    }
+                }
             };
         });
     };
@@ -116,18 +127,21 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-           console.log(data);
-            // console.log(url);
+            console.log(data);
+            console.log(url);
+            var artistResults = data.response
 
-            console.log(data.thumb_url)
-            //image of artist/event from Artist URL **** 
-            var artistImage = $("<img>").attr("src", data.thumb_url);
+            //loop to go through all results
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].name)
+                //image of artist/event from Artist URL **** 
+                var artistImage = $("<img>").attr("src", data[i].thumb_url);
 
 
 
-            //Clears previous stuff and appends new content
-            $(".oneResult").append(artistImage);
-
+                //Clears previous stuff and appends new content
+                $(".searchresult").append(artistImage);
+            };
         });
     };
 
@@ -142,12 +156,18 @@ $(document).ready(function () {
 
     $("#search-btn").on("click", function () {
         event.preventDefault();
-        console.log("search was pressed");
-        $(".modal").hide();
-        $(".fade").hide();
+        cityTerm = $("#city-input").val().trim();
+        if (cityTerm != "") {
+            citySelected = true;
+        } else {
+            citySelcted = false;
+        }
+        // console.log("search was pressed");
+        // $(".modal").hide();
+        // $(".fade").hide();
         $(".searchresult").empty();
-        bandsInTownEvent();
         bandsInTownArtist();
+        bandsInTownEvent();
     })
 
 
@@ -158,42 +178,36 @@ $(document).ready(function () {
 
     // ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
 
-    // var input = document.getElementById('city-input');
-    // // show only cities
-    // var options = {
-    //     types: ['(cities)'],
-    // };
+    var input = document.getElementById('city-input');
+    // show only cities
+    var options = {
+        types: ['(cities)'],
+    };
 
-    // var autocompleteData = new google.maps.places.Autocomplete(input, options);
+    var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
-    // $("#search-btn").on("click", function () {
-    //     event.preventDefault();
-    //     console.log($("#city-input").val());
-    // })
+    $("#search-btn").on("click", function () {
+        event.preventDefault();
+        console.log($("#city-input").val());
+    })
 
     //_________________________ CALENDAR POP UP FOR INPUT _____________________________
-    // $('input[name="dates-input"]').daterangepicker();
+    $('input[name="dates-input"]').daterangepicker();
 
 
-    // $(function () {
-    //     $('input[name="calendar-pop-up"]').daterangepicker({
-    //         opens: 'left',
-    //         autoApply: true,
+    $(function () {
+        $('input[name="calendar-pop-up"]').daterangepicker({
+            opens: 'left',
+            autoApply: true,
 
-    //     }, function (start, end) {
-    //         console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-    //         startGlobal = start.format('YYYY-MM-DD');
-    //         endGlobal = end.format('YYYY-MM-DD')
-    //     });
-    // });
+        }, function (start, end) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            startGlobal = start.format('YYYY-MM-DD');
+            endGlobal = end.format('YYYY-MM-DD')
+        });
+    });
 
-
-    // $("#search-btn").on("click", function () {
-    //     event.preventDefault();
-    //     console.log(startGlobal);
-    //     console.log(endGlobal);
-    // })
 
     //_________ GOOGLE SIGN IN
 
