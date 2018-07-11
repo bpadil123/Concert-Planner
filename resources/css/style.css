@@ -88,10 +88,16 @@ text-decoration:none;
 }
 #search-results{
     margin:0 auto;
+
+}
+
+.modal-open{
+    overflow: scroll;
 }
 th{
     text-align:center;
 }
+
 .search-button,.hr{
     margin: 0 auto;
 }
@@ -116,4 +122,12 @@ hr{
 }
 .searchresult p{
     margin-top: 40px;
+}
+
+
+/* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
+.oneResult{
+    border:1px black solid;
+    background-color:white;
+    margin-top:20px;
 }
