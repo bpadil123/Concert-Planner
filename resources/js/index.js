@@ -93,7 +93,7 @@ $(document).ready(function () {
                 //date/time of event
                 // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
                 eventDateTime = $("<p>").text(data[i].datetime);
-
+                eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm a");
 
 
                 //Clears previous stuff and appends new content
