@@ -47,6 +47,7 @@ $(document).ready(function () {
 
 
     function bandsInTownEvent() {
+        $(".searchresult").empty();
         artistTerm = $("#artist-input").val().trim();
         // searchVenue = $("#city-input").val().trim();
         var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') && artistTerm.replace('*', ' %252A') || artistTerm.replace('"', ' %27C');
@@ -71,10 +72,7 @@ $(document).ready(function () {
                 var eventName = $("<p>").text(data[i].description);
 
                 //name of venue
-                // console.log(data[i].venue.name);
                 var venueName = $("<p>").text(data[i].venue.name);
-
-
 
                 //date/time of event
                 // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
@@ -83,6 +81,8 @@ $(document).ready(function () {
 
 
                 if (citySelected == true) {
+                    //console.log("city selcted line 83 " + citySelected);
+                  
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
                         console.log("it's a match");
                         // oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
@@ -90,14 +90,22 @@ $(document).ready(function () {
                         // $(".searchresult").append(oneResult);
                         cityMatchArr.push(data[i]);
                         checkCity();
+                        cityMatchArr = [];
+                    } else {
+                
                     }
                 } else {
+
                     oneResult.text(data[i].venue.city + " " + data[i].venue.region);
                     oneResult.append(eventName, venueName, eventDateTime);
                     $(".searchresult").append(oneResult);
                 }
             };
+
         });
+     
+         checkCity();
+    
     };
 
     function toTitleCase(str) {
@@ -133,7 +141,12 @@ $(document).ready(function () {
     // }
 
     function checkCity() {
+       // console.log("citycitySelected);
+        console.log(cityMatchArr.length);
+        console.log(cityMatchArr);
+
         if (typeof cityMatchArr != "undefined" && cityMatchArr != null && cityMatchArr.length != null && cityMatchArr.length > 0) {
+            // $(".searchresult").empty();
             // console.log(cityMatchArr.length);
             console.log("array has stuff in it")
             for (var b = 0; b < cityMatchArr.length; b++) {
@@ -149,13 +162,19 @@ $(document).ready(function () {
                 // console.log(cityMatchArr[b].venue.name);
 
             }
-        } else if (cityMatchArr == null) {
-            console.log("array is empty nothing to display");
-            var oneResult = $("<div>");
-            oneResult.addClass("oneResult");
-            oneResult.text("City entered does not match any concerts by " + toTitleCase(artistTerm));
-            $(".searchresult").append(oneResult);
+        } else {
+   
+                console.log("array come back empty when length is " + cityMatchArr.length);
+            
+                console.log("array is empty nothing to display");
+                var oneResult = $("<div>");
+                oneResult.addClass("oneResult");
+                oneResult.text( cityTerm + " does not match any concerts by " + toTitleCase(artistTerm));
+                $(".searchresult").append(oneResult);
+       
+            
         }
+
     }
 
 
@@ -198,8 +217,9 @@ $(document).ready(function () {
             citySelected = true;
         } else {
             citySelected = false;
-            cityMatchArr = [];
+            // cityMatchArr = [];
         }
+        console.log("city selected is " + citySelected);
         // console.log("search was pressed");
         // $(".modal").hide();
         // $(".fade").hide();
