@@ -41,7 +41,7 @@ $(document).ready(function () {
     }
 
 
-    
+
 
     //_____________BAND IN TOWN EVENT SEARCH
 
@@ -230,11 +230,6 @@ $(document).ready(function () {
     var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
-    // $("#search-btn").on("click", function () {
-    //     event.preventDefault();
-    //     //console.log($("#city-input").val());
-    // })
-
     //_________________________ CALENDAR POP UP FOR INPUT _____________________________
     $('input[name="dates-input"]').daterangepicker();
 
@@ -286,25 +281,34 @@ $(document).ready(function () {
 
 
     //MAPS//
-// Initialize and add the map
-function initMap() {
-    // The location of Uluru
-    var uluru = {lat: -25.344, lng: 131.036};
-    // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById('map'), {zoom: 4, center: uluru});
-    // The marker, positioned at Uluru
-    var marker = new google.maps.Marker({position: uluru, map: map});
-  }
-//   <!--Load the API from the specified URL
-//     * The async attribute allows the browser to render the page while the API loads
-//     * The key parameter will contain your own API key (which is not needed for this tutorial)
-//     * The callback parameter executes the initMap() function
-//     -->
+    // Initialize and add the map
+    // function initMap() {
+    //     // The location of Uluru
+    //     var uluru = {lat: -25.344, lng: 131.036};
+    //     // The map, centered at Uluru
+    //     var map = new google.maps.Map(
+    //         document.getElementById('map'), {zoom: 4, center: uluru});
+    //     // The marker, positioned at Uluru
+    //     var marker = new google.maps.Marker({position: uluru, map: map});
+    //   }
+    //   <!--Load the API from the specified URL
+    //     * The async attribute allows the browser to render the page while the API loads
+    //     * The key parameter will contain your own API key (which is not needed for this tutorial)
+    //     * The callback parameter executes the initMap() function
+    //     -->
+    // function myMap() {
+    //     var mapProp = {
+    //         center: new google.maps.LatLng(51.508742, -0.120850),
+    //         zoom: 5,
+    //     };
+    //     var map = new google.maps.Map(document.getElementById("map"), mapProp);
+    // }
 
-
+    var map = new GMaps({
+        div: '#map',
+        lat: 39.7392,
+        lng: -104.9903
+    });
 
 
 });
-
-
