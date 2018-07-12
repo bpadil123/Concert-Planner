@@ -82,7 +82,7 @@ $(document).ready(function () {
 
                 if (citySelected == true) {
                     //console.log("city selcted line 83 " + citySelected);
-                  
+
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
                         console.log("it's a match");
                         // oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
@@ -92,7 +92,7 @@ $(document).ready(function () {
                         checkCity();
                         cityMatchArr = [];
                     } else {
-                
+
                     }
                 } else {
 
@@ -103,9 +103,9 @@ $(document).ready(function () {
             };
 
         });
-     
-         checkCity();
-    
+
+        checkCity();
+
     };
 
     function toTitleCase(str) {
@@ -141,7 +141,7 @@ $(document).ready(function () {
     // }
 
     function checkCity() {
-       // console.log("citycitySelected);
+        // console.log("citycitySelected);
         console.log(cityMatchArr.length);
         console.log(cityMatchArr);
 
@@ -163,16 +163,16 @@ $(document).ready(function () {
 
             }
         } else {
-   
-                console.log("array come back empty when length is " + cityMatchArr.length);
-            
-                console.log("array is empty nothing to display");
-                var oneResult = $("<div>");
-                oneResult.addClass("oneResult");
-                oneResult.text( cityTerm + " does not match any concerts by " + toTitleCase(artistTerm));
-                $(".searchresult").append(oneResult);
-       
-            
+            console.log(cityMatchArr);
+            console.log("array come back empty when length is " + cityMatchArr.length);
+
+            console.log("array is empty nothing to display");
+            var oneResult = $("<div>");
+            oneResult.addClass("oneResult");
+            oneResult.text(cityTerm + " does not match any concerts by " + toTitleCase(artistTerm));
+            $(".searchresult").append(oneResult);
+
+
         }
 
     }
