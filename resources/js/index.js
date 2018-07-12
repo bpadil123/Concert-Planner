@@ -285,11 +285,7 @@ $(document).ready(function () {
     });
 
 
-
-});
-
-
-//MAPS//
+    //MAPS//
 // Initialize and add the map
 function initMap() {
     // The location of Uluru
@@ -305,4 +301,10 @@ function initMap() {
 //     * The key parameter will contain your own API key (which is not needed for this tutorial)
 //     * The callback parameter executes the initMap() function
 //     -->
+
+
+
+
+});
+
 
