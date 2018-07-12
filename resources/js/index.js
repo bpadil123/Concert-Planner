@@ -41,10 +41,7 @@ $(document).ready(function () {
     }
 
 
-    $("#search-btn").on("click", function () {
-        event.preventDefault();
-        // getLastFm();
-    })
+    
 
     //_____________BAND IN TOWN EVENT SEARCH
 
