@@ -10,37 +10,37 @@ $(document).ready(function () {
     firebase.initializeApp(config);
     //_________ GOOGLE SIGN IN
 
-// var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
+var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 
-// $(document).on('click', '.signIn', function () {
-//     firebase.auth().signInWithPopup(provider).then(function (result) {
-//         // This gives you a Google Access Token.
-//         var token = result.credential.accessToken;
-//         // The signed-in user info.
-//         var user = result.user;
-//         $('.content').show();
-//         loggedIn();
+$(document).on('click', '.signIn', function () {
+    firebase.auth().signInWithPopup(provider).then(function (result) {
+        // This gives you a Google Access Token.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        $('.content').show();
+        loggedIn();
 
-//     });
-//     $(this).removeClass('signIn')
-//         .addClass('signOut')
-//         .html('Sign Out Of Google');
-// });
+    });
+    $(this).removeClass('signIn')
+        .addClass('signOut')
+        .html('Sign Out Of Google');
+});
 
-// $(document).on('click', '.signOut', function () {
-//     firebase.auth().signOut().then(function () {
-//         $('.content').hide();
-//     }, function (error) {
-//         // An error happened.
-//     });
-//     $(this).removeClass('signOut')
-//         .addClass('signIn')
-//         .html('Sign In With Google');
-// });
+$(document).on('click', '.signOut', function () {
+    firebase.auth().signOut().then(function () {
+        $('.content').hide();
+    }, function (error) {
+        // An error happened.
+    });
+    $(this).removeClass('signOut')
+        .addClass('signIn')
+        .html('Sign In With Google');
+});
 
-// loggedIn(){
-
-// }
+function loggedIn(){
+    window.location = 'https://innaleikina.github.io/Concert-Planner/search.html'
+}
 
 //MAPS//
 // Initialize and add the map
@@ -68,25 +68,25 @@ $(document).ready(function () {
 
     // Initialize Firebase
  
-    var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
+    // var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 
 
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-          // User is signed in.
-          var displayName = user.displayName;
-          var email = user.email;
-          var emailVerified = user.emailVerified;
-          var photoURL = user.photoURL;
-          var isAnonymous = user.isAnonymous;
-          var uid = user.uid;
-          var providerData = user.providerData;
-          console.log(displayName);
-        } else {
-          // User is signed out.
-          // ...
-        }
-      });
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //     if (user) {
+    //       // User is signed in.
+    //       var displayName = user.displayName;
+    //       var email = user.email;
+    //       var emailVerified = user.emailVerified;
+    //       var photoURL = user.photoURL;
+    //       var isAnonymous = user.isAnonymous;
+    //       var uid = user.uid;
+    //       var providerData = user.providerData;
+    //       console.log(displayName);
+    //     } else {
+    //       // User is signed out.
+    //       // ...
+    //     }
+    //   });
       
 
 });
