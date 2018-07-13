@@ -57,251 +57,274 @@ $(document).ready(function () {
 
         $.getJSON(url, function (data) {
 
-                console.log(data);
+            console.log(data);
 
-                // If Array is Empty
-                if (!Array.isArray(data) || !data.length) {
+            // If Array is Empty
+            if (!Array.isArray(data) || !data.length) {
 
-                    console.log("There are no results!");
+                console.log("There are no results!");
 
-                }
-                // If Array Has Data
-                else {
-                    if (citySelected == true) {
-                        cityLoop(data);
-                    
+            }
+            // If Array Has Data
+            else {
+                if (citySelected == true) {
+                    cityLoop(data);
+
                 } else {
                     displayResults(data);
                 }
             }
         })
-};
+    };
 
-function cityLoop(array) {
+    function cityLoop(array) {
 
-    const noMatchCityArr = [];
-    const matchCityArray = [];
-    city = cityTerm;
-
-
-    // Loop through array checking for matching values
-    for (let i = 0; i < array.length; i++) {
+        const noMatchCityArr = [];
+        const matchCityArray = [];
+        city = cityTerm;
 
 
-        // If object city === user input city
-        if (array[i].venue.city + ", " + array[i].venue.region + ", USA" == cityTerm) {
-            console.log("match");
-            matchCityArray.push(array[i]);
-        } else {
-            noMatchCityArr.push(array[i]);
+        // Loop through array checking for matching values
+        for (let i = 0; i < array.length; i++) {
+
+
+            // If object city === user input city
+            if (array[i].venue.city + ", " + array[i].venue.region + ", USA" == cityTerm) {
+                console.log("match");
+                matchCityArray.push(array[i]);
+            } else {
+                noMatchCityArr.push(array[i]);
+            }
+        }
+
+
+        // If Array is Empty
+        if (!Array.isArray(matchCityArray) || !matchCityArray.length) {
+            console.log("No City!");
+            const resultElement = $("#results");
+            $(".searchresult").append('<p id="no match">' + toTitleCase(artistTerm) + " has no upcoming concerts in " + cityTerm + '</p>');
+            // displayResults(noMatchCityArr);
+        }
+        // Run function to print results to page
+        else {
+            displayResults(matchCityArray);
         }
     }
 
 
-    // If Array is Empty
-    if (!Array.isArray(matchCityArray) || !matchCityArray.length) {
-        console.log("No City!");
+    // Function only used to display results to page
+    function displayResults(array) {
+        //   console.log("checking");
+
+        // Target element to insert data
         const resultElement = $("#results");
-       $(".searchresult").append('<p id="no match">' + toTitleCase(artistTerm) + " has no upcoming concerts in " + cityTerm + '</p>');
-        // displayResults(noMatchCityArr);
+
+        // Loop through array and append data to page
+        for (let i = 0; i < array.length; i++) {
+            var oneResult = $("<div>");
+            oneResult.addClass("oneResult");
+            var eventName = $("<p>").text(array[i].description);
+            var venueName = $("<p>").text(array[i].venue.name);
+            var eventDateTime = $("<p>").text(array[i].datetime);
+            var lat = array[i].venue.latitude;
+            var lng = array[i].venue.longitude;
+            console.log(lat,lng)
+
+            var oneResult = $("<div>");
+            oneResult.addClass("oneResult");
+            //console.log(cityMatchArr[b].description);
+
+            oneResult.append(toTitleCase(artistTerm), eventName, venueName, eventDateTime);
+            $(".searchresult").append(oneResult);
+        }
     }
-    // Run function to print results to page
-    else {
-        displayResults(matchCityArray);
+
+
+
+    function toTitleCase(str) {
+        if (str.length > 0) {
+            return str.replace(/\w\S*/g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        }
     }
-}
 
 
-// Function only used to display results to page
-function displayResults(array) {
-    //   console.log("checking");
+    // ADDING CONCERT TO .oneresult DETAILS UPON CLICKING SEARCH RESULT
 
-    // Target element to insert data
-    const resultElement = $("#results");
-
-    // Loop through array and append data to page
-    for (let i = 0; i < array.length; i++) {
-        var oneResult = $("<div>");
-        oneResult.addClass("oneResult");
-        var eventName = $("<p>").text(array[i].description);
-        var venueName = $("<p>").text(array[i].venue.name);
-        var eventDateTime = $("<p>").text(array[i].datetime);
-
-        var oneResult = $("<div>");
-        oneResult.addClass("oneResult");
-        //console.log(cityMatchArr[b].description);
-
-        oneResult.append(toTitleCase(artistTerm), eventName, venueName, eventDateTime);
-        $(".searchresult").append(oneResult);
-    }
-}
-
-
-
-function toTitleCase(str) {
-    if (str.length > 0) {
-        return str.replace(/\w\S*/g, function (txt) {
-            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    //image
+    //bio
+    //buy tickets link/button
+    //play music link/button
+    function showConcert() {
+        var map = new GMaps({
+            div: '#map',
+            lat: 39.7392,
+            lng: -104.9903
         });
-    }
-}
+        bandsInTownArtist();
+        $(".heart-button").html("<button>Fav</button>")
+        $(".buy-ticket").html("<button>Fav</button>")
 
-
-
-
-
-
-//_____________BAND IN TOWN ARTIST SEARCH
-
-function bandsInTownArtist() {
-    artistTerm = $("#artist-input").val().trim();
-    // searchVenue = $("#city-input").val().trim();
-    var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') && artistTerm.replace('*', ' %252A') || artistTerm.replace('"', ' %27C');
-
-
-
-    url = "https://rest.bandsintown.com/artists/" + replacedSearchTerm + "?app_id=9ac9ab26c18a220660a4a733194e08fc";
-
-
-    $.getJSON(url, function (data) {
-        // console.log(data);
-        // console.log(url);
-        var artistResults = data.response
-        //image of artist/event from Artist URL **** 
-        $(".artist-image").attr("src", data.thumb_url);
-
-    });
-};
-
-
-
-
-
-
-
-
-//_____________SEARCH BUTTON CLICK________________
-
-$("#search-btn").on("click", function () {
-    event.preventDefault();
-    cityTerm = $("#city-input").val().trim();
-    if (cityTerm != "") {
-        citySelected = true;
-
-
-    } else {
-        citySelected = false;
-        // cityMatchArr = [];
-    }
-    console.log("city selected is " + citySelected);
-    // console.log("search was pressed");
-    // $(".modal").hide();
-    // $(".fade").hide();
-    $(".searchresult").empty();
-    bandsInTownArtist();
-    bandsInTownEvent();
-
-    //checkCity();
-})
-
-
-
-
-
-
-
-// ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
-
-var input = document.getElementById('city-input');
-// show only cities
-var options = {
-    types: ['(cities)'],
-    componentRestrictions: {
-        country: "us"
     }
 
-};
 
-var autocompleteData = new google.maps.places.Autocomplete(input, options);
-
-
-//_________________________ CALENDAR POP UP FOR INPUT _____________________________
-$('input[name="dates-input"]').daterangepicker();
-
-
-$(function () {
-    $('input[name="calendar-pop-up"]').daterangepicker({
-        opens: 'left',
-        autoApply: true,
-
-    }, function (start, end) {
-        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-        startGlobal = start.format('YYYY-MM-DD');
-        endGlobal = end.format('YYYY-MM-DD')
+    $(".searchresult").on("click", function () {
+        showConcert();
     });
-});
 
 
-//_________ GOOGLE SIGN IN
 
-var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 
-$(document).on('click', '.signIn', function () {
-    firebase.auth().signInWithPopup(provider).then(function (result) {
-        // This gives you a Google Access Token.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        $('.content').show();
-        loggedIn();
+    //_____________BAND IN TOWN ARTIST SEARCH
 
+    function bandsInTownArtist() {
+        artistTerm = $("#artist-input").val().trim();
+        // searchVenue = $("#city-input").val().trim();
+        var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') && artistTerm.replace('*', ' %252A') || artistTerm.replace('"', ' %27C');
+
+
+
+        url = "https://rest.bandsintown.com/artists/" + replacedSearchTerm + "?app_id=9ac9ab26c18a220660a4a733194e08fc";
+
+
+        $.getJSON(url, function (data) {
+            // console.log(data);
+            // console.log(url);
+            var artistResults = data.response
+            //image of artist/event from Artist URL **** 
+            $(".artist-image").attr("src", data.thumb_url);
+
+        });
+    };
+
+
+
+
+
+
+
+
+    //_____________SEARCH BUTTON CLICK________________
+
+    $("#search-btn").on("click", function () {
+        event.preventDefault();
+        cityTerm = $("#city-input").val().trim();
+        if (cityTerm != "") {
+            citySelected = true;
+
+
+        } else {
+            citySelected = false;
+            // cityMatchArr = [];
+        }
+        console.log("city selected is " + citySelected);
+        // console.log("search was pressed");
+        // $(".modal").hide();
+        // $(".fade").hide();
+        $(".searchresult").empty();
+        bandsInTownArtist();
+        bandsInTownEvent();
+
+        //checkCity();
+    })
+
+
+
+
+
+
+
+    // ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
+
+    var input = document.getElementById('city-input');
+    // show only cities
+    var options = {
+        types: ['(cities)'],
+        componentRestrictions: {
+            country: "us"
+        }
+
+    };
+
+    var autocompleteData = new google.maps.places.Autocomplete(input, options);
+
+
+    //_________________________ CALENDAR POP UP FOR INPUT _____________________________
+    $('input[name="dates-input"]').daterangepicker();
+
+
+    $(function () {
+        $('input[name="calendar-pop-up"]').daterangepicker({
+            opens: 'left',
+            autoApply: true,
+
+        }, function (start, end) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            startGlobal = start.format('YYYY-MM-DD');
+            endGlobal = end.format('YYYY-MM-DD')
+        });
     });
-    $(this).removeClass('signIn')
-        .addClass('signOut')
-        .html('Sign Out Of Google');
-});
 
-$(document).on('click', '.signOut', function () {
-    firebase.auth().signOut().then(function () {
-        $('.content').hide();
-    }, function (error) {
-        // An error happened.
+
+    //_________ GOOGLE SIGN IN
+
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+
+    $(document).on('click', '.signIn', function () {
+        firebase.auth().signInWithPopup(provider).then(function (result) {
+            // This gives you a Google Access Token.
+            var token = result.credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            $('.content').show();
+            loggedIn();
+
+        });
+        $(this).removeClass('signIn')
+            .addClass('signOut')
+            .html('Sign Out Of Google');
     });
-    $(this).removeClass('signOut')
-        .addClass('signIn')
-        .html('Sign In With Google');
-});
+
+    $(document).on('click', '.signOut', function () {
+        firebase.auth().signOut().then(function () {
+            $('.content').hide();
+        }, function (error) {
+            // An error happened.
+        });
+        $(this).removeClass('signOut')
+            .addClass('signIn')
+            .html('Sign In With Google');
+    });
 
 
-//MAPS//
-// Initialize and add the map
-// function initMap() {
-//     // The location of Uluru
-//     var uluru = {lat: -25.344, lng: 131.036};
-//     // The map, centered at Uluru
-//     var map = new google.maps.Map(
-//         document.getElementById('map'), {zoom: 4, center: uluru});
-//     // The marker, positioned at Uluru
-//     var marker = new google.maps.Marker({position: uluru, map: map});
-//   }
-//   <!--Load the API from the specified URL
-//     * The async attribute allows the browser to render the page while the API loads
-//     * The key parameter will contain your own API key (which is not needed for this tutorial)
-//     * The callback parameter executes the initMap() function
-//     -->
-// function myMap() {
-//     var mapProp = {
-//         center: new google.maps.LatLng(51.508742, -0.120850),
-//         zoom: 5,
-//     };
-//     var map = new google.maps.Map(document.getElementById("map"), mapProp);
-// }
+    //MAPS//
+    // Initialize and add the map
+    // function initMap() {
+    //     // The location of Uluru
+    //     var uluru = {lat: -25.344, lng: 131.036};
+    //     // The map, centered at Uluru
+    //     var map = new google.maps.Map(
+    //         document.getElementById('map'), {zoom: 4, center: uluru});
+    //     // The marker, positioned at Uluru
+    //     var marker = new google.maps.Marker({position: uluru, map: map});
+    //   }
+    //   <!--Load the API from the specified URL
+    //     * The async attribute allows the browser to render the page while the API loads
+    //     * The key parameter will contain your own API key (which is not needed for this tutorial)
+    //     * The callback parameter executes the initMap() function
+    //     -->
+    // function myMap() {
+    //     var mapProp = {
+    //         center: new google.maps.LatLng(51.508742, -0.120850),
+    //         zoom: 5,
+    //     };
+    //     var map = new google.maps.Map(document.getElementById("map"), mapProp);
+    // }
 
-var map = new GMaps({
-    div: '#map',
-    lat: 39.7392,
-    lng: -104.9903
-});
+
 
 
 });
