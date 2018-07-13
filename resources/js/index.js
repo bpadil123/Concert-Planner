@@ -123,24 +123,38 @@ $(document).ready(function () {
         for (let i = 0; i < array.length; i++) {
             var oneResult = $("<div>");
             oneResult.addClass("oneResult");
+            console.log(artistTerm);
+ var artistNameSearch = $("<p>").text(artistTerm);
             var eventName = $("<p>").text(array[i].description);
             var venueName = $("<p>").text(array[i].venue.name);
             var eventDateTime = $("<p>").text(array[i].datetime);
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
-            console.log(lat,lng)
+            var ticketLink = array[i].offers[0].url;
+ //STORING CONCERT DATA AS AN ATTRIBUTE
+            oneResult.attr("lat-input",lat)
+            oneResult.attr("lng-input",lng)
+            oneResult.attr("link-input",ticketLink)
+ //div to store data
 
+ //Josie Did This code
+eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
+eventDateTime = $("<p>" + eventDateTime +  "</p>")
+            // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
+            // console.log("#concertinfo");
+            
+ 
             var oneResult = $("<div>");
             oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
-
-            oneResult.append(toTitleCase(artistTerm), eventName, venueName, eventDateTime);
+ 
+            oneResult.append( artistNameSearch, eventName, venueName, eventDateTime);
             $(".searchresult").append(oneResult);
         }
     }
-
-
-
+ 
+ 
+ 
     function toTitleCase(str) {
         if (str.length > 0) {
             return str.replace(/\w\S*/g, function (txt) {

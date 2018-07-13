@@ -127,10 +127,10 @@ hr{
 
 /* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
 .oneResult{
-    border:1px black solid;
-    background-color:white;
-    margin-top:20px;
-    color:black;
+    background-color: white;
+    margin-top: 20px;
+    color: black;
+    border-radius: 5px;
 }
 
 
@@ -138,6 +138,7 @@ hr{
 .artist-img img{
     width:200px;
     height:200px;
+    margin-top: 100px;
 }
 main{
     float:right;
