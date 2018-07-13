@@ -23,7 +23,7 @@ $(document).ready(function () {
           var uid = user.uid;
           var providerData = user.providerData;
           console.log(displayName);
-          $(".user-name").text(displayName);
+          $(".user-name").append("<p>" + displayName + "'s favorites </p>");
         } else {
           // User is signed out.
           // ...
