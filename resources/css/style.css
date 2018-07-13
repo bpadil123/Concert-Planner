@@ -192,3 +192,9 @@ main{
     width:400px;
     height:300px;
 }
+
+.user-name{
+    width:200px;
+    height:30px;
+    border:1px red solid;
+}
