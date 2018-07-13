@@ -122,7 +122,9 @@ $(document).ready(function () {
         // Loop through array and append data to page
         for (let i = 0; i < array.length; i++) {
             var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
+
             //console.log(artistTerm);
+
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
             var venueName = $("<p>").text(array[i].venue.name);
@@ -131,6 +133,7 @@ $(document).ready(function () {
             var lng = array[i].venue.longitude;
             var ticketLink = array[i].offers[0].url;
             //STORING CONCERT DATA AS AN ATTRIBUTE
+
             oneResult.attr("data-lat", lat);
             oneResult.attr("data-lng", lng);
             oneResult.attr("data-link", ticketLink);
@@ -139,6 +142,11 @@ $(document).ready(function () {
             oneResult.attr("data-city", cityTerm);
             oneResult.attr("data-event", array[i].description);
             oneResult.attr("data-time", array[i].datetime);
+
+            oneResult.attr("data-lat", lat)
+            oneResult.attr("data-lng", lng)
+            oneResult.attr("data-link", ticketLink)
+
             //div to store data
 
             //Josie Did This code
@@ -174,17 +182,21 @@ $(document).ready(function () {
     //bio
     //buy tickets link/button
     //play music link/button
-    function showConcert(newLat = 39.7392, newLng = -104.9903, newTicket) {
+
+    function showConcert(newLat=39.7392,newLng=-104.9903,newTicket) {
+
         var map = new GMaps({
             div: '#map',
             lat: newLat,
             lng: newLng,
         });
         bandsInTownArtist();
+
     }
 
 
     // $(".oneResult").on("click", function () {
+
     $(document).on('click', '.oneResult', function () {
         var newLat = $(this).data("lat");
         var newLng = $(this).data("lng");
@@ -204,6 +216,15 @@ $(document).ready(function () {
 
 
         showConcert(newLat, newLng, newTicket);
+
+        $(document).on('click','.oneResult',function(){
+            var newLat= $(this).data("lat");
+            var newLng= $(this).data("lng");
+            var newTicket= $(this).data("link");
+
+
+        showConcert(newLat,newLng,newTicket);
+
     });
     //testcomment
 
@@ -285,5 +306,6 @@ $(document).ready(function () {
     };
 
     var autocompleteData = new google.maps.places.Autocomplete(input, options);
+
 
 });
