@@ -83,8 +83,10 @@ function cityLoop(array) {
     const matchCityArray = [];
     city = cityTerm;
 
+
     // Loop through array checking for matching values
     for (let i = 0; i < array.length; i++) {
+
 
         // If object city === user input city
         if (array[i].venue.city + ", " + array[i].venue.region + ", USA" == cityTerm) {
@@ -94,6 +96,7 @@ function cityLoop(array) {
             noMatchCityArr.push(array[i]);
         }
     }
+
 
     // If Array is Empty
     if (!Array.isArray(matchCityArray) || !matchCityArray.length) {
@@ -107,6 +110,7 @@ function cityLoop(array) {
         displayResults(matchCityArray);
     }
 }
+
 
 // Function only used to display results to page
 function displayResults(array) {
