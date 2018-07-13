@@ -88,10 +88,11 @@ $(document).ready(function () {
                 if (citySelected == true) {
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
                         console.log("it's a match");
-
+                        
                         // oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
                         // oneResult.append(eventName, venueName, eventDateTime);
                         // $(".searchresult").append(oneResult);
+                        
                         cityMatchArr.push(data[i]);
                         checkCity();
 
@@ -104,6 +105,15 @@ $(document).ready(function () {
             };
         });
     };
+function showConcert(){
+    $(".artist-image").attr("src", data.thumb_url);
+
+};
+$(".oneResult").on("click", function () {
+showConcert();
+
+    // $(".fav-btn").html("<i class="fas fa-heart"></i>");
+});
 
     function toTitleCase(str) {
         if (str.length > 0) {
@@ -182,7 +192,6 @@ $(document).ready(function () {
             // console.log(url);
             var artistResults = data.response
             //image of artist/event from Artist URL **** 
-            $(".artist-image").attr("src", data.thumb_url);
 
         });
     };

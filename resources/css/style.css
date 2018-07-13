@@ -133,13 +133,20 @@ hr{
     color:black;
 }
 
-
+.top-artist{
+    margin-top:100px;
+}
 
 .artist-img img{
     width:200px;
     height:200px;
+
+}
+.artist-description{
+    float:right;
 }
 main{
+
     float:right;
 }
 
