@@ -125,7 +125,7 @@ $(document).ready(function () {
             console.log(artistTerm);
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
-            var venueName = $("<p>").text(array[i].venue.name);
+            var venueName = $("<p>").text(array[i].venue.name+"<br>"+array[i].venue.city+", "+array[i].venue.region);
             var eventDateTime = $("<p>").text(array[i].datetime);
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
@@ -135,7 +135,6 @@ $(document).ready(function () {
             oneResult.attr("data-lng", lng)
             oneResult.attr("data-link", ticketLink)
             //div to store data
-
             //Josie Did This code
             eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
             eventDateTime = $("<p>" + eventDateTime + "</p>")
@@ -147,7 +146,7 @@ $(document).ready(function () {
             // oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
 
-            oneResult.append(artistNameSearch, eventName, venueName, eventDateTime);
+            oneResult.append(artistNameSearch, eventDateTime, eventName, venueName);
             $(".searchresult").append(oneResult);
         }
     }
