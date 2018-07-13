@@ -123,18 +123,28 @@ $(document).ready(function () {
         for (let i = 0; i < array.length; i++) {
             var oneResult = $("<div>");
             oneResult.addClass("oneResult");
+            console.log(artistTerm);
+var artistNameSearch = $("<p>").text(artistTerm);
             var eventName = $("<p>").text(array[i].description);
             var venueName = $("<p>").text(array[i].venue.name);
             var eventDateTime = $("<p>").text(array[i].datetime);
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
-            console.log(lat,lng)
+            var ticketLink = array[i].offers[0].url;
+//STORING CONCERT DATA AS AN ATTRIBUTE
+            oneResult.attr("lat-input",lat)
+            oneResult.attr("lng-input",lng)
+            oneResult.attr("link-input",ticketLink)
+//div to store data
+            // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
+            // console.log("#concertinfo");
+            
 
             var oneResult = $("<div>");
             oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
 
-            oneResult.append(toTitleCase(artistTerm), eventName, venueName, eventDateTime);
+            oneResult.append( artistNameSearch, eventName, venueName, eventDateTime);
             $(".searchresult").append(oneResult);
         }
     }
@@ -152,10 +162,7 @@ $(document).ready(function () {
 
     // ADDING CONCERT TO .oneresult DETAILS UPON CLICKING SEARCH RESULT
 
-    //image
-    //bio
-    //buy tickets link/button
-    //play music link/button
+
     function showConcert() {
         var map = new GMaps({
             div: '#map',
@@ -165,14 +172,18 @@ $(document).ready(function () {
         bandsInTownArtist();
         $(".heart-button").html("<button>Fav</button>")
         $(".buy-ticket").html("<button>Fav</button>")
+                $(".buy-ticket").html("<button>Fav</button>")
+
+    //bio
+  
 
     }
 
 
     $(".searchresult").on("click", function () {
+        console.log($(this))
         showConcert();
     });
-//testcomment
 
 
 
@@ -197,11 +208,6 @@ $(document).ready(function () {
 
         });
     };
-
-
-
-
-
 
 
 
