@@ -1,33 +1,46 @@
 $(document).ready(function () {
+    var config = {
+        apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
+        authDomain: "harmonize-dd029.firebaseapp.com",
+        databaseURL: "https://harmonize-dd029.firebaseio.com",
+        projectId: "harmonize-dd029",
+        storageBucket: "harmonize-dd029.appspot.com",
+        messagingSenderId: "419798913580"
+    };
+    firebase.initializeApp(config);
     //_________ GOOGLE SIGN IN
 
-var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
+// var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 
-$(document).on('click', '.signIn', function () {
-    firebase.auth().signInWithPopup(provider).then(function (result) {
-        // This gives you a Google Access Token.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        $('.content').show();
-        loggedIn();
+// $(document).on('click', '.signIn', function () {
+//     firebase.auth().signInWithPopup(provider).then(function (result) {
+//         // This gives you a Google Access Token.
+//         var token = result.credential.accessToken;
+//         // The signed-in user info.
+//         var user = result.user;
+//         $('.content').show();
+//         loggedIn();
 
-    });
-    $(this).removeClass('signIn')
-        .addClass('signOut')
-        .html('Sign Out Of Google');
-});
+//     });
+//     $(this).removeClass('signIn')
+//         .addClass('signOut')
+//         .html('Sign Out Of Google');
+// });
 
-$(document).on('click', '.signOut', function () {
-    firebase.auth().signOut().then(function () {
-        $('.content').hide();
-    }, function (error) {
-        // An error happened.
-    });
-    $(this).removeClass('signOut')
-        .addClass('signIn')
-        .html('Sign In With Google');
-});
+// $(document).on('click', '.signOut', function () {
+//     firebase.auth().signOut().then(function () {
+//         $('.content').hide();
+//     }, function (error) {
+//         // An error happened.
+//     });
+//     $(this).removeClass('signOut')
+//         .addClass('signIn')
+//         .html('Sign In With Google');
+// });
+
+// loggedIn(){
+
+// }
 
 //MAPS//
 // Initialize and add the map
@@ -54,15 +67,7 @@ $(document).on('click', '.signOut', function () {
 // }
 
     // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
-        authDomain: "harmonize-dd029.firebaseapp.com",
-        databaseURL: "https://harmonize-dd029.firebaseio.com",
-        projectId: "harmonize-dd029",
-        storageBucket: "harmonize-dd029.appspot.com",
-        messagingSenderId: "419798913580"
-    };
-    firebase.initializeApp(config);
+ 
     var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 
 
