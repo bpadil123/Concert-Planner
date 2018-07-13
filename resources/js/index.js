@@ -56,57 +56,81 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-            // console.log(data);
-            // console.log(url);
-            var eventResults = data.response
+
 
             //loop to go through all results
             for (var i = 0; i < data.length - 1; i++) {
                 var oneResult = $("<div>");
                 oneResult.addClass("oneResult");
-                //image of artist/event from LastFM **** 
-
-
-                //name of event/artist
-                // console.log(data[i].description)
                 var eventName = $("<p>").text(data[i].description);
-
-                //name of venue
                 var venueName = $("<p>").text(data[i].venue.name);
-
-                //date/time of event
-                // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
-                eventDateTime = $("<p>").text(data[i].datetime);
-                eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm a");
-
+                var eventDateTime = $("<p>").text(data[i].datetime);
 
                 if (citySelected == true) {
-                    //console.log("city selcted line 83 " + citySelected);
+                    console.log("city selcted line 83 " + citySelected);
 
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
                         console.log("it's a match");
-                        // oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
-                        // oneResult.append(eventName, venueName, eventDateTime);
-                        // $(".searchresult").append(oneResult);
                         cityMatchArr.push(data[i]);
                         checkCity();
                         cityMatchArr = [];
-                    } else {
+                        // if (cityMatchArr.length > 0) {
+                        //     console.log("array has " + cityMatchArr.length + " items in it");
 
+                        // }
                     }
+
                 } else {
 
                     oneResult.text(data[i].venue.city + " " + data[i].venue.region);
                     oneResult.append(eventName, venueName, eventDateTime);
                     $(".searchresult").append(oneResult);
+
                 }
             };
 
         });
-
-        checkCity();
-
     };
+
+    // function cityLoop(array) {
+    //     var cityMatchArr = [];
+    //     var city = "Cleveland";
+
+    //     for (let i = 0; i < array.length; i++) {
+
+    //         // If object city === user input city
+    //         if (array[i].venue.city === city) {
+    //             cityMatchArr.push(array[i]);
+    //         }
+    //     }
+    //     if (!Array.isArray(cityMatchArr) || !cityMatchArr.length) {
+    //         console.log("No City!");
+    //         const resultElement = $("#results");
+    //         resultElement.append("<p> no city match </p>");
+    //     }
+    //     // Run function to print results to page
+    //     else {
+    //         displayResults(cityMatchArr);
+    //     }
+    // }
+
+    // function displayResults(array) {
+
+    //     // Target element to insert data
+    //     const resultElement = $("#results");
+
+    //     // Loop through array and append data to page
+    //     for (let i = 0; i < array.length; i++) {
+    //         const description = array[i].description;
+    //         const venue = array[i].venue.name;
+
+    //         resultElement.append(description);
+    //         resultElement.append(venue);
+    //         resultElement.append("<br />");
+    //     }
+    // }
+
+
 
     function toTitleCase(str) {
         if (str.length > 0) {
@@ -115,30 +139,6 @@ $(document).ready(function () {
             });
         }
     }
-
-    //________________if cityMatchArr has items, display them if not, display 
-    // function checkCity() {
-    //     if (cityMatchArr.length == 0) {
-    //         console.log("array is empty nothing to display")
-    //         $(".searchresult").text("City entered does not match any concerts by " + toTitleCase(artistTerm));
-    //     } else if(cityMatchArr.length > 0){
-    //         console.log(cityMatchArr.length);
-    //         console.log("array has stuff in it")
-    //         for (var b = 0; b < cityMatchArr.length; b++) {
-    //             console.log(b);
-    //             var oneResult = $("<div>");
-    //             oneResult.addClass("oneResult");
-    //             console.log(cityMatchArr[b].description);
-    //             var eventName = $("<p>").text(cityMatchArr[b].description);
-    //             var venueName = $("<p>").text(cityMatchArr[b].venue.name);
-    //             var eventDateTime = $("<p>").text(cityMatchArr[b].datetime);
-    //             oneResult.append(toTitleCase(artistTerm),eventName, venueName, eventDateTime);
-    //             $(".searchresult").append(oneResult);
-    //             // console.log(cityMatchArr[b].venue.name);
-
-    //         }
-    //     }
-    // }
 
     function checkCity() {
         // console.log("citycitySelected);
@@ -159,6 +159,7 @@ $(document).ready(function () {
                 var eventDateTime = $("<p>").text(cityMatchArr[b].datetime);
                 oneResult.append(toTitleCase(artistTerm), eventName, venueName, eventDateTime);
                 $(".searchresult").append(oneResult);
+
                 // console.log(cityMatchArr[b].venue.name);
 
             }
@@ -169,13 +170,15 @@ $(document).ready(function () {
             console.log("array is empty nothing to display");
             var oneResult = $("<div>");
             oneResult.addClass("oneResult");
-            oneResult.text(cityTerm + " does not match any concerts by " + toTitleCase(artistTerm));
+            oneResult.text(cityTerm + " does not match any concerts by " + artistTerm);
             $(".searchresult").append(oneResult);
 
 
         }
 
     }
+
+
 
 
 
@@ -215,6 +218,8 @@ $(document).ready(function () {
         cityTerm = $("#city-input").val().trim();
         if (cityTerm != "") {
             citySelected = true;
+
+
         } else {
             citySelected = false;
             // cityMatchArr = [];
@@ -226,7 +231,8 @@ $(document).ready(function () {
         $(".searchresult").empty();
         bandsInTownArtist();
         bandsInTownEvent();
-        console.log(cityMatchArr);
+
+        //checkCity();
     })
 
 
