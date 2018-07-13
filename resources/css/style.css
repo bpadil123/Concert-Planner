@@ -196,5 +196,8 @@ main{
 .user-name{
     width:200px;
     height:30px;
-    border:1px red solid;
+    /* border:1px red solid; */
+    z-index:2;
+    margin-top:100px;
+    margin:0 auto;
 }

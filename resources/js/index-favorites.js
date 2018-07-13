@@ -23,10 +23,9 @@ $(document).ready(function () {
           var uid = user.uid;
           var providerData = user.providerData;
           console.log(displayName);
-          $(".user-name").append("<p>" + displayName + "</p>");
+          $(".user-name").append("<p>" + displayName + "'s favorites</p>");
         } else {
-          // User is signed out.
-          // ...
+          $(".user-name").hide()
         }
       });
       
