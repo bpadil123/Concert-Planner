@@ -123,6 +123,8 @@ $(document).ready(function () {
         for (let i = 0; i < array.length; i++) {
             var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
             //console.log(artistTerm);
+            var artistName = toTitleCase(artistTerm);
+            console.log(artistName);
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
             var venueName = $("<p>").text(array[i].venue.name);
@@ -134,9 +136,9 @@ $(document).ready(function () {
             oneResult.attr("data-lat", lat);
             oneResult.attr("data-lng", lng);
             oneResult.attr("data-link", ticketLink);
-            oneResult.attr("data-artistName", artistTerm);
+            oneResult.attr("data-name", artistName);
             oneResult.attr("data-venue", array[i].venue.name);
-            oneResult.attr("data-city", cityTerm);
+            oneResult.attr("data-city", array[i].venue.city);
             oneResult.attr("data-event", array[i].description);
             oneResult.attr("data-time", array[i].datetime);
             //div to store data
@@ -189,12 +191,12 @@ $(document).ready(function () {
         var newLat = $(this).data("lat");
         var newLng = $(this).data("lng");
         var newTicket = $(this).data("link");
-        
+
         $(".result-buttons").empty();
-        var faveBtn = $("<button>");
-        faveBtn.html('<i class="far fa-heart"></i>');
-        faveBtn.addClass("add-fave-btn");
-        faveBtn.attr("data-name", $(this).attr("data-artistName"));
+        var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
+        faveBtn.text('heart');
+        // faveBtn.addClass("add-fave-btn");
+        faveBtn.attr("data-name", $(this).attr("data-name"));
         faveBtn.attr("data-venue", $(this).attr("data-venue"));
         faveBtn.attr("data-time", $(this).attr("data-time"));
         faveBtn.attr("data-event", $(this).attr("data-event"));
@@ -208,7 +210,11 @@ $(document).ready(function () {
     //testcomment
 
     $(document).on('click', '.add-fave-btn', function () {
-        //    console.log($(".on").parent().parent())
+        console.log($(this).data("event"));
+        console.log($(this).data("venue"));
+        console.log($(this).data("time"));
+        console.log($(this).data("city"));
+        console.log($(this).data("name"));
         console.log("fave was clicked");
     });
 
