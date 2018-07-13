@@ -25,6 +25,7 @@ $(document).ready(function () {
           console.log(displayName);
           $(".user-name").append("<p>" + displayName + "'s favorites </p>");
         } else {
+          $(".user-name").hide();
           // User is signed out.
           // ...
         }
