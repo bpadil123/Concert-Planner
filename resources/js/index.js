@@ -82,17 +82,19 @@ $(document).ready(function () {
                 //date/time of event
                 // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
                 eventDateTime = $("<p>").text(data[i].datetime);
-                eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm a");
+                eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
 
 
                 if (citySelected == true) {
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
                         console.log("it's a match");
+
                         // oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
                         // oneResult.append(eventName, venueName, eventDateTime);
                         // $(".searchresult").append(oneResult);
                         cityMatchArr.push(data[i]);
                         checkCity();
+
                     }
                 } else {
                     oneResult.text(data[i].venue.city + " " + data[i].venue.region);
