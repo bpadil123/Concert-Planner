@@ -124,37 +124,37 @@ $(document).ready(function () {
             var oneResult = $("<div>");
             oneResult.addClass("oneResult");
             console.log(artistTerm);
- var artistNameSearch = $("<p>").text(artistTerm);
+            var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
             var venueName = $("<p>").text(array[i].venue.name);
             var eventDateTime = $("<p>").text(array[i].datetime);
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
             var ticketLink = array[i].offers[0].url;
- //STORING CONCERT DATA AS AN ATTRIBUTE
-            oneResult.attr("lat-input",lat)
-            oneResult.attr("lng-input",lng)
-            oneResult.attr("link-input",ticketLink)
- //div to store data
+            //STORING CONCERT DATA AS AN ATTRIBUTE
+            oneResult.attr("lat-input", lat)
+            oneResult.attr("lng-input", lng)
+            oneResult.attr("link-input", ticketLink)
+            //div to store data
 
- //Josie Did This code
-eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
-eventDateTime = $("<p>" + eventDateTime +  "</p>")
+            //Josie Did This code
+            eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
+            eventDateTime = $("<p>" + eventDateTime + "</p>")
             // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
             // console.log("#concertinfo");
-            
- 
+
+
             var oneResult = $("<div>");
             oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
- 
-            oneResult.append( artistNameSearch, eventName, venueName, eventDateTime);
+
+            oneResult.append(artistNameSearch, eventName, venueName, eventDateTime);
             $(".searchresult").append(oneResult);
         }
     }
- 
- 
- 
+
+
+
     function toTitleCase(str) {
         if (str.length > 0) {
             return str.replace(/\w\S*/g, function (txt) {
@@ -186,7 +186,7 @@ eventDateTime = $("<p>" + eventDateTime +  "</p>")
     $(".searchresult").on("click", function () {
         showConcert();
     });
-//testcomment
+    //testcomment
 
 
 
@@ -283,11 +283,11 @@ eventDateTime = $("<p>" + eventDateTime +  "</p>")
 
 
 
-var map = new GMaps({
-    div: '#map',
-    lat: 39.7392,
-    lng: -104.9903
-});
+    var map = new GMaps({
+        div: '#map',
+        lat: 39.7392,
+        lng: -104.9903
+    });
 
 
 
