@@ -33,6 +33,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- scripts for the location autocomplete -->
     <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&language=en&key=AIzaSyCOoNYhJml77XYXNv1wtc-sJFM3P79-jO4"></script>
+    <script src="./resources/js/gmaps.js"></script>
+
 
 
     <title> Harmonize </title>
@@ -40,104 +42,104 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <nav class="navbar fixed-top navbar-light bg-light col-lg-12">
-
-                <div class="col-lg-8 nav-logo">HARMONIZE</div>
-                <div class="col-lg-4 nav-icons">
-
-                    <a href="search.html" class="navbar-icon">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <a href="favorites.html" class="navbar-icon">
-                        <i class="far fa-heart"></i>
-
-                    </a>
-                    <a href="#" class="navbar-icon">
-                        <i class="far fa-user"></i>
-
-                    </a>
-                </div>
-
-            </nav>
+        <div class="container">
+            <div class="row">
+                <nav class="navbar fixed-top navbar-light bg-light col-lg-12">
+    
+                    <div class="col-lg-8 nav-logo">HARMONIZE</div>
+                    <div class="col-lg-4 nav-icons">
+    
+                        <a href="search.html" class="navbar-icon">
+                            <i class="fas fa-search"></i>
+                        </a>
+                        <a href="favorites.html" class="navbar-icon">
+                            <i class="far fa-heart"></i>
+    
+                        </a>
+                        <a href="#" class="navbar-icon">
+                            <i class="far fa-user"></i>
+    
+                        </a>
+                    </div>
+    
+                </nav>
+            </div>
         </div>
-    </div>
-
-
-
-
-
-
-    <!-- <div class="row">
-        <div class="col-lg-8  search-button">
-            <button type="button" class="btn btn-primary search" data-toggle="modal" data-target="#exampleModal">
-                New Search
-            </button>
+    
+    
+    
+    
+    
+    
+        <!-- <div class="row">
+            <div class="col-lg-8  search-button">
+                <button type="button" class="btn btn-primary search" data-toggle="modal" data-target="#exampleModal">
+                    New Search
+                </button>
+            </div>
         </div>
-    </div>
-    <div class="sidenav">
-        <form class="form-inline">
-            <input id="artist-input" class="form-control mr-sm-2" type="Artist" placeholder="Artist" aria-label="Search">
-            <input id="city-input" class="form-control mr-sm-2" type="City State" placeholder="Denver CO" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
-        </form>
-        <div class="searchresult col-lg-8">
-            <p>No Results Found</p>
-        </div>
-    </div> -->
-
-
-    <nav class="col-lg-4 sidebar">
-        <div class="sidebar-sticky">
+        <div class="sidenav">
             <form class="form-inline">
-                <div class="artist">
-                
                 <input id="artist-input" class="form-control mr-sm-2" type="Artist" placeholder="Artist" aria-label="Search">
-            </div>
-            <div class="city-state">
-                
                 <input id="city-input" class="form-control mr-sm-2" type="City State" placeholder="Denver CO" aria-label="Search">
-            </div>
-                <button class="btn btn-outline-success my-2 my-sm-0"  id="search-btn" type="submit">Search</button>
-            
+                <button class="btn btn-outline-success my-2 my-sm-0" id="search-btn" type="submit">Search</button>
             </form>
-            <div class="searchresult col-lg-12">
+            <div class="searchresult col-lg-8">
                 <p>No Results Found</p>
             </div>
-        </div>
-    </nav>
-
-
-    <main role="main" class="col-lg-8 ">
-        <div class="row col-lg-10">
-
-            <!-- <div class="col-lg-4 artist-img">
-                <img src="resources/images/background.jpg" alt="filler"> -->
-            <div class="col-lg-4">
-
-                <img class="artist-image" src="" alt="">
-
-                <img src="" alt="">
-
-
+        </div> -->
+    
+    
+        <nav class="col-lg-4 sidebar">
+            <div class="sidebar-sticky">
+                <form class="form-inline">
+                    <div class="artist">
+                    
+                    <input id="artist-input" class="form-control mr-sm-2" type="Artist" placeholder="Artist" aria-label="Search">
+                </div>
+                <div class="city-state">
+                    
+                    <input id="city-input" class="form-control mr-sm-2" type="City State" placeholder="City" aria-label="Search">
+                </div>
+                    <button class="btn btn-outline-success my-2 my-sm-0"  id="search-btn" type="submit">Search</button>
+                
+                </form>
+                <div class="searchresult col-lg-12">
+                    <p>No Results Found</p>
+                </div>
             </div>
-            <div class="col-lg-6">
-                <p>
-                    About Artist goes here
-                </p>
+        </nav>
+    
+    
+        <main role="main" class="col-lg-8 ">
+            <div class="row col-lg-10">
+    
+                <!-- <div class="col-lg-4 artist-img">
+                    <img src="resources/images/background.jpg" alt="filler"> -->
+                <div class="col-lg-4">
+    
+                    <img class="artist-image" src="" alt="">
+    
+                    <img src="" alt="">
+    
+    
+                </div>
+                <div class="col-lg-6">
+                    <p>
+                        About Artist goes here
+                    </p>
+                </div>
+    
+    
             </div>
-
-
-        </div>
-        <div class="row col-lg-10">
-            <div class="map">
-
+            <div class="row col-lg-10">
+                <div id="map">
+    
+                </div>
             </div>
-        </div>
-
-    </main>
-
+    
+        </main>
+    
 
 
 
@@ -146,10 +148,10 @@
 
 
     <script src="./resources/js/index.js"></script>
-
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOoNYhJml77XYXNv1wtc-sJFM3P79-jO4&callback=myMap"></script> -->
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOoNYhJml77XYXNv1wtc-sJFM3P79-jO4&callback=initMap"></script>
 
+   
 </body>
 
 </html>
