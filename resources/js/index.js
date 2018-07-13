@@ -221,7 +221,7 @@ $(document).ready(function () {
 
 
         showConcert(newLat,newLng,newTicket);
-
+        });
     });
     //testcomment
 
