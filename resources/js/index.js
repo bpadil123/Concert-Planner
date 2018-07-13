@@ -93,7 +93,7 @@ $(document).ready(function () {
                 //date/time of event
                 // console.log(data[i].datetime) //need to use moment to convert into appropriate layout
                 eventDateTime = $("<p>").text(data[i].datetime);
-                eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm a");
+                eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
 
 
                 //Clears previous stuff and appends new content
@@ -109,8 +109,9 @@ $(document).ready(function () {
                 if (citySelected == true) {
                     if (data[i].venue.city + ", " + data[i].venue.region + ", USA" == cityTerm) {
                         console.log("it's a match");
-                        oneResult.text(data[i].venue.city + ", " + data[i].venue.region + ", USA");
-                        oneResult.append(eventName, venueName, eventDateTime);
+                        
+                        oneResult.append(eventName, venueName, eventDateTime );
+                        oneResult.append( " " + data[i].venue.city + ", " + data[i].venue.region + ", USA");
                         $(".searchresult").append(oneResult);
                     } else {
                         oneResult.text("your city did not match any concerts");
