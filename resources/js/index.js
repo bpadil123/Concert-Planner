@@ -121,8 +121,7 @@ $(document).ready(function () {
 
         // Loop through array and append data to page
         for (let i = 0; i < array.length; i++) {
-            var oneResult = $("<div>");
-            oneResult.addClass("oneResult");
+            var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
             console.log(artistTerm);
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
@@ -132,9 +131,9 @@ $(document).ready(function () {
             var lng = array[i].venue.longitude;
             var ticketLink = array[i].offers[0].url;
             //STORING CONCERT DATA AS AN ATTRIBUTE
-            oneResult.attr("lat-input", lat)
-            oneResult.attr("lng-input", lng)
-            oneResult.attr("link-input", ticketLink)
+            oneResult.attr("data-lat", lat)
+            oneResult.attr("data-lng", lng)
+            oneResult.attr("data-link", ticketLink)
             //div to store data
 
             //Josie Did This code
@@ -144,8 +143,8 @@ $(document).ready(function () {
             // console.log("#concertinfo");
 
 
-            var oneResult = $("<div>");
-            oneResult.addClass("oneResult");
+            // var oneResult = $("<div>");
+            // oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
 
             oneResult.append(artistNameSearch, eventName, venueName, eventDateTime);
@@ -170,21 +169,27 @@ $(document).ready(function () {
     //bio
     //buy tickets link/button
     //play music link/button
-    function showConcert() {
+    function showConcert(newLat=39.7392,newLng=-104.9903,newTicket) {
         var map = new GMaps({
             div: '#map',
-            lat: 39.7392,
-            lng: -104.9903
+            lat: newLat,
+            lng: newLng,
         });
         bandsInTownArtist();
         $(".heart-button").html("<button>Fav</button>")
-        $(".buy-ticket").html("<button>Fav</button>")
+        $(".buy-ticket").html("<a target='_blank' href="+newTicket+"><button>Ticket</button>")
 
     }
 
 
-    $(".searchresult").on("click", function () {
-        showConcert();
+    // $(".oneResult").on("click", function () {
+        $(document).on('click','.oneResult',function(){
+            var newLat= $(this).data("lat");
+            var newLng= $(this).data("lng");
+            var newTicket= $(this).data("link");
+
+
+        showConcert(newLat,newLng,newTicket);
     });
     //testcomment
 
@@ -283,11 +288,6 @@ $(document).ready(function () {
 
 
 
-    var map = new GMaps({
-        div: '#map',
-        lat: 39.7392,
-        lng: -104.9903
-    });
 
 
 
