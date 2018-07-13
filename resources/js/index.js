@@ -32,10 +32,10 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-            console.log(url);
-            console.log(data);
-            console.log(data.artist.bio.content);
-            console.log(data.artist.image[2]);
+            // console.log(url);
+            // console.log(data);
+            // console.log(data.artist.bio.content);
+            // console.log(data.artist.image[2]);
 
         })
     }
@@ -57,12 +57,12 @@ $(document).ready(function () {
 
         $.getJSON(url, function (data) {
 
-            console.log(data);
+            // console.log(data);
 
             // If Array is Empty
             if (!Array.isArray(data) || !data.length) {
 
-                console.log("There are no results!");
+                // console.log("There are no results!");
 
             }
             // If Array Has Data
@@ -90,7 +90,7 @@ $(document).ready(function () {
 
             // If object city === user input city
             if (array[i].venue.city + ", " + array[i].venue.region + ", USA" == cityTerm) {
-                console.log("match");
+
                 matchCityArray.push(array[i]);
             } else {
                 noMatchCityArr.push(array[i]);
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
         // If Array is Empty
         if (!Array.isArray(matchCityArray) || !matchCityArray.length) {
-            console.log("No City!");
+
             const resultElement = $("#results");
             $(".searchresult").append('<p id="no match">' + toTitleCase(artistTerm) + " has no upcoming concerts in " + cityTerm + '</p>');
             // displayResults(noMatchCityArr);
@@ -122,7 +122,11 @@ $(document).ready(function () {
         // Loop through array and append data to page
         for (let i = 0; i < array.length; i++) {
             var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
-            console.log(artistTerm);
+
+            //console.log(artistTerm);
+            var artistName = toTitleCase(artistTerm);
+            console.log(artistName);
+
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
             var venueName = $("<p>").text(array[i].venue.name+"<br>"+array[i].venue.city+", "+array[i].venue.region);
@@ -131,9 +135,16 @@ $(document).ready(function () {
             var lng = array[i].venue.longitude;
             var ticketLink = array[i].offers[0].url;
             //STORING CONCERT DATA AS AN ATTRIBUTE
-            oneResult.attr("data-lat", lat)
-            oneResult.attr("data-lng", lng)
-            oneResult.attr("data-link", ticketLink)
+
+            oneResult.attr("data-lat", lat);
+            oneResult.attr("data-lng", lng);
+            oneResult.attr("data-link", ticketLink);
+            oneResult.attr("data-name", artistName);
+            oneResult.attr("data-venue", array[i].venue.name);
+            oneResult.attr("data-city", array[i].venue.city);
+            oneResult.attr("data-event", array[i].description);
+            oneResult.attr("data-time", array[i].datetime);
+
             //div to store data
             //Josie Did This code
             eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
@@ -168,20 +179,41 @@ $(document).ready(function () {
     //bio
     //buy tickets link/button
     //play music link/button
+
     function showConcert(newLat=39.7392,newLng=-104.9903,newTicket) {
+
         var map = new GMaps({
             div: '#map',
             lat: newLat,
             lng: newLng,
         });
         bandsInTownArtist();
-        $(".heart-button").html("<button>Fav</button>")
-        $(".buy-ticket").html("<a target='_blank' href="+newTicket+"><button>Ticket</button>")
 
     }
 
 
     // $(".oneResult").on("click", function () {
+
+    $(document).on('click', '.oneResult', function () {
+        var newLat = $(this).data("lat");
+        var newLng = $(this).data("lng");
+        var newTicket = $(this).data("link");
+
+        $(".result-buttons").empty();
+        var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
+        faveBtn.text('heart');
+        // faveBtn.addClass("add-fave-btn");
+        faveBtn.attr("data-name", $(this).attr("data-name"));
+        faveBtn.attr("data-venue", $(this).attr("data-venue"));
+        faveBtn.attr("data-time", $(this).attr("data-time"));
+        faveBtn.attr("data-event", $(this).attr("data-event"));
+        faveBtn.attr("data-city", $(this).attr("data-city"));
+        $(".result-buttons").append(faveBtn);
+        $(".result-buttons").append("<a target='_blank' href=" + newTicket + "><button>Ticket</button>");
+
+
+        showConcert(newLat, newLng, newTicket);
+
         $(document).on('click','.oneResult',function(){
             var newLat= $(this).data("lat");
             var newLng= $(this).data("lng");
@@ -189,9 +221,18 @@ $(document).ready(function () {
 
 
         showConcert(newLat,newLng,newTicket);
+
     });
     //testcomment
 
+    $(document).on('click', '.add-fave-btn', function () {
+        console.log($(this).data("event"));
+        console.log($(this).data("venue"));
+        console.log($(this).data("time"));
+        console.log($(this).data("city"));
+        console.log($(this).data("name"));
+        console.log("fave was clicked");
+    });
 
 
     //_____________BAND IN TOWN ARTIST SEARCH
@@ -266,27 +307,6 @@ $(document).ready(function () {
     };
 
     var autocompleteData = new google.maps.places.Autocomplete(input, options);
-
-
-    //_________________________ CALENDAR POP UP FOR INPUT _____________________________
-    $('input[name="dates-input"]').daterangepicker();
-
-
-    $(function () {
-        $('input[name="calendar-pop-up"]').daterangepicker({
-            opens: 'left',
-            autoApply: true,
-
-        }, function (start, end) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-            startGlobal = start.format('YYYY-MM-DD');
-            endGlobal = end.format('YYYY-MM-DD')
-        });
-    });
-
-
-
-
 
 
 

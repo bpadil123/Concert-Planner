@@ -141,6 +141,7 @@ hr{
     margin-top: 100px;
 }
 main{
+    margin-top:120px;
     float:right;
 }
 
@@ -189,7 +190,7 @@ main{
 }
 
 #map{
-    border:1px red solid;
+    /* border:1px red solid; */
     width:400px;
     height:300px;
 }
