@@ -120,19 +120,23 @@ hr{
     text-align:center;
     color:rgba(255, 255, 255, 0.62);
 }
-.searchresult p{
+/* .searchresult p{
     margin-top: 40px;
-}
+} */
 
 
 /* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
 .oneResult{
-    background-color: white;
+    background-color: #ffffffa1;
     margin-top: 20px;
     color: black;
     border-radius: 5px;
+    display: inline-block;
+    width: 100%;
 }
-
+.oneResult:hover{
+    background-color:#fff;
+}
 
 
 .artist-img img{
@@ -193,4 +197,22 @@ main{
     /* border:1px red solid; */
     width:400px;
     height:300px;
+}
+
+
+/*Search Result styling*/
+.floatLeft{
+    width: 50%;
+    text-align: left;
+    padding: 20px;
+    float: left;
+    display: inline-block;
+}
+.floatRight{
+    float: right;
+    text-align: right;
+    padding: 20px;
+    width: 50%;
+    display: inline;
+
 }
