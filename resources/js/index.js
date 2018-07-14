@@ -248,6 +248,8 @@ $(document).ready(function () {
         faveBtn.attr("data-time", $(this).attr("data-time"));
         faveBtn.attr("data-event", $(this).attr("data-event"));
         faveBtn.attr("data-city", $(this).attr("data-city"));
+        $(".mobile-buttons").append(faveBtn);
+        $(".mobile-buttons").append("<a target='_blank' href=" + newTicket + "><button>Ticket</button>");
         $(".result-buttons").append(faveBtn);
         $(".result-buttons").append("<a target='_blank' href=" + newTicket + "><button>Ticket</button>");
 
