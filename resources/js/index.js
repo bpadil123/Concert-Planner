@@ -143,6 +143,7 @@ $(document).ready(function () {
            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
 
+        //    <josie added comment>
 
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
