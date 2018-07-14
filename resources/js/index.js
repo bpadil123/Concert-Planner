@@ -37,6 +37,10 @@ $(document).ready(function () {
 
             console.log(response.artist.bio.summary)
             artistBio = $("<p>").text(response.artist.bio.summary);
+            artistName = $("<p>").text(response.artist.name);
+
+            $(".artist-name").append(artistName);
+
             $(".description").append(artistBio);
 
         })
@@ -294,6 +298,7 @@ $(document).ready(function () {
 
     $("#search-btn").on("click", function () {
         event.preventDefault();
+
         cityTerm = $("#city-input").val().trim();
         if (cityTerm != "") {
             citySelected = true;
@@ -308,6 +313,9 @@ $(document).ready(function () {
         // $(".modal").hide();
         // $(".fade").hide();
         $(".searchresult").empty();
+        $(".artist-name").empty();
+
+        $(".description").empty();
         bandsInTownArtist();
         bandsInTownEvent();
         getLastFm();
