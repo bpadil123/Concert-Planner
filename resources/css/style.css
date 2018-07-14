@@ -1,131 +1,148 @@
-body{
-    width:100%;
+body {
+    width: 100%;
     margin: 0 auto;
-    background: url("../images/background.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  font-family: 'Roboto Condensed', sans-serif;
+    background: url("../images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Roboto Condensed', sans-serif;
 }
-    
-#login-page h1{
-    font-size:48px;
-    color:orange;
+
+#login-page h1 {
+    font-size: 48px;
+    color: orange;
 }
-#login-page p{
-    color:#fff;
-    margin-top:.5em;
+
+#login-page p {
+    color: #fff;
+    margin-top: .5em;
     margin-bottom: .5em;
 }
-a{
+
+a {
     text-decoration: none;
     color: #fff;
     font-weight: 300;
     font-style: italic;
     font-size: small;
 }
-a > .fas, a > .far{
+
+a>.fas,
+a>.far {
     text-decoration: none;
     color: rgb(204, 204, 204);
     font-size: x-large;
-    margin-left:10px;
-    
-    
-    
+    margin-left: 10px;
 }
 
-.fas:hover{
-    color:orange;
+.fas:hover {
+    color: orange;
 }
-.fas:visited{
-    color:#298692;
+
+.fas:visited {
+    color: #298692;
 }
-.far:visited{
-    color:#298692;
+
+.far:visited {
+    color: #298692;
 }
-.far:hover{
-    color:orange;
+
+.far:hover {
+    color: orange;
 }
-a:hover{
-    color:orange;
+
+a:hover {
+    color: orange;
 }
-#login-page{
-    float:none;
-    background-color:rgba(1, 30, 37, 0.705);
-    margin-top:200px;
-    padding:40px;
+
+#login-page {
+    float: none;
+    background-color: rgba(1, 30, 37, 0.705);
+    margin-top: 200px;
+    padding: 40px;
     text-align: center;
     font-family: 'Roboto Condensed', sans-serif;
-text-decoration:none;
-    
-    
-
+    text-decoration: none;
 }
 
-#login-page button{
+#login-page button {
     border-radius: 3px;
     border: none;
     background-color: #298692;
     color: #fff;
     padding: 10px 20px;
 }
-.nav-logo{
-    float:left;
-    font-size:20px;
-    color:#2f6b77;
+
+.nav-logo {
+    float: left;
+    font-size: 20px;
+    color: #2f6b77;
 }
-.nav-icons{
-    float:right;
+
+.nav-icons {
+    float: right;
     text-align: right;
 }
-.navbar{
+
+.navbar {
     padding: 15px 0;
     background-color: grey;
 }
-.search, .favorites, .artist-page{
-    margin-top:75px;
-}
-#search-results{
-    margin:0 auto;
 
+.search,
+.favorites,
+.artist-page {
+    margin-top: 75px;
 }
 
-.modal-open{
+#search-results {
+    margin: 0 auto;
+}
+
+.modal-open {
     overflow: scroll;
 }
-th{
-    text-align:center;
+
+th {
+    text-align: center;
 }
 
-.search-button,.hr{
+.search-button,
+.hr {
     margin: 0 auto;
 }
-.search-button button{
-    float:right;
-    background-color:#e6b500;
+
+.search-button button {
+    float: right;
+    background-color: #e6b500;
     border: none;
     color: #285a65;
-    margin-top:100px;
-    padding:10px;
+    margin-top: 100px;
+    padding: 10px;
 }
-.search-button button:hover{
-    background-color:grey;
+
+.search-button button:hover {
+    background-color: grey;
 }
-hr{
+
+hr {
     border-top: 1px solid rgb(138, 140, 140);
 }
-.searchresult{
+
+.searchresult {
     margin: 0 auto;
-    text-align:center;
-    color:rgba(255, 255, 255, 0.62);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.62);
 }
+
 /* .searchresult p{
+
     margin-top: 40px;
 } */
 
-
 /* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
+
 .oneResult{
     background-color: #ffffffa1;
     margin-top: 20px;
@@ -149,12 +166,23 @@ img.artist-image{
 main{
     margin-top:120px;
     float:right;
+
 }
 
+.artist-img img {
+    width: 200px;
+    height: 200px;
+}
 
+main {
+    margin-top:100px;
+    float: right;
+   
+}
 
 /* SIDEBAR CSS*/
-.sidebar{
+
+.sidebar {
     margin-top: 50px;
     position: fixed;
     top: 0;
@@ -165,7 +193,8 @@ main{
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     background-color: #9c9c9c7d;
 }
-.sidebar-sticky{
+
+.sidebar-sticky {
     position: sticky;
     top: 48px;
     height: calc(100vh - 48px);
@@ -173,27 +202,44 @@ main{
     overflow-x: hidden;
     overflow-y: auto;
 }
-.form-inline{
 
+.form-inline {
     display: block;
-    width:90%;
+    width: 90%;
     margin: 0 auto;
     margin-bottom: 50px;
 }
-.form-inline > div{
+
+.form-inline>div {
     margin-bottom: 20px;
 }
-.form-inline .form-control{
-    width:100%;
 
+.form-inline .form-control {
+    width: 100%;
 }
-.btn-outline-success{
+
+.btn-outline-success {
     color: #fff;
     background-color: transparent;
     background-image: none;
     border-color: #fff;
-
 }
+
+#map {
+    /* border: 1px red solid; */
+    width: 400px;
+    height: 300px;
+}
+
+.user-name {
+    width: 200px;
+    height: 30px;
+    /* border: 1px red solid; */
+    z-index: 2;
+    margin:0 auto;
+    margin-top: 100px;
+}
+
 
 #map{
     /* border:1px red solid; */
@@ -223,7 +269,19 @@ main{
 
 }
 
+
 .user-name{
     margin-top:110px;
     border:1px red solid;
+
+.artist-name{
+    color:#fff;
+}
+
+/*MEDIA QUERY*/
+@media only screen and (max-width: 700px) {
+    #login-page {
+        margin-top: 100px;
+    }
+
 }

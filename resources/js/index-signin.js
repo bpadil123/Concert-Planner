@@ -22,7 +22,7 @@ $(document).ready(function () {
     provider.addScope('email');
 
     $(document).on('click', '.signIn', function () {
-       
+
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -52,6 +52,7 @@ $(document).ready(function () {
                 });
             }
         });
+
 
         $(this).removeClass('signIn')
             .addClass('signOut')

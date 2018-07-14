@@ -17,6 +17,7 @@ $(document).ready(function () {
     firebase.auth().onAuthStateChanged(function (user) {
 
         if (user) {
+
             var displayName = user.displayName;
             var email = user.email;
             var emailVerified = user.emailVerified;
@@ -26,6 +27,7 @@ $(document).ready(function () {
             var providerData = user.providerData;
             globalUserId = uid;
             console.warn('Logged in as', globalUserId)
+
         } else {
             // User is signed out.
             // ...
@@ -51,11 +53,14 @@ $(document).ready(function () {
 
         $.getJSON(url, function (response) {
             $(".description").empty();
+
+            $(".artist-name").empty();
+
             console.log(url);
             console.log(response);
 
             console.log(response.artist.bio.summary)
-            artistBio = $("<p>").text(response.artist.bio.summary);
+            artistBio = $("<p>").html(response.artist.bio.summary);
             artistName = $("<p>").text(response.artist.name);
             $(".artist-name").append(artistName);
             $(".description").append(artistBio);
@@ -355,4 +360,6 @@ $(document).ready(function () {
 
 
 
+
 });
+

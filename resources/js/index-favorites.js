@@ -9,6 +9,7 @@ $(document).ready(function () {
         if (user) {
           // User is signed in.
           var displayName = user.displayName;
+
           var globalUserId = user.uid;
            console.log(displayName);
           $(".user-name").text(displayName + "'s favorite concerts");
@@ -23,6 +24,7 @@ $(document).ready(function () {
           //database.ref().on("child_added", function (childSnapshot) {
         } else {
           $(".user-name").text("sign in to have access to favorites");
+
           // ...
         }
       });
