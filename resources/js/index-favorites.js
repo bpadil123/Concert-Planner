@@ -15,12 +15,24 @@ $(document).ready(function () {
           $(".user-name").text(displayName + "'s favorite concerts");
           const fb_db = firebase.database().ref()
           fb_db.child(globalUserId).on("child_added", function (childSnapshot){
-             console.log(childSnapshot.val().city);
-             console.log(childSnapshot.val().event);
-             console.log(childSnapshot.val().name);
-             console.log(childSnapshot.val().time);
-             console.log(childSnapshot.val().venue);
+            //  console.log(childSnapshot.val().city);
+            //  console.log(childSnapshot.val().event);
+            //  console.log(childSnapshot.val().name);
+            //  console.log(childSnapshot.val().time);
+            //  console.log(childSnapshot.val().venue);
+             // append to our table of favorites, inside tbody, with a new row of the data
+             $("#table-data").append(
+              "<tr><td>" + childSnapshot.val().name + "</td>" +
+              "<td>" + childSnapshot.val().time + "</td>" +
+              "<td>" + childSnapshot.val().venue + "</td>" +
+              "<td>" + childSnapshot.val().city + "  " + "<a><span class='glyphicon glyphicon-remove icon-hidden' aria-hidden='true'></span></a>" + "</td></tr>"
+          );
           })
+
+           // append to our table of favorites, inside tbody, with a new row of the data
+    // debugger
+         
+
           //database.ref().on("child_added", function (childSnapshot) {
         } else {
           $(".user-name").text("sign in to have access to favorites");

@@ -71,7 +71,7 @@ $(document).ready(function () {
     });
 
     function loggedIn() {
-        window.location = 'Concert-Planner/search.html'
+        window.location = '/search.html'
     }
 
     //MAPS//
