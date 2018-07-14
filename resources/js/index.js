@@ -1,7 +1,7 @@
 // for last fm Shared secret	50430e261d47ee60d575c432c912c0e5
 //band in town id 9ac9ab26c18a220660a4a733194e08fc
 //create an array to store all city matches, if array has results, display them, if no results display sign no match
-
+var globalUserId;
 $(document).ready(function () {
     // Initialize Firebase
     // var config = {
@@ -153,7 +153,7 @@ $(document).ready(function () {
 
             //console.log(artistTerm);
             var artistName = toTitleCase(artistTerm);
-            console.log(artistName);
+            //console.log(artistName);
 
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
@@ -162,7 +162,7 @@ $(document).ready(function () {
             var venueRegion = $("<p>").text(array[i].venue.region);
             var eventDateTime = $("<p>").text(array[i].datetime);
             var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY, h:mm a");
-            console.log(convertDateTime)
+           // console.log(convertDateTime)
 
             var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
             var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
