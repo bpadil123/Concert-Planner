@@ -70,7 +70,7 @@ $(document).ready(function () {
     });
 
     function loggedIn() {
-        window.location = '/search.html'
+        window.location = 'Concert-Planner/search.html'
     }
 
     //MAPS//
