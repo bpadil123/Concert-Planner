@@ -71,7 +71,7 @@ $(document).ready(function () {
     });
 
     function loggedIn() {
-        window.location = '/search.html'
+        window.location = 'search.html'
     }
 
     //MAPS//
