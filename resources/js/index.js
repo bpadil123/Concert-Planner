@@ -187,7 +187,24 @@ $(document).ready(function () {
             div: '#map',
             lat: newLat,
             lng: newLng,
+            
         });
+        map.addMarker({
+            lat: newLat,
+            lng: newLng,
+           
+          });
+    //       var marker = new google.maps.Marker(marker_options);
+    //   if(options.infoWindow)
+    //     marker.infoWindow = new google.maps.InfoWindow(options.infoWindow);
+
+    //   google.maps.event.addListener(marker, 'click', function(e){
+    //     if(options.click)
+    //       options.click(e);
+    //     if(marker.infoWindow){
+    //       self.hide_info_windows();
+    //       marker.infoWindow.open(self.map, marker);
+    //     }
         bandsInTownArtist();
 
     }
