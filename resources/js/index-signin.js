@@ -22,15 +22,7 @@ $(document).ready(function () {
     provider.addScope('email');
 
     $(document).on('click', '.signIn', function () {
-        firebase.auth().signInWithPopup(provider).then(function (result) {
-            // This gives you a Google Access Token.
-            var token = result.credential.accessToken;
-            // The signed-in user info.
-
-           // debugger;
-            $('.content').show();
-            // loggedIn();
-        });
+       
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -49,8 +41,15 @@ $(document).ready(function () {
                 console.warn('Logged in as', globalUserId)
                 // ...
             } else {
-                // User is signed out.
-                // ...
+                firebase.auth().signInWithPopup(provider).then(function (result) {
+                    // This gives you a Google Access Token.
+                    // var token = result.credential.accessToken;
+                    // The signed-in user info.
+        
+                   // debugger;
+                    $('.content').show();
+                    // loggedIn();
+                });
             }
         });
 

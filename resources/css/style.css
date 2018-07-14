@@ -222,3 +222,8 @@ main{
     display: inline;
 
 }
+
+.user-name{
+    margin-top:110px;
+    border:1px red solid;
+}
