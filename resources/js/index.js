@@ -3,37 +3,33 @@
 //create an array to store all city matches, if array has results, display them, if no results display sign no match
 
 $(document).ready(function () {
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
-        authDomain: "harmonize-dd029.firebaseapp.com",
-        databaseURL: "https://harmonize-dd029.firebaseio.com",
-        projectId: "harmonize-dd029",
-        storageBucket: "harmonize-dd029.appspot.com",
-        messagingSenderId: "419798913580"
-    };
-    firebase.initializeApp(config);
+            // Initialize Firebase
+     
 
-
-    var lstFmKey = "a63e099b17dfc041516f78ab8c3e3d5c";
+            var lstFmKey = "a63e099b17dfc041516f78ab8c3e3d5c";
 
 
 
-    var artistTerm;
-    var cityTerm;
-    var citySelected = false;
+            var artistTerm;
+            var cityTerm;
+            var citySelected = false;
 
 
-    // ______________________________ LAST FM DATA API CALL _____________________________________________
-    function getLastFm() {
-        artistTerm = $("#artist-input").val().trim();
-        var replacedSearchTerm = artistTerm.replace(' ', '%20');
-        url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + replacedSearchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
+            // ______________________________ LAST FM DATA API CALL _____________________________________________
+            function getLastFm() {
+                artistTerm = $("#artist-input").val().trim();
+                var replacedSearchTerm = artistTerm.replace(' ', '%20');
+                url = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + replacedSearchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
 
 
-        $.getJSON(url, function (response) {
-            console.log(url);
-            console.log(response);
+                $.getJSON(url, function (response) {
+                    console.log(url);
+                    console.log(response);
+
+                    console.log(response.artist.bio.summary)
+                    artistBio = $("<p>").text(response.artist.bio.summary);
+                    $(".description").append(artistBio);
+
 
             console.log(response.artist.bio.summary)
             artistBio = $("<p>").text(response.artist.bio.summary);
@@ -67,70 +63,60 @@ $(document).ready(function () {
             // If Array is Empty
             if (!Array.isArray(data) || !data.length) {
 
-                // console.log("There are no results!");
-
-            }
-            // If Array Has Data
-            else {
-                if (citySelected == true) {
-                    cityLoop(data);
-
-                } else {
-                    displayResults(data);
-                }
-            }
-        })
-    };
-
-    function cityLoop(array) {
-
-        const noMatchCityArr = [];
-        const matchCityArray = [];
-        city = cityTerm;
 
 
-        // Loop through array checking for matching values
-        for (let i = 0; i < array.length; i++) {
+            //_____________BAND IN TOWN EVENT SEARCH
 
 
-            // If object city === user input city
-            if (array[i].venue.city + ", " + array[i].venue.region + ", USA" == cityTerm) {
+            function bandsInTownEvent() {
+                $(".searchresult").empty();
+                artistTerm = $("#artist-input").val().trim();
+                // searchVenue = $("#city-input").val().trim();
+                var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') && artistTerm.replace('*', ' %252A') || artistTerm.replace('"', ' %27C');
 
-                matchCityArray.push(array[i]);
-            } else {
-                noMatchCityArr.push(array[i]);
-            }
-        }
-
-
-        // If Array is Empty
-        if (!Array.isArray(matchCityArray) || !matchCityArray.length) {
-
-            const resultElement = $("#results");
-            $(".searchresult").append('<p id="no match">' + toTitleCase(artistTerm) + " has no upcoming concerts in " + cityTerm + '</p>');
-            // displayResults(noMatchCityArr);
-        }
-        // Run function to print results to page
-        else {
-            displayResults(matchCityArray);
-        }
-    }
+                url = "https://rest.bandsintown.com/artists/" + replacedSearchTerm + "/events?app_id=9ac9ab26c18a220660a4a733194e08fc";
 
 
-    // Function only used to display results to page
-    function displayResults(array) {
-        //   console.log("checking");
+                $.getJSON(url, function (data) {
 
-        // Target element to insert data
-        const resultElement = $("#results");
+                        // console.log(data);
 
-        // Loop through array and append data to page
-        for (let i = 0; i < array.length; i++) {
-            var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
+                        // If Array is Empty
+                        if (!Array.isArray(data) || !data.length) {
+                            displayResults(data.error);
+                                // console.log("There are no results!");
 
-            //console.log(artistTerm);
-            var artistName = toTitleCase(artistTerm);
-            console.log(artistName);
+                            }
+                            // If Array Has Data
+                            else {
+                                if (citySelected == true) {
+                                    cityLoop(data);
+
+                                } else {
+                                    displayResults(data);
+                                }
+                            }
+                        })
+                };
+
+                function cityLoop(array) {
+
+                    const noMatchCityArr = [];
+                    const matchCityArray = [];
+                    city = cityTerm;
+
+
+                    // Loop through array checking for matching values
+                    for (let i = 0; i < array.length; i++) {
+
+
+                        // If object city === user input city
+                        if (array[i].venue.city + ", " + array[i].venue.region + ", USA" == cityTerm) {
+
+                            matchCityArray.push(array[i]);
+                        } else {
+                            noMatchCityArr.push(array[i]);
+                        }
 
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
@@ -178,22 +164,29 @@ $(document).ready(function () {
 
 
 
-    function toTitleCase(str) {
-        if (str.length > 0) {
-            return str.replace(/\w\S*/g, function (txt) {
-                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-            });
-        }
-    }
+                function toTitleCase(str) {
+                    if (str.length > 0) {
+                        return str.replace(/\w\S*/g, function (txt) {
+                            return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+                        });
+                    }
+                }
 
 
-    // ADDING CONCERT TO .oneresult DETAILS UPON CLICKING SEARCH RESULT
+                // ADDING CONCERT TO .oneresult DETAILS UPON CLICKING SEARCH RESULT
 
 
 
 
 
-    function showConcert(newLat = 39.7392, newLng = -104.9903, newTicket) {
+                function showConcert(newLat = 39.7392, newLng = -104.9903, newTicket) {
+
+                    var map = new GMaps({
+                        div: '#map',
+                        lat: newLat,
+                        lng: newLng,
+                    });
+                    bandsInTownArtist();
 
         var map = new GMaps({
             div: '#map',
@@ -219,84 +212,91 @@ $(document).ready(function () {
     //     }
         bandsInTownArtist();
 
-    }
 
 
-    // $(".oneResult").on("click", function () {
+                // $(".oneResult").on("click", function () {
 
-    $(document).on('click', '.oneResult', function () {
-        var newLat = $(this).data("lat");
-        var newLng = $(this).data("lng");
-        var newTicket = $(this).data("link");
+                $(document).on('click', '.oneResult', function () {
+                    var newLat = $(this).data("lat");
+                    var newLng = $(this).data("lng");
+                    var newTicket = $(this).data("link");
 
-        $(".result-buttons").empty();
-        var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
-        faveBtn.text('heart');
-        // faveBtn.addClass("add-fave-btn");
-        faveBtn.attr("data-name", $(this).attr("data-name"));
-        faveBtn.attr("data-venue", $(this).attr("data-venue"));
-        faveBtn.attr("data-time", $(this).attr("data-time"));
-        faveBtn.attr("data-event", $(this).attr("data-event"));
-        faveBtn.attr("data-city", $(this).attr("data-city"));
-        $(".result-buttons").append(faveBtn);
-        $(".result-buttons").append("<a target='_blank' href=" + newTicket + "><button>Ticket</button>");
-
-
-        showConcert(newLat, newLng, newTicket);
-
-        $(document).on('click', '.oneResult', function () {
-            var newLat = $(this).data("lat");
-            var newLng = $(this).data("lng");
-            var newTicket = $(this).data("link");
+                    $(".result-buttons").empty();
+                    var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
+                    faveBtn.text('heart');
+                    // faveBtn.addClass("add-fave-btn");
+                    faveBtn.attr("data-name", $(this).attr("data-name"));
+                    faveBtn.attr("data-venue", $(this).attr("data-venue"));
+                    faveBtn.attr("data-time", $(this).attr("data-time"));
+                    faveBtn.attr("data-event", $(this).attr("data-event"));
+                    faveBtn.attr("data-city", $(this).attr("data-city"));
+                    $(".result-buttons").append(faveBtn);
+                    $(".result-buttons").append("<a target='_blank' href=" + newTicket + "><button>Ticket</button>");
 
 
-            showConcert(newLat, newLng, newTicket);
-        });
-    });
-    //testcomment
+                    showConcert(newLat, newLng, newTicket);
 
-    $(document).on('click', '.add-fave-btn', function () {
-        console.log($(this).data("event"));
-        console.log($(this).data("venue"));
-        console.log($(this).data("time"));
-        console.log($(this).data("city"));
-        console.log($(this).data("name"));
-        console.log("fave was clicked");
-    });
+                    $(document).on('click', '.oneResult', function () {
+                        var newLat = $(this).data("lat");
+                        var newLng = $(this).data("lng");
+                        var newTicket = $(this).data("link");
 
 
-    //_____________BAND IN TOWN ARTIST SEARCH
+                        showConcert(newLat, newLng, newTicket);
+                    });
+                });
+                //testcomment
 
-    function bandsInTownArtist() {
-        artistTerm = $("#artist-input").val().trim();
-        // searchVenue = $("#city-input").val().trim();
-        var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') && artistTerm.replace('*', ' %252A') || artistTerm.replace('"', ' %27C');
+                const fb_db = firebase.database().ref()
+
+                $(document).on('click', '.add-fave-btn', function () {
+                    name = $(this).data("name");
+                    venue = $(this).data("venue");
+                    time = $(this).data("time");
+                    event = $(this).data("event");
+                    city = $(this).data("city");
+                    data = {"name": name,
+                            "venue": venue,
+                            "time": time,
+                            "event": event,
+                            "city": city};
+                    // debugger
+                    fb_db.child(globalUserId).push(data)
+                });
 
 
+                //_____________BAND IN TOWN ARTIST SEARCH
 
-        url = "https://rest.bandsintown.com/artists/" + replacedSearchTerm + "?app_id=9ac9ab26c18a220660a4a733194e08fc";
-
-
-        $.getJSON(url, function (data) {
-            // console.log(data);
-            // console.log(url);
-            var artistResults = data.response
-            //image of artist/event from Artist URL **** 
-            $(".artist-image").attr("src", data.thumb_url);
-
-        });
-    };
+                function bandsInTownArtist() {
+                    artistTerm = $("#artist-input").val().trim();
+                    // searchVenue = $("#city-input").val().trim();
+                    var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') && artistTerm.replace('*', ' %252A') || artistTerm.replace('"', ' %27C');
 
 
 
+                    url = "https://rest.bandsintown.com/artists/" + replacedSearchTerm + "?app_id=9ac9ab26c18a220660a4a733194e08fc";
+
+
+                    $.getJSON(url, function (data) {
+                        // console.log(data);
+                        // console.log(url);
+                        var artistResults = data.response
+                        //image of artist/event from Artist URL **** 
+                        $(".artist-image").attr("src", data.thumb_url);
+
+                    });
+                };
 
 
 
 
 
-    //_____________SEARCH BUTTON CLICK________________
 
-    $("#search-btn").on("click", function () {
+
+
+                //_____________SEARCH BUTTON CLICK________________
+
+earch-btn").on("click", function () {
         event.preventDefault();
 
         cityTerm = $("#city-input").val().trim();
@@ -328,20 +328,21 @@ $(document).ready(function () {
 
 
 
-    // ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
 
-    var input = document.getElementById('city-input');
-    // show only cities
-    var options = {
-        types: ['(cities)'],
-        componentRestrictions: {
-            country: "us"
-        }
+                // ______________________________ GOOGLE LOCATION AUTOCOMPLETE _____________________________________________
 
-    };
+                var input = document.getElementById('city-input');
+                // show only cities
+                var options = {
+                    types: ['(cities)'],
+                    componentRestrictions: {
+                        country: "us"
+                    }
 
-    var autocompleteData = new google.maps.places.Autocomplete(input, options);
+                };
+
+                var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
 
-});
+            });
