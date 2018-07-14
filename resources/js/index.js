@@ -64,7 +64,7 @@ $(document).ready(function () {
         $.getJSON(url, function (data) {
 
             // console.log(data);
-
+            console.log(data)
             // If Array is Empty
             if (!Array.isArray(data) || !data.length) {
 
@@ -138,11 +138,11 @@ $(document).ready(function () {
             var venueName = $("<p>").text(array[i].venue.name);
             var venueCity = $("<p>").text(array[i].venue.city);
             var venueRegion = $("<p>").text(array[i].venue.region);
-            var eventDateTime = $("<p>").text(array[i].datetime);
+            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY, h:mm a"); 
+            console.log(convertDateTime)
 
             var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
-            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + array[i].datetime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
-            var convertDateTime = moment(eventDateTime).format("dddd, MMMM Do YYYY"); 
+            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
 
 
             var lat = array[i].venue.latitude;
@@ -157,7 +157,7 @@ $(document).ready(function () {
             oneResult.attr("data-venue", array[i].venue.name);
             oneResult.attr("data-city", array[i].venue.city);
             oneResult.attr("data-event", array[i].description);
-            oneResult.attr("data-time", array[i].datetime);
+            oneResult.attr("data-time", convertDateTime);
 
             //div to store data
             //Josie Did This code
