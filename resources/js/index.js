@@ -131,9 +131,16 @@ $(document).ready(function () {
 
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
-            var venueName = $("<p>").text(array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region);
+            var venueName = $("<p>").text(array[i].venue.name);
+            var venueCity = $("<p>").text(array[i].venue.city);
+            var venueRegion = $("<p>").text(array[i].venue.region);
             var eventDateTime = $("<p>").text(array[i].datetime);
+
+            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
+            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + array[i].datetime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
             var convertDateTime = moment(eventDateTime).format("dddd, MMMM Do YYYY"); 
+
+
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
             var ticketLink = array[i].offers[0].url;
@@ -150,17 +157,17 @@ $(document).ready(function () {
 
             //div to store data
             //Josie Did This code
-            eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
-            eventDateTime = $("<p>" + eventDateTime + "</p>")
+            // eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
+            // eventDateTime = $("<p>" + eventDateTime + "</p>")
             // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
             // console.log("#concertinfo");
 
-
+            
             // var oneResult = $("<div>");
             // oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
 
-            oneResult.append(artistNameSearch, convertDateTime, eventName, venueName);
+            oneResult.append(eventInfo, eventLocation);
             $(".searchresult").append(oneResult);
         }
     }
