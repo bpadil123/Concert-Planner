@@ -272,3 +272,9 @@ main {
     color:#fff;
 }
 
+/*MEDIA QUERY*/
+@media only screen and (max-width: 700px) {
+    #login-page {
+        margin-top: 100px;
+    }
+}
