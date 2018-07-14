@@ -1,13 +1,6 @@
 $(document).ready(function () {
     // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
-        authDomain: "harmonize-dd029.firebaseapp.com",
-        databaseURL: "https://harmonize-dd029.firebaseio.com",
-        projectId: "harmonize-dd029",
-        storageBucket: "harmonize-dd029.appspot.com",
-        messagingSenderId: "419798913580"
-    };
+   
     firebase.initializeApp(config);
     var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 

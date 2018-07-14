@@ -14,27 +14,25 @@ $(document).ready(function () {
     // };
     // firebase.initializeApp(config);
 
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged(function(user) {
 
         if (user) {
+            console.warn('Index.js: logged in',user)
 
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            globalUserId = uid;
-            console.warn('Logged in as', globalUserId)
-
+          // User is signed in.
+        //   var displayName = user.displayName;
+        //   var email = user.email;
+        //   var emailVerified = user.emailVerified;
+        //   var photoURL = user.photoURL;
+        //   var isAnonymous = user.isAnonymous;
+        //   var uid = user.uid;
+        //   var providerData = user.providerData;
+          // ...
         } else {
-            // User is signed out.
-            // ...
+          // User is signed out.
+          // ...
         }
-    });
-
-
+      });
     var lstFmKey = "a63e099b17dfc041516f78ab8c3e3d5c";
 
 
@@ -48,20 +46,17 @@ $(document).ready(function () {
     function getLastFm() {
         artistTerm = $("#artist-input").val().trim();
         var replacedSearchTerm = artistTerm.replace(' ', '%20');
-        url = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + replacedSearchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
+        url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + replacedSearchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
 
 
         $.getJSON(url, function (response) {
-            $(".description").empty();
-
-            $(".artist-name").empty();
-
             console.log(url);
             console.log(response);
 
             console.log(response.artist.bio.summary)
-            artistBio = $("<p>").text(response.artist.bio.summary);
+            artistBio = $("<p>").html(response.artist.bio.summary);
             artistName = $("<p>").text(response.artist.name);
+
             $(".artist-name").append(artistName);
             $(".description").append(artistBio);
 
@@ -86,10 +81,10 @@ $(document).ready(function () {
         $.getJSON(url, function (data) {
 
             // console.log(data);
-
+            console.log(data)
             // If Array is Empty
             if (!Array.isArray(data) || !data.length) {
-                // displayResults(data.error);
+
                 // console.log("There are no results!");
 
             }
@@ -130,7 +125,7 @@ $(document).ready(function () {
         if (!Array.isArray(matchCityArray) || !matchCityArray.length) {
 
             const resultElement = $("#results");
-            $(".searchresult").append('<p id="no-match">' + toTitleCase(artistTerm) + " has no upcoming concerts in " + cityTerm + '</p>');
+            $(".searchresult").append('<p id="no match">' + toTitleCase(artistTerm) + " has no upcoming concerts in " + cityTerm + '</p>');
             // displayResults(noMatchCityArr);
         }
         // Run function to print results to page
@@ -160,13 +155,13 @@ $(document).ready(function () {
             var venueName = $("<p>").text(array[i].venue.name);
             var venueCity = $("<p>").text(array[i].venue.city);
             var venueRegion = $("<p>").text(array[i].venue.region);
-            var eventDateTime = $("<p>").text(array[i].datetime);
             var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY, h:mm a");
-            console.log(convertDateTime)
+           console.log(convertDateTime)
 
-            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
-            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
+           var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
+           var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
 
+        //    <josie added comment>
 
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
@@ -180,7 +175,7 @@ $(document).ready(function () {
             oneResult.attr("data-venue", array[i].venue.name);
             oneResult.attr("data-city", array[i].venue.city);
             oneResult.attr("data-event", array[i].description);
-            oneResult.attr("data-time", array[i].datetime);
+            oneResult.attr("data-time", convertDateTime);
 
             //div to store data
             //Josie Did This code
@@ -189,10 +184,11 @@ $(document).ready(function () {
             // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
             // console.log("#concertinfo");
 
-
+            
             // var oneResult = $("<div>");
             // oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
+
             oneResult.append(eventInfo, eventLocation);
             $(".searchresult").append(oneResult);
         }
@@ -221,12 +217,24 @@ $(document).ready(function () {
             div: '#map',
             lat: newLat,
             lng: newLng,
+            
         });
         map.addMarker({
             lat: newLat,
             lng: newLng,
+           
+          });
+    //       var marker = new google.maps.Marker(marker_options);
+    //   if(options.infoWindow)
+    //     marker.infoWindow = new google.maps.InfoWindow(options.infoWindow);
 
-        });
+    //   google.maps.event.addListener(marker, 'click', function(e){
+    //     if(options.click)
+    //       options.click(e);
+    //     if(marker.infoWindow){
+    //       self.hide_info_windows();
+    //       marker.infoWindow.open(self.map, marker);
+    //     }
         bandsInTownArtist();
 
     }
@@ -241,7 +249,7 @@ $(document).ready(function () {
 
         $(".result-buttons").empty();
         var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
-        faveBtn.text('heart');
+        faveBtn.html('heart');
         // faveBtn.addClass("add-fave-btn");
         faveBtn.attr("data-name", $(this).attr("data-name"));
         faveBtn.attr("data-venue", $(this).attr("data-venue"));
@@ -265,23 +273,13 @@ $(document).ready(function () {
     });
     //testcomment
 
-    const fb_db = firebase.database().ref()
-
     $(document).on('click', '.add-fave-btn', function () {
-        name = $(this).data("name");
-        venue = $(this).data("venue");
-        time = $(this).data("time");
-        event = $(this).data("event");
-        city = $(this).data("city");
-        data = {
-            "name": name,
-            "venue": venue,
-            "time": time,
-            "event": event,
-            "city": city
-        };
-        //debugger
-        fb_db.child(globalUserId).push(data)
+        console.log($(this).data("event"));
+        console.log($(this).data("venue"));
+        console.log($(this).data("time"));
+        console.log($(this).data("city"));
+        console.log($(this).data("name"));
+        console.log("fave was clicked");
     });
 
 
@@ -318,6 +316,7 @@ $(document).ready(function () {
 
     $("#search-btn").on("click", function () {
         event.preventDefault();
+
         cityTerm = $("#city-input").val().trim();
         if (cityTerm != "") {
             citySelected = true;
@@ -332,6 +331,9 @@ $(document).ready(function () {
         // $(".modal").hide();
         // $(".fade").hide();
         $(".searchresult").empty();
+        $(".artist-name").empty();
+
+        $(".description").empty();
         bandsInTownArtist();
         bandsInTownEvent();
         getLastFm();
@@ -360,6 +362,4 @@ $(document).ready(function () {
 
 
 
-
 });
-

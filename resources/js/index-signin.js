@@ -26,32 +26,35 @@ $(document).ready(function () {
             // This gives you a Google Access Token.
             var token = result.credential.accessToken;
             // The signed-in user info.
-            var user = result.user;
-            globalUserId = user.uid;
-            console.warn('Logged in as', globalUserId)
-            // debugger;
+
+
+           // debugger;
             $('.content').show();
             // loggedIn();
         });
 
-        firebase.auth().onAuthStateChanged(function(user) {
+        firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 loggedIn();
+                // var user = result.user;
 
-              // User is signed in.
-            //   var displayName = user.displayName;
-            //   var email = user.email;
-            //   var emailVerified = user.emailVerified;
-            //   var photoURL = user.photoURL;
-            //   var isAnonymous = user.isAnonymous;
-            //   var uid = user.uid;
-            //   var providerData = user.providerData;
-              // ...
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+                globalUserId = uid;
+                console.warn('Logged in as', globalUserId)
+                // ...
             } else {
-              // User is signed out.
-              // ...
+                // User is signed out.
+                // ...
             }
-          });
+        });
+
 
         $(this).removeClass('signIn')
             .addClass('signOut')
