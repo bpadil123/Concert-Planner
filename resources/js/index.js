@@ -27,7 +27,11 @@ $(document).ready(function () {
             console.log(response);
 
             console.log(response.artist.bio.summary)
-            artistBio = $("<p>").text(response.artist.bio.summary);
+
+            artistBio = $("<p>").html(response.artist.bio.summary);
+            artistName = $("<p>").text(response.artist.name);
+
+            $(".artist-name").append(artistName);
             $(".description").append(artistBio);
 
         })
@@ -105,9 +109,70 @@ $(document).ready(function () {
         }
 
 
+
+    // Function only used to display results to page
+    function displayResults(array) {
+        //   console.log("checking");
+
+        // Target element to insert data
+        const resultElement = $("#results");
+
+        // Loop through array and append data to page
+        for (let i = 0; i < array.length; i++) {
+            var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
+
+            //console.log(artistTerm);
+            var artistName = toTitleCase(artistTerm);
+            console.log(artistName);
+
+            var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
+            var eventName = $("<p>").text(array[i].description);
+            var venueName = $("<p>").text(array[i].venue.name);
+            var venueCity = $("<p>").text(array[i].venue.city);
+            var venueRegion = $("<p>").text(array[i].venue.region);
+            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY, h:mm a");
+           console.log(convertDateTime)
+
+           var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
+           var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
+
+
+            var lat = array[i].venue.latitude;
+            var lng = array[i].venue.longitude;
+            var ticketLink = array[i].offers[0].url;
+            //STORING CONCERT DATA AS AN ATTRIBUTE
+
+            oneResult.attr("data-lat", lat);
+            oneResult.attr("data-lng", lng);
+            oneResult.attr("data-link", ticketLink);
+            oneResult.attr("data-name", artistName);
+            oneResult.attr("data-venue", array[i].venue.name);
+            oneResult.attr("data-city", array[i].venue.city);
+            oneResult.attr("data-event", array[i].description);
+            oneResult.attr("data-time", convertDateTime);
+
+            //div to store data
+            //Josie Did This code
+            // eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
+            // eventDateTime = $("<p>" + eventDateTime + "</p>")
+            // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
+            // console.log("#concertinfo");
+
+            
+            // var oneResult = $("<div>");
+            // oneResult.addClass("oneResult");
+            //console.log(cityMatchArr[b].description);
+
+            oneResult.append(eventInfo, eventLocation);
+            $(".searchresult").append(oneResult);
+        }
+    }
+
+
         // Function only used to display results to page
         function displayResults(array) {
             //   console.log("checking");
+
 
             // Target element to insert data
             const resultElement = $("#results");
@@ -181,7 +246,21 @@ $(document).ready(function () {
             });
             bandsInTownArtist();
 
+
+        $(".result-buttons").empty();
+        var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
+        faveBtn.html('heart');
+        // faveBtn.addClass("add-fave-btn");
+        faveBtn.attr("data-name", $(this).attr("data-name"));
+        faveBtn.attr("data-venue", $(this).attr("data-venue"));
+        faveBtn.attr("data-time", $(this).attr("data-time"));
+        faveBtn.attr("data-event", $(this).attr("data-event"));
+        faveBtn.attr("data-city", $(this).attr("data-city"));
+        $(".result-buttons").append(faveBtn);
+        $(".result-buttons").append("<a target='_blank' href=" + newTicket + "><button>Ticket</button>");
+
         }
+
 
 
         // $(".oneResult").on("click", function () {
