@@ -31,11 +31,13 @@ $(document).ready(function () {
         url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + replacedSearchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
 
 
-        $.getJSON(url, function (data) {
-            // console.log(url);
-            // console.log(data);
-            // console.log(data.artist.bio.content);
-            // console.log(data.artist.image[2]);
+        $.getJSON(url, function (response) {
+            console.log(url);
+            console.log(response);
+
+            console.log(response.artist.bio.summary)
+            artistBio = $("<p>").text(response.artist.bio.summary);
+            $(".description").text(artistBio);
 
         })
     }
@@ -129,7 +131,7 @@ $(document).ready(function () {
 
             var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
             var eventName = $("<p>").text(array[i].description);
-            var venueName = $("<p>").text(array[i].venue.name+"<br>"+array[i].venue.city+", "+array[i].venue.region);
+            var venueName = $("<p>").text(array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region);
             var eventDateTime = $("<p>").text(array[i].datetime);
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
@@ -175,12 +177,11 @@ $(document).ready(function () {
 
     // ADDING CONCERT TO .oneresult DETAILS UPON CLICKING SEARCH RESULT
 
-    //image
-    //bio
-    //buy tickets link/button
-    //play music link/button
 
-    function showConcert(newLat=39.7392,newLng=-104.9903,newTicket) {
+
+
+
+    function showConcert(newLat = 39.7392, newLng = -104.9903, newTicket) {
 
         var map = new GMaps({
             div: '#map',
@@ -214,13 +215,13 @@ $(document).ready(function () {
 
         showConcert(newLat, newLng, newTicket);
 
-        $(document).on('click','.oneResult',function(){
-            var newLat= $(this).data("lat");
-            var newLng= $(this).data("lng");
-            var newTicket= $(this).data("link");
+        $(document).on('click', '.oneResult', function () {
+            var newLat = $(this).data("lat");
+            var newLng = $(this).data("lng");
+            var newTicket = $(this).data("link");
 
 
-        showConcert(newLat,newLng,newTicket);
+            showConcert(newLat, newLng, newTicket);
         });
     });
     //testcomment
@@ -284,7 +285,7 @@ $(document).ready(function () {
         $(".searchresult").empty();
         bandsInTownArtist();
         bandsInTownEvent();
-
+        getLastFm();
         //checkCity();
     })
 
