@@ -31,11 +31,17 @@ $(document).ready(function () {
         url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + replacedSearchTerm + "&api_key=a63e099b17dfc041516f78ab8c3e3d5c&format=json"
 
 
-        $.getJSON(url, function (data) {
-            // console.log(url);
-            // console.log(data);
-            // console.log(data.artist.bio.content);
-            // console.log(data.artist.image[2]);
+        $.getJSON(url, function (response) {
+            console.log(url);
+            console.log(response);
+
+            console.log(response.artist.bio.summary)
+            artistBio = $("<p>").text(response.artist.bio.summary);
+            artistName = $("<p>").text(response.artist.name);
+
+            $(".artist-name").append(artistName);
+
+            $(".description").append(artistBio);
 
         })
     }
@@ -58,7 +64,7 @@ $(document).ready(function () {
         $.getJSON(url, function (data) {
 
             // console.log(data);
-
+            console.log(data)
             // If Array is Empty
             if (!Array.isArray(data) || !data.length) {
 
@@ -132,10 +138,12 @@ $(document).ready(function () {
             var venueName = $("<p>").text(array[i].venue.name);
             var venueCity = $("<p>").text(array[i].venue.city);
             var venueRegion = $("<p>").text(array[i].venue.region);
-            var eventDateTime = $("<p>").text(array[i].datetime);
+
+            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY, h:mm a"); 
+            console.log(convertDateTime)
 
             var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
-            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + array[i].datetime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
+            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
 
 
             var lat = array[i].venue.latitude;
@@ -150,11 +158,11 @@ $(document).ready(function () {
             oneResult.attr("data-venue", array[i].venue.name);
             oneResult.attr("data-city", array[i].venue.city);
             oneResult.attr("data-event", array[i].description);
-            oneResult.attr("data-time", array[i].datetime);
+            oneResult.attr("data-time", convertDateTime);
 
             //div to store data
             //Josie Did This code
-            eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
+            // eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
             // eventDateTime = $("<p>" + eventDateTime + "</p>")
             // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
             // console.log("#concertinfo");
@@ -182,18 +190,34 @@ $(document).ready(function () {
 
     // ADDING CONCERT TO .oneresult DETAILS UPON CLICKING SEARCH RESULT
 
-    //image
-    //bio
-    //buy tickets link/button
-    //play music link/button
 
-    function showConcert(newLat=39.7392,newLng=-104.9903,newTicket) {
+
+
+
+    function showConcert(newLat = 39.7392, newLng = -104.9903, newTicket) {
 
         var map = new GMaps({
             div: '#map',
             lat: newLat,
             lng: newLng,
+            
         });
+        map.addMarker({
+            lat: newLat,
+            lng: newLng,
+           
+          });
+    //       var marker = new google.maps.Marker(marker_options);
+    //   if(options.infoWindow)
+    //     marker.infoWindow = new google.maps.InfoWindow(options.infoWindow);
+
+    //   google.maps.event.addListener(marker, 'click', function(e){
+    //     if(options.click)
+    //       options.click(e);
+    //     if(marker.infoWindow){
+    //       self.hide_info_windows();
+    //       marker.infoWindow.open(self.map, marker);
+    //     }
         bandsInTownArtist();
 
     }
@@ -220,16 +244,13 @@ $(document).ready(function () {
 
 
         showConcert(newLat, newLng, newTicket);
+      
+        $(document).on('click', '.oneResult', function () {
+            var newLat = $(this).data("lat");
+            var newLng = $(this).data("lng");
+            var newTicket = $(this).data("link");
 
-        $(document).on('click','.oneResult',function(){
-            var newLat= $(this).data("lat");
-            var newLng= $(this).data("lng");
-            var newTicket= $(this).data("link");
-            
-                $(this).toggleClass('clicked');
-              
-
-        showConcert(newLat,newLng,newTicket);
+            showConcert(newLat, newLng, newTicket);
         });
     });
     //testcomment
@@ -277,6 +298,7 @@ $(document).ready(function () {
 
     $("#search-btn").on("click", function () {
         event.preventDefault();
+
         cityTerm = $("#city-input").val().trim();
         if (cityTerm != "") {
             citySelected = true;
@@ -291,9 +313,12 @@ $(document).ready(function () {
         // $(".modal").hide();
         // $(".fade").hide();
         $(".searchresult").empty();
+        $(".artist-name").empty();
+
+        $(".description").empty();
         bandsInTownArtist();
         bandsInTownEvent();
-
+        getLastFm();
         //checkCity();
     })
 
