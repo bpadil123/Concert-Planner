@@ -37,7 +37,7 @@ $(document).ready(function () {
 
             console.log(response.artist.bio.summary)
             artistBio = $("<p>").text(response.artist.bio.summary);
-            $(".description").text(artistBio);
+            $(".description").append(artistBio);
 
         })
     }
