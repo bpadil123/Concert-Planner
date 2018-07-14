@@ -36,7 +36,10 @@ $(document).ready(function () {
             console.log(response);
 
             console.log(response.artist.bio.summary)
-            artistBio = $("<p>").html(response.artist.bio.summary);
+            artistBio = $("<p>").text(response.artist.bio.summary);
+            artistName = $("<p>").text(response.artist.name);
+
+            $(".artist-name").append(artistName);
             $(".description").append(artistBio);
 
         })
@@ -60,7 +63,7 @@ $(document).ready(function () {
         $.getJSON(url, function (data) {
 
             // console.log(data);
-
+            console.log(data)
             // If Array is Empty
             if (!Array.isArray(data) || !data.length) {
 
@@ -134,7 +137,8 @@ $(document).ready(function () {
             var venueName = $("<p>").text(array[i].venue.name);
             var venueCity = $("<p>").text(array[i].venue.city);
             var venueRegion = $("<p>").text(array[i].venue.region);
-            var eventDateTime = $("<p>").text(array[i].datetime);
+            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY, h:mm a"); 
+            console.log(convertDateTime)
 
             var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
             var eventLocation = $("<div>").addClass("floatRight").html("<p>" + array[i].datetime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
@@ -153,7 +157,7 @@ $(document).ready(function () {
             oneResult.attr("data-venue", array[i].venue.name);
             oneResult.attr("data-city", array[i].venue.city);
             oneResult.attr("data-event", array[i].description);
-            oneResult.attr("data-time", array[i].datetime);
+            oneResult.attr("data-time", convertDateTime);
 
             //div to store data
             //Josie Did This code
@@ -294,6 +298,7 @@ $(document).ready(function () {
 
     $("#search-btn").on("click", function () {
         event.preventDefault();
+
         cityTerm = $("#city-input").val().trim();
         if (cityTerm != "") {
             citySelected = true;
@@ -308,6 +313,9 @@ $(document).ready(function () {
         // $(".modal").hide();
         // $(".fade").hide();
         $(".searchresult").empty();
+        $(".artist-name").empty();
+
+        $(".description").empty();
         bandsInTownArtist();
         bandsInTownEvent();
         getLastFm();
