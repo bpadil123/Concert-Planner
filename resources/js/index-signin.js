@@ -45,7 +45,7 @@ $(document).ready(function () {
     });
 
     function loggedIn() {
-        window.location = 'https://innaleikina.github.io/Concert-Planner/search.html'
+        window.location = 'https://bpadil123.github.io/Concert-Planner/search.html'
     }
 
     //MAPS//
