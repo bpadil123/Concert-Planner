@@ -180,7 +180,7 @@ $(document).ready(function () {
             oneResult.attr("data-venue", array[i].venue.name);
             oneResult.attr("data-city", array[i].venue.city);
             oneResult.attr("data-event", array[i].description);
-            oneResult.attr("data-time", array[i].datetime);
+            oneResult.attr("data-time", convertDateTime);
 
             //div to store data
             //Josie Did This code
