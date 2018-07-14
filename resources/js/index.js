@@ -137,7 +137,7 @@ $(document).ready(function () {
             var eventDateTime = $("<p>").text(array[i].datetime);
 
             var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
-            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + array[i].datetime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
+            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + array[i].datetime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
             moment(eventDateTime).format("dddd, MMMM Do YYYY"); 
 
 
