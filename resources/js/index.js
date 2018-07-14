@@ -133,6 +133,7 @@ $(document).ready(function () {
             var eventName = $("<p>").text(array[i].description);
             var venueName = $("<p>").text(array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region);
             var eventDateTime = $("<p>").text(array[i].datetime);
+            var convertDateTime = moment(eventDateTime).format("dddd, MMMM Do YYYY"); 
             var lat = array[i].venue.latitude;
             var lng = array[i].venue.longitude;
             var ticketLink = array[i].offers[0].url;
@@ -159,7 +160,7 @@ $(document).ready(function () {
             // oneResult.addClass("oneResult");
             //console.log(cityMatchArr[b].description);
 
-            oneResult.append(artistNameSearch, eventDateTime, eventName, venueName);
+            oneResult.append(artistNameSearch, convertDateTime, eventName, venueName);
             $(".searchresult").append(oneResult);
         }
     }
