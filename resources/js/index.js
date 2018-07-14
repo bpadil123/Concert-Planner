@@ -36,7 +36,7 @@ $(document).ready(function () {
             console.log(response);
 
             console.log(response.artist.bio.summary)
-            artistBio = $("<p>").text(response.artist.bio.summary);
+            artistBio = $("<p>").html(response.artist.bio.summary);
             artistName = $("<p>").text(response.artist.name);
 
             $(".artist-name").append(artistName);
@@ -141,7 +141,7 @@ $(document).ready(function () {
            console.log(convertDateTime)
 
            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
-           var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
+           var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
 
 
             var lat = array[i].venue.latitude;
@@ -230,7 +230,7 @@ $(document).ready(function () {
 
         $(".result-buttons").empty();
         var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
-        faveBtn.text('heart');
+        faveBtn.html('heart');
         // faveBtn.addClass("add-fave-btn");
         faveBtn.attr("data-name", $(this).attr("data-name"));
         faveBtn.attr("data-venue", $(this).attr("data-venue"));
