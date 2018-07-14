@@ -240,9 +240,10 @@ $(document).ready(function () {
         var newTicket = $(this).data("link");
 
         $(".result-buttons").empty();
-        var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city=''>")
+        var faveBtn = $("<button class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city='' data-ticket=''>")
         faveBtn.text('heart');
         // faveBtn.addClass("add-fave-btn");
+        faveBtn.attr("data-ticket", $(this).attr("data-link"));
         faveBtn.attr("data-name", $(this).attr("data-name"));
         faveBtn.attr("data-venue", $(this).attr("data-venue"));
         faveBtn.attr("data-time", $(this).attr("data-time"));
@@ -275,12 +276,14 @@ $(document).ready(function () {
         time = $(this).data("time");
         event = $(this).data("event");
         city = $(this).data("city");
+        ticket = $(this).data("ticket");
         data = {
             "name": name,
             "venue": venue,
             "time": time,
             "event": event,
-            "city": city
+            "city": city,
+            "ticket": ticket
         };
         //debugger
         fb_db.child(globalUserId).push(data)
