@@ -36,7 +36,7 @@ $(document).ready(function () {
             console.log(response);
 
             console.log(response.artist.bio.summary)
-            artistBio = $("<p>").text(response.artist.bio.summary);
+            artistBio = $("<p>").html(response.artist.bio.summary);
             $(".description").append(artistBio);
 
         })
@@ -138,7 +138,7 @@ $(document).ready(function () {
 
             var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].description + "</p>");
             var eventLocation = $("<div>").addClass("floatRight").html("<p>" + array[i].datetime + "</p>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + "</p>" + ", " + array[i].venue.region + "</p>");
-            var convertDateTime = moment(eventDateTime).format("dddd, MMMM Do YYYY"); 
+            moment(eventDateTime).format("dddd, MMMM Do YYYY"); 
 
 
             var lat = array[i].venue.latitude;
