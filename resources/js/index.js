@@ -138,6 +138,7 @@ $(document).ready(function () {
             var venueName = $("<p>").text(array[i].venue.name);
             var venueCity = $("<p>").text(array[i].venue.city);
             var venueRegion = $("<p>").text(array[i].venue.region);
+
             var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY, h:mm a"); 
             console.log(convertDateTime)
 
@@ -243,12 +244,11 @@ $(document).ready(function () {
 
 
         showConcert(newLat, newLng, newTicket);
-
+      
         $(document).on('click', '.oneResult', function () {
             var newLat = $(this).data("lat");
             var newLng = $(this).data("lng");
             var newTicket = $(this).data("link");
-
 
             showConcert(newLat, newLng, newTicket);
         });
