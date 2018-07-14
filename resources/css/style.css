@@ -273,6 +273,12 @@ main {
     display: inline;
 
 }
+
+
+.user-name{
+    margin-top:110px;
+    border:1px red solid;
+
 .artist-name{
     color:#fff;
 }
@@ -296,6 +302,7 @@ main {
     #login-page {
         margin-top: 100px;
     }
+
     img.artist-image{
         width:200px;
         height:200px;
@@ -305,3 +312,4 @@ main {
     
     
 }
+
