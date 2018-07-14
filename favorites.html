@@ -42,36 +42,44 @@
 <body>
     <nav class="navbar fixed-top navbar-light bg-light col-lg-12">
 
-        <div class="col-lg-8 nav-logo">HARMONIZE</div>
+        <a href="index.html">
+            <div class="col-lg-8 nav-logo">HARMONIZE</div>
+        </a>
         <div class="col-lg-4 nav-icons ">
             <a href="search.html">
                 <i class="fas fa-search"></i>
             </a>
             <a href="#">
                 <i class="far fa-heart"></i>
-                
+
             </a>
         </div>
 
     </nav>
-    <div class="table-responsive col-lg-8" id="search-results">
-    <table class="table search">
-        <thead>
-            <tr>
-                <th scope="col">
-                    Image
-                    <img src="" alt="" width="200px" height="200px">
-                </th>
-                <th scope="col">Artist Name</th>
-                <th scope="col">Date</th>
-                <th scope="col">Location</th>
-            </tr>
-        </thead>
-        <tbody>
 
-        </tbody>
-    </table>
+       
+
+    <div class="table-responsive col-lg-8" id="search-results">
+            <div class="user-name"></div>
+        <table class="table search">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        Image 
+                        <img src="" alt="" width="200px" height="200px">
+                    </th>
+                    <th scope="col">Artist Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Location</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
     </div>
+
 
     <script src="./resources/js/index-favorites.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
