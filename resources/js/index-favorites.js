@@ -36,7 +36,7 @@ $(document).ready(function () {
 
       //database.ref().on("child_added", function (childSnapshot) {
     } else {
-      $(".user-name").text("sign in to have access to favorites");
+      $(".user-name").text("Sign In To Access Favorites");
 
       // ...
     }

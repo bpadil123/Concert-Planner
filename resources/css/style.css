@@ -1,3 +1,5 @@
+/*GLOBAL CSS*/
+
 body {
     width: 100%;
     margin: 0 auto;
@@ -9,6 +11,69 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    font-style: italic;
+    font-size: small;
+}
+a:hover {
+    color: orange;
+}
+.nav-logo > a{
+    float: left;
+    font-size: 24px;
+    color: #2f6b77;
+    text-decoration: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nav-icons {
+    float: right;
+    text-align: right;
+}
+a.navbar-icon > .far{
+    font-size:x-large;
+}
+a.navbar-icon > .fas{
+    font-size:x-large;
+}
+
+a.navbar-icon{
+    width: 60px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    font-style: italic;
+    font-size: small;
+    display: inline-block;
+    text-align: center;
+}
+.navbar-icon p{
+    width: 50px;
+    float: right;
+    color: #298692;
+    font-style: normal;
+    margin-bottom:0px;
+}
+
+.navbar {
+    padding: 15px 0;
+    background-color: grey;
+}
+th {
+    text-align: center;
+}
+
+hr {
+    border-top: 1px solid rgb(138, 140, 140);
+}
+
+/*INDEX PAGE*/
+
 #login-page h1 {
     font-size: 48px;
     color: orange;
@@ -18,42 +83,6 @@ body {
     color: #fff;
     margin-top: .5em;
     margin-bottom: .5em;
-}
-
-a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 300;
-    font-style: italic;
-    font-size: small;
-}
-
-a>.fas,
-a>.far {
-    text-decoration: none;
-    color: rgb(204, 204, 204);
-    font-size: x-large;
-    margin-left: 10px;
-}
-
-.fas:hover {
-    color: orange;
-}
-
-.fas:visited {
-    color: #298692;
-}
-
-.far:visited {
-    color: #298692;
-}
-
-.far:hover {
-    color: orange;
-}
-
-a:hover {
-    color: orange;
 }
 
 #login-page {
@@ -74,22 +103,52 @@ a:hover {
     padding: 10px 20px;
 }
 
-.nav-logo {
-    float: left;
-    font-size: 20px;
-    color: #2f6b77;
+/*SEARCH PAGE*/
+.dateTime-italic{
+    font-style: italic;
+}
+a>.fas,
+a>.far {
+    text-decoration: none;
+    color: #298692;
+    font-size: xx-large;
+    margin-left: 10px;
+    display: inline;
+}
+.fas:focus{
+    color:orange;
 }
 
-.nav-icons {
-    float: right;
-    text-align: right;
+.fas {
+    color: #298692;
+    width: 20px;
+    font-size: xx-large;
+    
+    
+    display: inline;
 }
 
-.navbar {
-    padding: 15px 0;
-    background-color: grey;
+.fas:hover {
+    color: orange;
 }
 
+.fas:visited {
+    color: #298692;
+}
+
+.far:visited {
+    color: #298692;
+}
+
+.far:hover {
+    color: orange;
+}
+
+.add-fave-btn{
+    width:50%;
+    display:inline;
+
+}
 .search,
 .favorites,
 .artist-page {
@@ -99,15 +158,6 @@ a:hover {
 #search-results {
     margin: 0 auto;
 }
-
-.modal-open {
-    overflow: scroll;
-}
-
-th {
-    text-align: center;
-}
-
 .search-button,
 .hr {
     margin: 0 auto;
@@ -125,34 +175,27 @@ th {
 .search-button button:hover {
     background-color: grey;
 }
-
-hr {
-    border-top: 1px solid rgb(138, 140, 140);
-}
-
 .searchresult {
     margin: 0 auto;
     text-align: center;
     color: rgba(255, 255, 255, 0.62);
 }
-
-/* .searchresult p{
-
-    margin-top: 40px;
-} */
-
-/* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
-
 .oneResult{
-    background-color: #ffffffa1;
+    background-color: rgba(255, 255, 255, 0.75);
     margin-top: 20px;
-    color: black;
+    color: #285a65;
     border-radius: 5px;
     display: inline-block;
     width: 100%;
     
 }
+.oneResult:target{
+    color:grey;
+}
 .oneResult:hover{
+    background-color:#fff;
+}
+div.oneResult:focus{
     background-color:#fff;
 }
 
@@ -206,7 +249,13 @@ main {
     display: block;
     width: 90%;
     margin: 0 auto;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
+}
+.form-inline p{
+    text-align: center;
+    color:rgba(255, 255, 255, 0.603);
+    font-style: italic;
+    font-weight: 300;
 }
 
 .form-inline>div {
@@ -228,15 +277,20 @@ main {
     /* border: 1px red solid; */
     width: 400px;
     height: 300px;
+    border-radius:5px;
+}
+placeholder{
+    font-style: italic;
 }
 
 .user-name {
-    width: 200px;
-    height: 30px;
-    /* border: 1px red solid; */
+    text-align:center;
     z-index: 2;
     margin:0 auto;
     margin-top: 100px;
+    color: #fff;
+    font-size:20px;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .map-right{
@@ -265,6 +319,9 @@ main {
     float: left;
     display: inline-block;
 }
+.floatLeft p{
+    margin-bottom: 0;
+}
 .floatRight{
     float: right;
     text-align: right;
@@ -274,19 +331,54 @@ main {
 
 }
 
-
-.user-name{
-    margin-top:110px;
-    border:1px red solid;
-
+.table.search{
+    color:#fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+}
+#table-data{
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+}
+.table th{
+    border-top:none;
+}
+.table thead th{
+    font-weight: 300;
+}
 .artist-name{
     color:#fff;
 }
 .mobile-buttons{
     display: none;
 }
+.btn-outline-success:hover {
+    color: #fff;
+    background-color: #285a65;
+    border-color: #285a65;
+}
+.btn-outline-success:focus {
+    box-shadow: none;
+}
 
-/*MEDIA QUERY*/
+.btn-outline-success:not(:disabled):not(.disabled).active, .btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
+    color: #fff;
+    background-color: #285a65;
+    border-color: #285a65;
+}
+/*FAVORITES PAGE*/
+
+
+
+
+/* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
+.convertDateTime{
+    font-style: italic;
+}
+
+
 @media only screen and (max-width: 768px){
     main{
         display: none;
@@ -294,9 +386,23 @@ main {
     .mobile-buttons{
         display: inline-block;
     }
-    .result-buttons{
-        display: none;
+    
+    .floatLeft{
+        width: 50%;
+        text-align: left;
+        padding: 20px;
+        float: left;
+        display: inline-block;
     }
+    .floatRight{
+        float: right;
+        text-align: right;
+        padding: 20px;
+        width: 50%;
+        display: inline;
+    
+    }
+    
 }
 @media only screen and (max-width: 700px) {
     #login-page {
