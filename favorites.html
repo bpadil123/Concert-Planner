@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 
 <head>
@@ -31,38 +31,49 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+    <!-- scripts for the location autocomplete -->
+    <script src="https://maps.googleapis.com/maps/api/js?&libraries=places&language=en&key=AIzaSyCOoNYhJml77XYXNv1wtc-sJFM3P79-jO4"></script>
+    <script src="./resources/js/gmaps.js"></script>
 
 
 
     <title> Harmonize </title>
 
 </head>
-
 <body>
-    <nav class="navbar fixed-top navbar-light bg-light col-lg-12">
-
-        <a href="index.html">
-            <div class="col-lg-8 nav-logo">HARMONIZE</div>
-        </a>
-        <div class="col-lg-4 nav-icons ">
-            <a href="search.html">
-                <i class="fas fa-search"></i>
-            </a>
-            <a href="#">
-                <i class="far fa-heart"></i>
-
-            </a>
-        </div>
-
-    </nav>
-
+        <div class="container">
+                <div class="row">
+                    <nav class="navbar fixed-top navbar-light bg-light col-xl-12">
+        
+                        <div class="col-xl-8 col-lg-6 col-6 nav-logo">
+                            <a href="search.html">HARMONIZE</a></div>
+                            
+                        <div class="col-xl-4 col-lg-5 col-6 nav-icons">
+        
+                            <a href="search.html" class="navbar-icon">
+                                <i class="fas fa-search"></i>
+                            </a>
+                            <a href="favorites.html" class="navbar-icon">
+                                <i class="far fa-heart"></i>
+        
+                            </a>
+                            <a href="#" class="navbar-icon">
+                                <i class="far fa-user"></i>
+        
+                            </a>
+                        </div>
+        
+                    </nav>
+                </div>
+            </div>
        
 
     <div class="table-responsive col-lg-8" id="search-results">
 
-        <div class="user-name"></div>
-    <table class="table search">
+        <div class="user-name col-lg-12">
+
+        </div>
+    <table class="table search col-lg-8 col-md-12 col-sm-12">
         <thead>
             <tr>
                 <th scope="col">Name</th>
