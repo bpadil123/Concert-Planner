@@ -289,7 +289,6 @@ $(document).ready(function () {
         time = $(this).data("time");
         event = $(this).data("event");
         city = $(this).data("city");
-        state = $(this).data("state")
         ticket = $(this).data("ticket");
         data = {
             "name": name,
@@ -297,7 +296,6 @@ $(document).ready(function () {
             "time": time,
             "event": event,
             "city": city,
-            "state": state,
             "ticket": ticket
         };
         //debugger
