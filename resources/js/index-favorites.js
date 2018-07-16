@@ -22,13 +22,15 @@ $(document).ready(function () {
          console.log(childSnapshot.val().ticket);
         // append to our table of favorites, inside tbody, with a new row of the data
         $("#data-favorites").append(
-          "<i class='fas fa-times'></i><h3>" + childSnapshot.val().name + "</h3>" +
+          "<i id='remove' class='fas fa-times'></i><h3>" + childSnapshot.val().name + "</h3>" +
           "<div class='time'>" + childSnapshot.val().time + "</div>" +
           "<div class='venue'>" + childSnapshot.val().venue + "</div>" +
           "<div class='city'>" + childSnapshot.val().city + "<a><span class='glyphicon glyphicon-remove icon-hidden' aria-hidden='true'></span></a>" + "</div>" + 
           "<a target='_blank' href='" + childSnapshot.val().ticket +"'><i id='ticket-fav' class='fas fa-ticket-alt'></>" + "</a><hr>"
         );
       })
+
+
 
       // append to our table of favorites, inside tbody, with a new row of the data
       // debugger
