@@ -12,7 +12,7 @@ $(document).ready(function () {
 
       var globalUserId = user.uid;
       console.log(displayName);
-      $(".user-name").text(displayName + "'s favorite concerts");
+      $(".user-name").text(displayName + "'s Favorite Concerts");
       const fb_db = firebase.database().ref()
       fb_db.child(globalUserId).on("child_added", function (childSnapshot) {
         //  console.log(childSnapshot.val().city);
@@ -21,12 +21,12 @@ $(document).ready(function () {
         //  console.log(childSnapshot.val().time);
          console.log(childSnapshot.val().ticket);
         // append to our table of favorites, inside tbody, with a new row of the data
-        $("#table-data").append(
-          "<tr><td>" + childSnapshot.val().name + "</td>" +
-          "<td>" + childSnapshot.val().time + "</td>" +
-          "<td>" + childSnapshot.val().venue + "</td>" +
-          "<td>" + childSnapshot.val().city + "  " + "<a><span class='glyphicon glyphicon-remove icon-hidden' aria-hidden='true'></span></a>" + "</td>" + 
-          "<td><a target='_blank' href=" + childSnapshot.val().ticket +"<button> get ticket </button>" + "</a></td></tr>"
+        $("#data-favorites").append(
+          "<i class='fas fa-times'></i><h3>" + childSnapshot.val().name + "</h3>" +
+          "<div class='time'>" + childSnapshot.val().time + "</div>" +
+          "<div class='venue'>" + childSnapshot.val().venue + "</div>" +
+          "<div class='city'>" + childSnapshot.val().city + "<a><span class='glyphicon glyphicon-remove icon-hidden' aria-hidden='true'></span></a>" + "</div>" + 
+          "<a target='_blank' href='" + childSnapshot.val().ticket +"'><i id='ticket-fav' class='fas fa-ticket-alt'></>" + "</a><hr>"
         );
       })
 
