@@ -66,9 +66,6 @@ $(document).ready(function () {
         }, function (error) {
             // An error happened.
         });
-        $(this).removeClass('signOut')
-           .addClass('signIn')
-           .html('Sign In With Google');
            window.location = "https://www.google.com/accounts/Logout?continue="
            window.location = "index.html"
    });

@@ -10,6 +10,7 @@ $(document).ready(function () {
       // User is signed in.
       var displayName = user.displayName;
 
+    
       var globalUserId = user.uid;
       console.log(displayName);
       $(".user-name").text(displayName + "'s Favorite Concerts");
@@ -22,7 +23,7 @@ $(document).ready(function () {
          console.log(childSnapshot.val().ticket);
         // append to our table of favorites, inside tbody, with a new row of the data
         $("#data-favorites").append(
-          "<i id='remove' class='fas fa-times'></i><h3>" + childSnapshot.val().name + "</h3>" +
+          "<i id='remove' class='fas fa-times' onclick= {console.log('hello')}></i><h3>" + childSnapshot.val().name + "</h3>" +
           "<div class='time'>" + childSnapshot.val().time + "</div>" +
           "<div class='venue'>" + childSnapshot.val().venue + "</div>" +
           "<div class='city'>" + childSnapshot.val().city + "<a><span class='glyphicon glyphicon-remove icon-hidden' aria-hidden='true'></span></a>" + "</div>" + 
@@ -30,8 +31,26 @@ $(document).ready(function () {
         );
       })
 
-
-
+      $(document).on('click', 'remove', function () {
+        console.log ('clickerspickers')
+        debugger
+        name = $(this).data("name");
+        venue = $(this).data("venue");
+        time = $(this).data("time");
+        event = $(this).data("event");
+        city = $(this).data("city");
+        ticket = $(this).data("ticket");
+        data = {
+            "name": name,
+            "venue": venue,
+            "time": time,
+            "event": event,
+            "city": city,
+            "ticket": ticket
+        };
+        //debugger
+        fb_db.child(globalUserId).remove(data)
+    });
       // append to our table of favorites, inside tbody, with a new row of the data
       // debugger
 
