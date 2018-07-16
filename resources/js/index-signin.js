@@ -22,6 +22,7 @@ $(document).ready(function () {
     provider.addScope('email');
 
     $(document).on('click', '.signIn', function () {
+        console.log('logged in');
 
 
         firebase.auth().onAuthStateChanged(function (user) {
@@ -59,19 +60,32 @@ $(document).ready(function () {
             .html('Sign Out Of Google');
     });
 
+    // debugger
     $(document).on('click', '.signOut', function () {
+        console.log ('clicked log out')
         firebase.auth().signOut().then(function () {
-            $('.content').hide();
-        }, function (error) {
-            // An error happened.
-        });
+               // Sign-out successful.
+               window.signOut = function signOut(_e) {
+                firebase.auth().signOut().then(function() {
+                  // Sign-out successful.
+                }).catch(function(error) {
+                  // An error happened.
+                });
+              }});
+
         $(this).removeClass('signOut')
             .addClass('signIn')
             .html('Sign In With Google');
+            window.location = "https://www.google.com/accounts/Logout?continue="
+            // window.location = "index.html"
     });
 
     function loggedIn() {
-        window.location = 'search.html'
+        window.location = '/search.html'
+    }
+
+    function loggedOut() {
+        window.location = 'index.html'
     }
 
     //MAPS//
