@@ -60,15 +60,18 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.signOut', function () {
+        console.log('clicked log out')
         firebase.auth().signOut().then(function () {
             $('.content').hide();
         }, function (error) {
             // An error happened.
         });
         $(this).removeClass('signOut')
-            .addClass('signIn')
-            .html('Sign In With Google');
-    });
+           .addClass('signIn')
+           .html('Sign In With Google');
+           window.location = "https://www.google.com/accounts/Logout?continue="
+           window.location = "index.html"
+   });
 
     function loggedIn() {
         window.location = 'search.html'
