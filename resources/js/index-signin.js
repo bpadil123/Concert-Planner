@@ -9,6 +9,7 @@ var config = {
 firebase.initializeApp(config);
 console.warn('Loading index signin:', firebase.auth().currentUser)
 
+// var logIn = addClass ('.signIn')
 
 var globalUserId;
 $(document).ready(function () {
@@ -27,21 +28,12 @@ $(document).ready(function () {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 loggedIn();
-                // var user = result.user;
-
-                // User is signed in.
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var isAnonymous = user.isAnonymous;
                 var uid = user.uid;
-                var providerData = user.providerData;
                 globalUserId = uid;
                 console.warn('Logged in as', globalUserId)
                 // ...
             } else {
-                firebase.auth().signInWithPopup(provider).then(function (result) {
+                firebase.auth().signInWithPopup(provider).then(function () {
                     // This gives you a Google Access Token.
                     // var token = result.credential.accessToken;
                     // The signed-in user info.
@@ -59,20 +51,28 @@ $(document).ready(function () {
             .html('Sign Out Of Google');
     });
 
-    $(document).on('click', '.signOut', function () {
-        console.log('clicked log out')
-        firebase.auth().signOut().then(function () {
-            $('.content').hide();
-        }, function (error) {
-            // An error happened.
-        });
-           window.location = "https://www.google.com/accounts/Logout?continue="
-           window.location = "index.html"
-   });
-
     function loggedIn() {
         window.location = 'search.html'
     }
+
+    $(document).on('click', '.signOut', function () {
+        // console.log('clicked log out');
+        firebase.auth().signOut().then(function () {
+            console.log('signed out')
+            $('#data-favorites').hide().then(function(){
+                console.log('shit worked')});
+        }, function () {
+            // An error happened.
+        });
+
+        $(this).removeClass('signOut')
+                 .addClass('signIn')
+                .html('Log In')
+            
+        // .text('Hello')
+        //    window.location = "index.html"
+   });
+   
 
     //MAPS//
     // Initialize and add the map

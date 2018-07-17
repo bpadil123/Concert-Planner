@@ -1,44 +1,8 @@
 // for last fm Shared secret	50430e261d47ee60d575c432c912c0e5
 //band in town id 9ac9ab26c18a220660a4a733194e08fc
 //create an array to store all city matches, if array has results, display them, if no results display sign no match
-var globalUserId;
 $(document).ready(function () {
-    // Initialize Firebase
-    // var config = {
-    //     apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
-    //     authDomain: "harmonize-dd029.firebaseapp.com",
-    //     databaseURL: "https://harmonize-dd029.firebaseio.com",
-    //     projectId: "harmonize-dd029",
-    //     storageBucket: "harmonize-dd029.appspot.com",
-    //     messagingSenderId: "419798913580"
-    // };
-    // firebase.initializeApp(config);
-
-    firebase.auth().onAuthStateChanged(function (user) {
-
-        if (user) {
-
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-            globalUserId = uid;
-            console.warn('Logged in as', globalUserId)
-
-        } else {
-            // User is signed out.
-            // ...
-        }
-    });
-
-
-    var lstFmKey = "a63e099b17dfc041516f78ab8c3e3d5c";
-
-
-
+   
     var artistTerm;
     var cityTerm;
     var citySelected = false;
@@ -129,7 +93,6 @@ $(document).ready(function () {
         // If Array is Empty
         if (!Array.isArray(matchCityArray) || !matchCityArray.length) {
 
-            const resultElement = $("#results");
             $(".searchresult").append('<p id="no-match">' + toTitleCase(artistTerm) + " has no upcoming concerts in " + cityTerm + '</p>');
             // displayResults(noMatchCityArr);
         }
@@ -146,31 +109,19 @@ $(document).ready(function () {
 
     // Function only used to display results to page
     function displayResults(array) {
-        //   console.log("checking");
-
-        // Target element to insert data
-        const resultElement = $("#results");
 
         // Loop through array and append data to page
         for (let i = 0; i < array.length; i++) {
             var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
-            
+
             //console.log(artistTerm);
             var artistName = toTitleCase(artistTerm);
-            //console.log(artistName);
+            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY" + "</br>" + " h:mm a");
 
-            var artistNameSearch = $("<p>").text(toTitleCase(artistTerm));
-            var eventName = $("<p>").text(array[i].description);
-            var venueName = $("<p>").text(array[i].venue.name);
-            var venueCity = $("<p>").text(array[i].venue.city);
-            var venueRegion = $("<p>").text(array[i].venue.region);
-            var eventDateTime = $("<p>").text(array[i].datetime);
-            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY"+ "</br>"+  " h:mm a");
-            
-           // console.log(convertDateTime)
+            // console.log(convertDateTime)
 
-            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>"  + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
-            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>"+ "<div class='result-buttons'>");
+            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
+            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<div class='result-buttons'>");
 
 
             var lat = array[i].venue.latitude;
@@ -200,7 +151,7 @@ $(document).ready(function () {
             //console.log(cityMatchArr[b].description);
             oneResult.append(eventInfo, eventLocation);
             $(".searchresult").append(oneResult);
-            
+
         }
     }
 
@@ -237,7 +188,7 @@ $(document).ready(function () {
 
     }
 
-// $(".oneResult").on("click", function () {
+    // $(".oneResult").on("click", function () {
 
     $(document).on('click', '.oneResult', function () {
         var newLat = $(this).data("lat");
@@ -248,13 +199,13 @@ $(document).ready(function () {
         var ticket = $("<i>").addClass("fas fa-ticket-alt");
 
         $(".result-buttons").empty();
-        var faveBtn = $("<div class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city='' data-ticket=''>")
-        var ticketBtn = $("<a target='_blank' href="+ newTicket + ">" + ticket+ "</a>");
+        var faveBtn = $("<div class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city='' data-ticket='' data-id=''>")
+        var ticketBtn = $("<a target='_blank' href=" + newTicket + ">" + ticket + "</a>");
         ticketBtn.html(ticket);
         faveBtn.html(heart);
-        
-        
-        
+
+
+
         // faveBtn.addClass("add-fave-btn");
         faveBtn.attr("data-ticket", $(this).attr("data-link"));
         faveBtn.attr("data-name", $(this).attr("data-name"));
@@ -262,11 +213,11 @@ $(document).ready(function () {
         faveBtn.attr("data-time", $(this).attr("data-time"));
         faveBtn.attr("data-event", $(this).attr("data-event"));
         faveBtn.attr("data-city", $(this).attr("data-city"));
-        
+
         $(".result-buttons").append(faveBtn);
         $(".result-buttons").append(ticketBtn);
-        
-       
+
+
         showConcert(newLat, newLng, newTicket);
 
         $(document).on('click', '.oneResult', function () {
@@ -274,9 +225,9 @@ $(document).ready(function () {
             var newLng = $(this).data("lng");
             var newTicket = $(this).data("link");
 
-            
+
             showConcert(newLat, newLng, newTicket);
-           
+
         });
     });
     //testcomment
@@ -290,18 +241,26 @@ $(document).ready(function () {
         event = $(this).data("event");
         city = $(this).data("city");
         ticket = $(this).data("ticket");
+        var myRef = fb_db.child(globalUserId).push();
+        var oneFaveId = myRef.getKey();
+       $(this).attr("data-id", oneFaveId);
+
+        // var oneFaveId = myRef.child("posts").push().getKey();;
+
         data = {
             "name": name,
             "venue": venue,
             "time": time,
             "event": event,
             "city": city,
-            "ticket": ticket
+            "ticket": ticket,
+            "id": oneFaveId
         };
         //debugger
-        fb_db.child(globalUserId).push(data)
+        fb_db.child(globalUserId).child(oneFaveId).set(data);
+        console.log(oneFaveId);
     });
-    
+
 
 
     //_____________BAND IN TOWN ARTIST SEARCH
@@ -317,9 +276,6 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-            // console.log(data);
-            // console.log(url);
-            var artistResults = data.response
             //image of artist/event from Artist URL **** 
             $(".artist-image").attr("src", data.thumb_url);
 
@@ -375,10 +331,8 @@ $(document).ready(function () {
 
     };
 
-    var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
 
 
 });
-
