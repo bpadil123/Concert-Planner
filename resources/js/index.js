@@ -154,7 +154,7 @@ $(document).ready(function () {
         // Loop through array and append data to page
         for (let i = 0; i < array.length; i++) {
             var oneResult = $("<div class ='oneResult' data-lat='' data-lng='' data-link=''>");
-            
+
             //console.log(artistTerm);
             var artistName = toTitleCase(artistTerm);
             //console.log(artistName);
@@ -165,12 +165,12 @@ $(document).ready(function () {
             var venueCity = $("<p>").text(array[i].venue.city);
             var venueRegion = $("<p>").text(array[i].venue.region);
             var eventDateTime = $("<p>").text(array[i].datetime);
-            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY"+ "</br>"+  " h:mm a");
-            
-           // console.log(convertDateTime)
+            var convertDateTime = moment(array[i].datetime).format("dddd, MMMM Do YYYY" + "</br>" + " h:mm a");
 
-            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>"  + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
-            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>"+ "<div class='result-buttons'>");
+            // console.log(convertDateTime)
+
+            var eventInfo = $("<div>").addClass("floatLeft").html("<h3>" + (toTitleCase(artistTerm)) + "</h3>" + "<p>" + array[i].venue.name + "<br>" + array[i].venue.city + ", " + array[i].venue.region + "</p>");
+            var eventLocation = $("<div>").addClass("floatRight").html("<p>" + convertDateTime + "</p>" + "<div class='result-buttons'>");
 
 
             var lat = array[i].venue.latitude;
@@ -200,7 +200,7 @@ $(document).ready(function () {
             //console.log(cityMatchArr[b].description);
             oneResult.append(eventInfo, eventLocation);
             $(".searchresult").append(oneResult);
-            
+
         }
     }
 
@@ -237,7 +237,7 @@ $(document).ready(function () {
 
     }
 
-// $(".oneResult").on("click", function () {
+    // $(".oneResult").on("click", function () {
 
     $(document).on('click', '.oneResult', function () {
         var newLat = $(this).data("lat");
@@ -248,13 +248,13 @@ $(document).ready(function () {
         var ticket = $("<i>").addClass("fas fa-ticket-alt");
 
         $(".result-buttons").empty();
-        var faveBtn = $("<div class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city='' data-ticket=''>")
-        var ticketBtn = $("<a target='_blank' href="+ newTicket + ">" + ticket+ "</a>");
+        var faveBtn = $("<div class ='add-fave-btn' data-name='' data-venue='' data-time='' data-event='' data-city='' data-ticket='' data-id=''>")
+        var ticketBtn = $("<a target='_blank' href=" + newTicket + ">" + ticket + "</a>");
         ticketBtn.html(ticket);
         faveBtn.html(heart);
-        
-        
-        
+
+
+
         // faveBtn.addClass("add-fave-btn");
         faveBtn.attr("data-ticket", $(this).attr("data-link"));
         faveBtn.attr("data-name", $(this).attr("data-name"));
@@ -262,11 +262,11 @@ $(document).ready(function () {
         faveBtn.attr("data-time", $(this).attr("data-time"));
         faveBtn.attr("data-event", $(this).attr("data-event"));
         faveBtn.attr("data-city", $(this).attr("data-city"));
-        
+
         $(".result-buttons").append(faveBtn);
         $(".result-buttons").append(ticketBtn);
-        
-       
+
+
         showConcert(newLat, newLng, newTicket);
 
         $(document).on('click', '.oneResult', function () {
@@ -274,9 +274,9 @@ $(document).ready(function () {
             var newLng = $(this).data("lng");
             var newTicket = $(this).data("link");
 
-            
+
             showConcert(newLat, newLng, newTicket);
-           
+
         });
     });
     //testcomment
@@ -290,18 +290,26 @@ $(document).ready(function () {
         event = $(this).data("event");
         city = $(this).data("city");
         ticket = $(this).data("ticket");
+        var myRef = fb_db.child(globalUserId).push();
+        var oneFaveId = myRef.getKey();
+       $(this).attr("data-id", oneFaveId);
+
+        // var oneFaveId = myRef.child("posts").push().getKey();;
+
         data = {
             "name": name,
             "venue": venue,
             "time": time,
             "event": event,
             "city": city,
-            "ticket": ticket
+            "ticket": ticket,
+            "id": oneFaveId
         };
         //debugger
-        fb_db.child(globalUserId).push(data)
+        fb_db.child(globalUserId).child(oneFaveId).set(data);
+        console.log(oneFaveId);
     });
-    
+
 
 
     //_____________BAND IN TOWN ARTIST SEARCH
@@ -381,4 +389,3 @@ $(document).ready(function () {
 
 
 });
-
