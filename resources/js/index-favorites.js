@@ -6,6 +6,23 @@ $(document).ready(function () {
   // firebase.initializeApp(config);
   // var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 
+  
+    $(".box1,.box2").hide();
+
+    $(".slide-toggle1").click(function () {
+        $(".box1").animate({
+            width: "toggle"
+        });
+
+    });
+    $(".slide-toggle2").click(function () {
+
+        $(".box2").animate({
+            width: "toggle"
+        });
+    });
+
+
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
@@ -72,6 +89,8 @@ $(document).ready(function () {
   function displayResults() {
 
   }
+
+  
 
 
 });

@@ -10,6 +10,44 @@ body {
     background-size: cover;
     font-family: 'Roboto Condensed', sans-serif;
 }
+.page-footer{
+    background-color:#d67b1d;
+    
+}
+.page-footer > a{
+    border:1px solid #fff;
+    border-radius:3px;
+    color:#fff !important;
+    float:left;
+    display:inline-block;
+    padding:5px;
+    margin:5px;
+
+
+
+}
+
+.box1,.box2{
+    float: left;
+    overflow: hidden;
+    background: none;
+    color: #fff;
+    font-size: 14px;
+    font-style: italic;
+    
+}
+/* Add padding and border to inner content
+for better animation effect */
+.box-inner1{
+    width: 200px;
+    padding: 10px;
+    border: none;
+}
+.box-inner2{
+    width: 500px;
+    padding: 10px;
+    border: none;
+}
 
 a {
     text-decoration: none;
@@ -385,7 +423,7 @@ placeholder{
     
 }
 #data-favorites > div{
-    width:70%; 
+    width:100%; 
     
     display: inline-block3
 }
@@ -521,7 +559,7 @@ a>.fas{
     
 }
 #data-favorites > div{
-    width:70%; 
+    width:100%; 
     
     display: inline-block3
 }
@@ -564,7 +602,7 @@ a>.fas{
     text-align:center;
     z-index: 2;
     margin:0 auto;
-    margin:70px 0 20px;
+    margin:90px 0 20px;
     color: #fff;
     font-size:20px;
     font-family: 'Roboto Condensed', sans-serif;
