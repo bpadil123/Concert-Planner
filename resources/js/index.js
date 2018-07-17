@@ -292,7 +292,7 @@ $(document).ready(function () {
         ticket = $(this).data("ticket");
         var myRef = fb_db.child(globalUserId).push();
         var oneFaveId = myRef.getKey();
-       $(this).attr("data-id", oneFaveId);
+        $(this).attr("data-id", oneFaveId);
 
         // var oneFaveId = myRef.child("posts").push().getKey();;
 
@@ -386,6 +386,24 @@ $(document).ready(function () {
     var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
+
+
+    $(document).ready(function () {
+        $(".box1,.box2").hide();
+
+        $(".slide-toggle1").click(function () {
+            $(".box1").animate({
+                width: "toggle"
+            });
+
+        });
+        $(".slide-toggle2").click(function () {
+
+            $(".box2").animate({
+                width: "toggle"
+            });
+        });
+    });
 
 
 });
