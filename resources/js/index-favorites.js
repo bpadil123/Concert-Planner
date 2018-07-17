@@ -1,4 +1,5 @@
 var oneFaveId;
+var globalUserId;
 $(document).ready(function () {
   // Initialize Firebase
 
@@ -12,8 +13,8 @@ $(document).ready(function () {
       var displayName = user.displayName;
 
 
-      var globalUserId = user.uid;
-      console.log(displayName);
+      globalUserId = user.uid;
+
       $(".user-name").text(displayName + "'s Favorite Concerts");
       const fb_db = firebase.database().ref()
       fb_db.child(globalUserId).on("child_added", function (childSnapshot) {
@@ -26,12 +27,14 @@ $(document).ready(function () {
         //  oneFaveId = childSnapshot.val().id;
         //  console.log(oneFaveId);
         // append to our table of favorites, inside tbody, with a new row of the data
+
         $("#data-favorites").append(
+          '<div class="oneFave">' +
           "<i class='fas fa-times remove' data-id=" + childSnapshot.val().id + "></i><h3>" + childSnapshot.val().name + "</h3>" +
           "<div class='time'>" + childSnapshot.val().time + "</div>" +
           "<div class='venue'>" + childSnapshot.val().venue + "</div>" +
           "<div class='city'>" + childSnapshot.val().city + "<a><span class='glyphicon glyphicon-remove icon-hidden' aria-hidden='true'></span></a>" + "</div>" +
-          "<a target='_blank' href='" + childSnapshot.val().ticket + "'><i id='ticket-fav' class='fas fa-ticket-alt'></>" + "</a><hr>"
+          "<a target='_blank' href='" + childSnapshot.val().ticket + "'><i id='ticket-fav' class='fas fa-ticket-alt'></>" + "</a><hr></div>"
         );
       })
 
@@ -39,9 +42,12 @@ $(document).ready(function () {
 
         oneFaveId = $(this).data("id");
         deleteRecord(oneFaveId);
+        $(this).parent().remove();
+        console.log("this item was removed");
+
       });
       // append to our table of favorites, inside tbody, with a new row of the data
-      // debugger
+
       function deleteRecord(key) {
         var refDB = firebase.database().ref(globalUserId + "/" + oneFaveId);
 
@@ -63,8 +69,8 @@ $(document).ready(function () {
     }
   });
 
-  function displayResults(){
-    
+  function displayResults() {
+
   }
 
 
