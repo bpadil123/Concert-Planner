@@ -27,7 +27,7 @@ $(document).ready(function () {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 loggedIn();
-                // var user = result.user;
+             
 
                 // User is signed in.
                 var displayName = user.displayName;
@@ -43,12 +43,12 @@ $(document).ready(function () {
             } else {
                 firebase.auth().signInWithPopup(provider).then(function (result) {
                     // This gives you a Google Access Token.
-                    // var token = result.credential.accessToken;
+                
                     // The signed-in user info.
-        
-                   // debugger;
+
+                    // debugger;
                     $('.content').show();
-                    // loggedIn();
+        
                 });
             }
         });
@@ -66,59 +66,14 @@ $(document).ready(function () {
         }, function (error) {
             // An error happened.
         });
-           window.location = "https://www.google.com/accounts/Logout?continue="
-           window.location = "index.html"
-   });
+        window.location = "https://www.google.com/accounts/Logout?continue="
+        window.location = "index.html"
+    });
 
     function loggedIn() {
         window.location = 'search.html'
     }
 
-    //MAPS//
-    // Initialize and add the map
-    // function initMap() {
-    //     // The location of Uluru
-    //     var uluru = {lat: -25.344, lng: 131.036};
-    //     // The map, centered at Uluru
-    //     var map = new google.maps.Map(
-    //         document.getElementById('map'), {zoom: 4, center: uluru});
-    //     // The marker, positioned at Uluru
-    //     var marker = new google.maps.Marker({position: uluru, map: map});
-    //   }
-    //   <!--Load the API from the specified URL
-    //     * The async attribute allows the browser to render the page while the API loads
-    //     * The key parameter will contain your own API key (which is not needed for this tutorial)
-    //     * The callback parameter executes the initMap() function
-    //     -->
-    // function myMap() {
-    //     var mapProp = {
-    //         center: new google.maps.LatLng(51.508742, -0.120850),
-    //         zoom: 5,
-    //     };
-    //     var map = new google.maps.Map(document.getElementById("map"), mapProp);
-    // }
-
-    // Initialize Firebase
-
-    // var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
-
-
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //     if (user) {
-    //       // User is signed in.
-    //       var displayName = user.displayName;
-    //       var email = user.email;
-    //       var emailVerified = user.emailVerified;
-    //       var photoURL = user.photoURL;
-    //       var isAnonymous = user.isAnonymous;
-    //       var uid = user.uid;
-    //       var providerData = user.providerData;
-    //       console.log(displayName);
-    //     } else {
-    //       // User is signed out.
-    //       // ...
-    //     }
-    //   });
 
 
 });

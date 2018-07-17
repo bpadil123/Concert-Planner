@@ -3,24 +3,21 @@ var globalUserId;
 $(document).ready(function () {
   // Initialize Firebase
 
-  // firebase.initializeApp(config);
-  // var provider = new firebase.auth.GoogleAuthProvider(); provider.addScope('profile'); provider.addScope('email');
 
-  
-    $(".box1,.box2").hide();
+  $(".box1,.box2").hide();
 
-    $(".slide-toggle1").click(function () {
-        $(".box1").animate({
-            width: "toggle"
-        });
-
+  $(".slide-toggle1").click(function () {
+    $(".box1").animate({
+      width: "toggle"
     });
-    $(".slide-toggle2").click(function () {
 
-        $(".box2").animate({
-            width: "toggle"
-        });
+  });
+  $(".slide-toggle2").click(function () {
+
+    $(".box2").animate({
+      width: "toggle"
     });
+  });
 
 
 
@@ -35,14 +32,7 @@ $(document).ready(function () {
       $(".user-name").text(displayName + "'s Favorite Concerts");
       const fb_db = firebase.database().ref()
       fb_db.child(globalUserId).on("child_added", function (childSnapshot) {
-        //  console.log(childSnapshot.val().city);
-        //  console.log(childSnapshot.val().event);
-        //  console.log(childSnapshot.val().name);
-        //  console.log(childSnapshot.val().time);
-        //  console.log(childSnapshot.val().ticket);
         console.log(childSnapshot.val().id)
-        //  oneFaveId = childSnapshot.val().id;
-        //  console.log(oneFaveId);
         // append to our table of favorites, inside tbody, with a new row of the data
 
         $("#data-favorites").append(
@@ -78,7 +68,7 @@ $(document).ready(function () {
       }
 
 
-      //database.ref().on("child_added", function (childSnapshot) {
+
     } else {
       $(".user-name").text("Sign In To Access Favorites");
 
@@ -86,11 +76,8 @@ $(document).ready(function () {
     }
   });
 
-  function displayResults() {
 
-  }
 
-  
 
 
 });
