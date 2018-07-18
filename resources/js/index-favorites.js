@@ -80,8 +80,9 @@ $(document).ready(function () {
 
       //database.ref().on("child_added", function (childSnapshot) {
     } else {
-      $(".user-name").text("Sign In To Access Favorites");
-
+      var desiredLink ='index.html';
+      var desiredText = 'Sign In To Access Favorites'
+      $('.user-name').append($('<a href="'+desiredLink+'">'+desiredText+'</a>'));
       // ...
     }
   });
