@@ -231,6 +231,7 @@ a>.far {
     border-radius: 5px;
     display: inline-block;
     width: 100%;
+cursor:pointer;
     
 }
 .oneResult:target{
