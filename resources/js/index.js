@@ -245,16 +245,6 @@ $(document).ready(function () {
 
 
         showConcert(newLat, newLng, newTicket);
-
-        $(document).on('click', '.oneResult', function () {
-            var newLat = $(this).data("lat");
-            var newLng = $(this).data("lng");
-            var newTicket = $(this).data("link");
-
-
-            showConcert(newLat, newLng, newTicket);
-
-        });
     });
 
 
