@@ -3,17 +3,6 @@
 //create an array to store all city matches, if array has results, display them, if no results display sign no match
 var globalUserId;
 $(document).ready(function () {
-    // Initialize Firebase
-    // var config = {
-    //     apiKey: "AIzaSyD68rbaMHr4XzUKdGfHbgjT6u1JMygEilw",
-    //     authDomain: "harmonize-dd029.firebaseapp.com",
-    //     databaseURL: "https://harmonize-dd029.firebaseio.com",
-    //     projectId: "harmonize-dd029",
-    //     storageBucket: "harmonize-dd029.appspot.com",
-    //     messagingSenderId: "419798913580"
-    // };
-    // firebase.initializeApp(config);
-
     firebase.auth().onAuthStateChanged(function (user) {
 
         if (user) {
@@ -89,7 +78,7 @@ $(document).ready(function () {
 
             // If Array is Empty
             if (!Array.isArray(data) || !data.length) {
-                // displayResults(data.error);
+
                 // console.log("There are no results!");
 
             }
@@ -186,18 +175,6 @@ $(document).ready(function () {
             oneResult.attr("data-city", array[i].venue.city);
             oneResult.attr("data-event", array[i].description);
             oneResult.attr("data-time", convertDateTime);
-
-            //div to store data
-            //Josie Did This code
-            // eventDateTime = moment(eventDateTime).format("MMM Do, YYYY hh:mm");
-            // eventDateTime = $("<p>" + eventDateTime + "</p>")
-            // $("<div id='concertinfo'></div>").data(lat,lng,ticketLink)
-            // console.log("#concertinfo");
-
-
-            // var oneResult = $("<div>");
-            // oneResult.addClass("oneResult");
-            //console.log(cityMatchArr[b].description);
             oneResult.append(eventInfo, eventLocation);
             $(".searchresult").append(oneResult);
 
@@ -268,18 +245,8 @@ $(document).ready(function () {
 
 
         showConcert(newLat, newLng, newTicket);
-
-        $(document).on('click', '.oneResult', function () {
-            var newLat = $(this).data("lat");
-            var newLng = $(this).data("lng");
-            var newTicket = $(this).data("link");
-
-
-            showConcert(newLat, newLng, newTicket);
-
-        });
     });
-    //testcomment
+
 
     const fb_db = firebase.database().ref()
 
@@ -294,7 +261,7 @@ $(document).ready(function () {
         var oneFaveId = myRef.getKey();
         $(this).attr("data-id", oneFaveId);
 
-        // var oneFaveId = myRef.child("posts").push().getKey();;
+
 
         data = {
             "name": name,
@@ -325,9 +292,8 @@ $(document).ready(function () {
 
 
         $.getJSON(url, function (data) {
-            // console.log(data);
-            // console.log(url);
-            var artistResults = data.response
+
+
             //image of artist/event from Artist URL **** 
             $(".artist-image").attr("src", data.thumb_url);
 
@@ -352,17 +318,15 @@ $(document).ready(function () {
 
         } else {
             citySelected = false;
-            // cityMatchArr = [];
+
         }
         console.log("city selected is " + citySelected);
-        // console.log("search was pressed");
-        // $(".modal").hide();
-        // $(".fade").hide();
+
         $(".searchresult").empty();
         bandsInTownArtist();
         bandsInTownEvent();
         getLastFm();
-        //checkCity();
+
     })
 
 
