@@ -202,9 +202,10 @@ a>.far {
     color: orange;
 }
 
-.add-fave-btn {
-    width: 50%;
-    display: inline;
+
+.add-fave-btn{
+    width:50%;
+    display:inline;
     cursor: pointer;
 }
 
@@ -259,6 +260,7 @@ a>.far {
     display: inline-block;
     width: 100%;
     cursor: pointer;
+
 }
 
 .oneResult:target {
