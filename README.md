@@ -23,3 +23,6 @@ Harmonize uses HTML, CSS, JavaScript and Firebase so no special installation is 
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
+## Link
+
+* [Harmonize](https://bpadil123.github.io/Concert-Planner/search.html)
