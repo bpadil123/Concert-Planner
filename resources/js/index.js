@@ -192,11 +192,11 @@ $(document).ready(function () {
     }
 
 
-    // ADDING CONCERT TO .oneresult DETAILS UPON CLICKING SEARCH RESULT
 
 
 
 
+    //______________________GOOGLE MAP_________________________________
 
     function showConcert(newLat = 39.7392, newLng = -104.9903) {
 
@@ -214,8 +214,7 @@ $(document).ready(function () {
 
     }
 
-    // $(".oneResult").on("click", function () {
-
+    //_____________________GET CONCERT SPECIFIC INFO___________________
     $(document).on('click', '.oneResult', function () {
         var newLat = $(this).data("lat");
         var newLng = $(this).data("lng");
@@ -230,9 +229,6 @@ $(document).ready(function () {
         ticketBtn.html(ticket);
         faveBtn.html(heart);
 
-
-
-        // faveBtn.addClass("add-fave-btn");
         faveBtn.attr("data-ticket", $(this).attr("data-link"));
         faveBtn.attr("data-name", $(this).attr("data-name"));
         faveBtn.attr("data-venue", $(this).attr("data-venue"));
@@ -286,14 +282,10 @@ $(document).ready(function () {
         // searchVenue = $("#city-input").val().trim();
         var replacedSearchTerm = artistTerm.replace(' ', '%20') || artistTerm.replace('/', '%252F') || artistTerm.replace('?', '%253F') && artistTerm.replace('*', ' %252A') || artistTerm.replace('"', ' %27C');
 
-
-
         url = "https://rest.bandsintown.com/artists/" + replacedSearchTerm + "?app_id=9ac9ab26c18a220660a4a733194e08fc";
 
 
         $.getJSON(url, function (data) {
-
-
             //image of artist/event from Artist URL **** 
             $(".artist-image").attr("src", data.thumb_url);
 
@@ -350,7 +342,7 @@ $(document).ready(function () {
     var autocompleteData = new google.maps.places.Autocomplete(input, options);
 
 
-
+    //___________FOOTER
 
     $(document).ready(function () {
         $(".box1,.box2").hide();

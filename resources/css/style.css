@@ -10,40 +10,43 @@ body {
     background-size: cover;
     font-family: 'Roboto Condensed', sans-serif;
 }
-.page-footer{
-    background-color:#d67b1d;
-    
-}
-.page-footer > a{
-    border:1px solid #fff;
-    border-radius:3px;
-    color:#fff !important;
-    float:left;
-    display:inline-block;
-    padding:5px;
-    margin:5px;
 
+/* __________________FOOTER ________________ */
 
-
+.page-footer {
+    background-color: #d67b1d;
 }
 
-.box1,.box2{
+.page-footer>a {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #fff !important;
+    float: left;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+}
+
+.box1,
+.box2 {
     float: left;
     overflow: hidden;
     background: none;
     color: #fff;
     font-size: 14px;
     font-style: italic;
-    
 }
+
 /* Add padding and border to inner content
 for better animation effect */
-.box-inner1{
+
+.box-inner1 {
     width: 200px;
     padding: 10px;
     border: none;
 }
-.box-inner2{
+
+.box-inner2 {
     width: 500px;
     padding: 10px;
     border: none;
@@ -56,16 +59,22 @@ a {
     font-style: italic;
     font-size: small;
 }
+
 a:hover {
     color: orange;
 }
-td{
-    color:#285a65;
+
+td {
+    color: #285a65;
 }
+
 td>a {
-    color:orange;
+    color: orange;
 }
-.nav-logo > a{
+
+/* __________________NAVIGATION ________________ */
+
+.nav-logo>a {
     float: left;
     font-size: 24px;
     color: #2f6b77;
@@ -79,14 +88,16 @@ td>a {
     float: right;
     text-align: right;
 }
-a.navbar-icon > .far{
-    font-size:x-large;
-}
-a.navbar-icon > .fas{
-    font-size:x-large;
+
+a.navbar-icon>.far {
+    font-size: x-large;
 }
 
-a.navbar-icon{
+a.navbar-icon>.fas {
+    font-size: x-large;
+}
+
+a.navbar-icon {
     width: 60px;
     text-decoration: none;
     color: #fff;
@@ -96,18 +107,20 @@ a.navbar-icon{
     display: inline-block;
     text-align: center;
 }
-.navbar-icon p{
+
+.navbar-icon p {
     width: 50px;
     float: right;
     color: #298692;
     font-style: normal;
-    margin-bottom:0px;
+    margin-bottom: 0px;
 }
 
 .navbar {
     padding: 15px 0;
     background-color: grey;
 }
+
 th {
     text-align: center;
 }
@@ -116,7 +129,7 @@ hr {
     border-top: 1px solid rgb(138, 140, 140);
 }
 
-/*INDEX PAGE*/
+/* __________________INDEX PAGE ________________ */
 
 #login-page h1 {
     font-size: 48px;
@@ -147,10 +160,12 @@ hr {
     padding: 10px 20px;
 }
 
-/*SEARCH PAGE*/
-.dateTime-italic{
+/* __________________SEARCH PAGE________________ */
+
+.dateTime-italic {
     font-style: italic;
 }
+
 a>.fas,
 a>.far {
     text-decoration: none;
@@ -159,16 +174,15 @@ a>.far {
     margin-left: 10px;
     display: inline;
 }
-.fas:focus{
-    color:orange;
+
+.fas:focus {
+    color: orange;
 }
 
 .fas {
     color: #298692;
     width: 20px;
     font-size: xx-large;
-    
-    
     display: inline;
 }
 
@@ -188,11 +202,12 @@ a>.far {
     color: orange;
 }
 
-.add-fave-btn{
-    width:50%;
-    display:inline;
-
+.add-fave-btn {
+    width: 50%;
+    display: inline;
+    cursor: pointer;
 }
+
 .search,
 .favorites,
 .artist-page {
@@ -202,6 +217,7 @@ a>.far {
 #search-results {
     margin: 0 auto;
 }
+
 .search-button,
 .hr {
     margin: 0 auto;
@@ -219,55 +235,71 @@ a>.far {
 .search-button button:hover {
     background-color: grey;
 }
+
 .searchresult {
     margin: 0 auto;
     text-align: center;
     color: rgba(255, 255, 255, 0.62);
 }
-.oneResult{
+
+@media only screen and (max-width:600px) {
+    .searchresult {
+        height: 280px;
+        border: 1px white solid;
+        padding-top: 5px;
+        overflow-y: scroll;
+    }
+}
+
+.oneResult {
     background-color: rgba(255, 255, 255, 0.75);
     margin-top: 20px;
     color: #285a65;
     border-radius: 5px;
     display: inline-block;
     width: 100%;
-cursor:pointer;
-    
-}
-.oneResult:target{
-    color:grey;
-}
-.oneResult:hover{
-    background-color:#fff;
-}
-div.oneResult:focus{
-    background-color:#fff;
+    cursor: pointer;
 }
 
+.oneResult:target {
+    color: grey;
+}
 
-img.artist-image{
-    width:100%;
-    height:auto;
+.oneResult:hover {
+    background-color: #fff;
+}
+
+div.oneResult:focus {
+    background-color: #fff;
+}
+
+img.artist-image {
+    width: 100%;
+    height: auto;
     border-radius: 50%;
-    
 }
-main{
-    margin-top:120px;
-    float:right;
-
-}
-
 
 main {
-    margin-top:100px;
+    margin-top: 120px;
     float: right;
-   
 }
 
-/* SIDEBAR CSS*/
-.info-container{
-    float:right;
+main {
+    margin-top: 100px;
+    float: right;
+}
+
+/* __________________SIDEBAR (SEARCH RESULTS) ________________ */
+
+.info-container {
+    float: right;
+}
+
+@media only screen and (max-width:600px) {
+    .info-container {
+        float: none;
     }
+}
 
 .sidebar {
     margin-top: 50px;
@@ -281,6 +313,12 @@ main {
     background-color: #9c9c9c7d;
 }
 
+@media only screen and (max-width:600px) {
+    .sidebar {
+        position: absolute;
+    }
+}
+
 .sidebar-sticky {
     position: sticky;
     top: 48px;
@@ -290,17 +328,48 @@ main {
     overflow-y: auto;
 }
 
+@media only screen and (max-width:600px) {
+    .sidebar-sticky {
+        position: absolute;
+        
+top: 48px;
+        height: calc(100vh - 48px);
+        padding-top: 50px;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
 .form-inline {
     display: block;
     width: 90%;
     margin: 0 auto;
     margin-bottom: 20px;
 }
-.form-inline p{
+
+@media only screen and (max-width:600px) {
+    .form-inline {
+        /* border: 1px red solid; */
+        height: 180px;
+        margin-top: -20px;
+    }
+}
+
+.form-inline p {
     text-align: center;
-    color:rgba(255, 255, 255, 0.603);
+    color: rgba(255, 255, 255, 0.603);
     font-style: italic;
     font-weight: 300;
+}
+
+@media only screen and (max-width:600px) {
+    .form-inline p {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.603);
+        font-style: italic;
+        font-weight: 300;
+        font-size: 13px;
+    }
 }
 
 .form-inline>div {
@@ -311,6 +380,14 @@ main {
     width: 100%;
 }
 
+@media only screen and (max-width:600px) {
+    .form-inline .form-control {
+        width: 80%;
+        height: 30px;
+        margin: 0 auto;
+    }
+}
+
 .btn-outline-success {
     color: #fff;
     background-color: transparent;
@@ -318,293 +395,297 @@ main {
     border-color: #fff;
 }
 
-#map {
-    /* border: 1px red solid; */
-    width: 400px;
-    height: 300px;
-    border-radius:5px;
+@media only screen and (max-width:600px) {
+    .btn-outline-success {
+        width: 80px;
+        font-size: 13px;
+        display: block;
+        margin: 0 auto;
+    }
 }
-placeholder{
+
+placeholder {
     font-style: italic;
 }
 
 .user-name {
-    text-align:center;
+    text-align: center;
     z-index: 2;
-    margin:0 auto;
+    margin: 0 auto;
     margin-top: 100px;
     color: #fff;
-    font-size:20px;
+    font-size: 20px;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.map-right{
-    float:right;
-}
-#map{
-    /* border:1px red solid; */
-    width:100%;
-    height:300px;
-    margin:50px 0;
-   
-}
-
-.description{
-    color:#fff;
-}
-.artist-desc{
+.map-right {
     float: right;
 }
 
-/*Search Result styling*/
-.floatLeft{
+#map {
+    /* border:1px red solid; */
+    width: 100%;
+    height: 300px;
+    margin: 50px 0;
+}
+
+.description {
+    color: #fff;
+}
+
+.artist-desc {
+    float: right;
+}
+
+/* __________________SEARCH RESULTS ________________ */
+
+.floatLeft {
     width: 50%;
     text-align: left;
     padding: 20px;
     float: left;
     display: inline-block;
 }
-.floatLeft p{
+
+.floatLeft p {
     margin-bottom: 0;
 }
-.floatRight{
+
+.floatRight {
     float: right;
     text-align: right;
     padding: 20px;
     width: 50%;
     display: inline;
-
 }
 
-.table.search{
-    color:#fff;
+.table.search {
+    color: #fff;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
 }
-#table-data{
+
+#table-data {
     background-color: #fff;
     border-radius: 5px;
     text-align: center;
     font-family: "Roboto Condensed", sans-serif;
 }
-.table th{
-    border-top:none;
+
+.table th {
+    border-top: none;
 }
-.table thead th{
+
+.table thead th {
     font-weight: 300;
 }
-.artist-name{
-    color:#fff;
+
+.artist-name {
+    color: #fff;
 }
-.mobile-buttons{
+
+.mobile-buttons {
     display: none;
 }
+
 .btn-outline-success:hover {
     color: #fff;
     background-color: #285a65;
     border-color: #285a65;
 }
+
 .btn-outline-success:focus {
     box-shadow: none;
 }
 
-.btn-outline-success:not(:disabled):not(.disabled).active, .btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
+.btn-outline-success:not(:disabled):not(.disabled).active,
+.btn-outline-success:not(:disabled):not(.disabled):active,
+.show>.btn-outline-success.dropdown-toggle {
     color: #fff;
     background-color: #285a65;
     border-color: #285a65;
 }
-/*FAVORITES PAGE*/
-#table-data{
-    width:100%;
-    text-align:left;
-    padding:10px;
-    font-size:14px;
-    float:left;
+
+/* __________________FAVORITES PAGE________________ */
+
+#table-data {
+    width: 100%;
+    text-align: left;
+    padding: 10px;
+    font-size: 14px;
+    float: left;
     display: inline-block;
-    
 }
-#data-favorites > div{
-    width:100%; 
-    
+
+#data-favorites>div {
+    width: 100%;
     display: inline-block3
 }
-#data-favorites > h3{
+
+#data-favorites>h3 {
     font-weight: bold;
 }
-#table-data> div{
-    width:100%;
-    display:inline-block;
-    float:left;
-}
-#data-favorites div{
-    
-    font-style:italic;
 
-}
-.time{
-    margin-bottom:10px;
-}
-#data-favorites a i{
-    float:right;
-    text-align:right;
-    display: inline;
-    margin-top:-30px;
-    margin-right:15px;
-    
-}
-#data-favorites i{
-    float:right;
-    text-align:right;
-    display: inline;
-    font-size:xx-large;
-   
-    
-}
-#ticket-fav{
-    color:orange;
+#table-data>div {
+    width: 100%;
+    display: inline-block;
+    float: left;
 }
 
-
-
-/* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
-.convertDateTime{
+#data-favorites div {
     font-style: italic;
 }
 
+.time {
+    margin-bottom: 10px;
+}
 
-@media only screen and (max-width: 768px){
-    main{
+#data-favorites a i {
+    float: right;
+    text-align: right;
+    display: inline;
+    margin-top: -30px;
+    margin-right: 15px;
+}
+
+#data-favorites i {
+    float: right;
+    text-align: right;
+    display: inline;
+    font-size: xx-large;
+}
+
+#ticket-fav {
+    color: orange;
+}
+
+/* DYNAMICALLY CREATED CLASS FROM BANDS IN TOWN API */
+
+.convertDateTime {
+    font-style: italic;
+}
+
+@media only screen and (max-width: 768px) {
+    /* hides all specific concert data */
+    /* main {
         display: none;
-    }
-    .mobile-buttons{
+    } */
+    .mobile-buttons {
         display: inline-block;
     }
-    
-    .floatLeft{
+    .floatLeft {
         width: 50%;
         text-align: left;
         padding: 20px;
         float: left;
         display: inline-block;
     }
-    .floatRight{
+    .floatRight {
         float: right;
         text-align: right;
         padding: 20px;
         width: 50%;
         display: inline;
-    
     }
-    
+}
 
 @media only screen and (max-width: 700px) {
     #login-page {
         margin-top: 100px;
     }
-
-    img.artist-image{
-        width:200px;
-        height:200px;
+    img.artist-image {
+        width: 200px;
+        height: 200px;
         border-radius: 50%;
-        
     }
-    
-    
 }
+
 @media only screen and (max-width: 600px) {
-    
-    .nav-logo > a {
+    .nav-logo>a {
         font-size: 18px;
     }
-    a.navbar-icon > .fas {
-        font-size:large;
+    a.navbar-icon>.fas {
+        font-size: large;
         margin: 0 auto;
     }
-
-a.navbar-icon > .far {
-    font-size:large;
-    margin: 0 auto;
-}
-a.navbar-icon{
-    width:45px;
-}
-.navbar-icon p {
-    font-size:10px;
-}
-h3{
-    font-size:24px;
-}
-.floatLeft,.floatRight{
-padding:10px;
-}
-.floatLeft p {
-    font-size:14px;
-    
-}
-.floatRight p{
-    font-size:14px;
-}
-.fas{
-    font-size:x-large;
-}
-a>.fas{
-    font-size:x-large;
-}
-#table-data{
-    width:100%;
-    text-align:left;
-    padding:10px;
-    font-size:14px;
-    float:left;
-    display: inline-block;
-    
-}
-#data-favorites > div{
-    width:100%; 
-    
-    display: inline-block3
-}
-#data-favorites > h3{
-    font-weight: bold;
-}
-#table-data> div{
-    width:100%;
-    display:inline-block;
-    float:left;
-}
-#data-favorites div{
-    
-    font-style:italic;
-
-}
-.time{
-    margin-bottom:10px;
-}
-#data-favorites a i{
-    float:right;
-    text-align:right;
-    display: inline;
-    margin-top:-30px;
-    margin-right:15px;
-    
-}
-#data-favorites i{
-    float:right;
-    text-align:right;
-    display: inline;
-    font-size:xx-large;
-   
-    
-}
-#ticket-fav{
-    color:orange;
-}
-.user-name {
-    text-align:center;
-    z-index: 2;
-    margin:0 auto;
-    margin:90px 0 20px;
-    color: #fff;
-    font-size:20px;
-    font-family: 'Roboto Condensed', sans-serif;
+    a.navbar-icon>.far {
+        font-size: large;
+        margin: 0 auto;
+    }
+    a.navbar-icon {
+        width: 45px;
+    }
+    .navbar-icon p {
+        font-size: 10px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+    .floatLeft,
+    .floatRight {
+        padding: 10px;
+    }
+    .floatLeft p {
+        font-size: 14px;
+    }
+    .floatRight p {
+        font-size: 14px;
+    }
+    .fas {
+        font-size: x-large;
+    }
+    a>.fas {
+        font-size: x-large;
+    }
+    #table-data {
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        font-size: 14px;
+        float: left;
+        display: inline-block;
+    }
+    #data-favorites>div {
+        width: 100%;
+        display: inline-block;
+    }
+    #data-favorites>h3 {
+        font-weight: bold;
+    }
+    #table-data>div {
+        width: 100%;
+        display: inline-block;
+        float: left;
+    }
+    #data-favorites div {
+        font-style: italic;
+    }
+    .time {
+        margin-bottom: 10px;
+    }
+    #data-favorites a i {
+        float: right;
+        text-align: right;
+        display: inline;
+        margin-top: -30px;
+        margin-right: 15px;
+    }
+    #data-favorites i {
+        float: right;
+        text-align: right;
+        display: inline;
+        font-size: xx-large;
+    }
+    #ticket-fav {
+        color: orange;
+    }
+    .user-name {
+        text-align: center;
+        z-index: 2;
+        margin: 0 auto;
+        margin: 90px 0 20px;
+        color: #fff;
+        font-size: 20px;
+        font-family: 'Roboto Condensed', sans-serif;
+    }
 }
