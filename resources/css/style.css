@@ -191,6 +191,7 @@ a>.far {
 .add-fave-btn{
     width:50%;
     display:inline;
+    cursor: pointer;
 
 }
 .search,
@@ -231,6 +232,7 @@ a>.far {
     border-radius: 5px;
     display: inline-block;
     width: 100%;
+    cursor: pointer;
     
 }
 .oneResult:target{
