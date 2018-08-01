@@ -51,6 +51,7 @@ $(document).ready(function () {
             console.log(response.artist.bio.summary)
             artistBio = $("<p>").html(response.artist.bio.summary);
             artistName = $("<p>").text(response.artist.name);
+            artistBio.attr("id","bio");
             $(".artist-name").append(artistName);
             $(".description").append(artistBio);
 
