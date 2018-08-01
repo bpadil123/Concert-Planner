@@ -15,8 +15,8 @@ Harmonize uses HTML, CSS, JavaScript and Firebase so no special installation is 
 ## Authors
 
 * [Brian Padilla](https://github.com/bpadil123/) 
-* [Josie Aguilar](https://github.com/VeraButler)
-* [Inna Leikina](https://github.com/josieamor2)
+* [Josie Aguilar](https://github.com/josieamor2)
+* [Inna Leikina](https://github.com/innaleikina)
 * [Tony Tran-Son-Tay](https://github.com/atstay)
 
 ## License

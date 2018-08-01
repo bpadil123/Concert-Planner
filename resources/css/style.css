@@ -202,10 +202,9 @@ a>.far {
     color: orange;
 }
 
-
-.add-fave-btn{
-    width:50%;
-    display:inline;
+.add-fave-btn {
+    width: 50%;
+    display: inline;
     cursor: pointer;
 }
 
@@ -245,10 +244,10 @@ a>.far {
 
 @media only screen and (max-width:600px) {
     .searchresult {
-        height: 280px;
+        height: 330px;
         border: 1px white solid;
         padding-top: 5px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 }
 
@@ -260,7 +259,6 @@ a>.far {
     display: inline-block;
     width: 100%;
     cursor: pointer;
-
 }
 
 .oneResult:target {
@@ -289,6 +287,16 @@ main {
 main {
     margin-top: 100px;
     float: right;
+}
+
+@media only screen and (max-width:600px) {
+    main {
+        position: relative;
+        margin-top: 700px;
+        border: 1px red solid;
+        width: 100vw;
+        float: none;
+    }
 }
 
 /* __________________SIDEBAR (SEARCH RESULTS) ________________ */
@@ -333,12 +341,9 @@ main {
 @media only screen and (max-width:600px) {
     .sidebar-sticky {
         position: absolute;
-        
-top: 48px;
-        height: calc(100vh - 48px);
-        padding-top: 50px;
-        overflow-x: hidden;
-        overflow-y: auto;
+        /* border: 1px red solid; */
+        width: 100%;
+        padding-bottom: 0;
     }
 }
 
@@ -434,6 +439,7 @@ placeholder {
 .description {
     color: #fff;
 }
+
 
 .artist-desc {
     float: right;
@@ -689,5 +695,19 @@ placeholder {
         color: #fff;
         font-size: 20px;
         font-family: 'Roboto Condensed', sans-serif;
+    }
+    
+}
+
+@media only screen and(max-width:600px) {
+    .description {
+        border: 1px blue solid;
+        width:100%;
+        color:green !important;
+    }
+
+    #bio{
+        border:1px blue solid;
+        color:green !important;
     }
 }
