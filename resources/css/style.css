@@ -242,7 +242,7 @@ a>.far {
     color: rgba(255, 255, 255, 0.62);
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .searchresult {
         height: 330px;
         border: 1px white solid;
@@ -279,7 +279,7 @@ img.artist-image {
     border-radius: 50%;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .artist-image {
         margin-bottom: 20px;
     }
@@ -310,7 +310,7 @@ main {
     float: right;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     main {
         position: relative;
         margin-top: 700px;
@@ -326,7 +326,7 @@ main {
     float: right;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .info-container {
         float: none;
         margin: 0 auto;
@@ -345,7 +345,7 @@ main {
     background-color: #9c9c9c7d;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .sidebar {
         position: absolute;
     }
@@ -360,7 +360,7 @@ main {
     overflow-y: auto;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .sidebar-sticky {
         position: absolute;
         /* border: 1px red solid; */
@@ -391,7 +391,7 @@ main {
     font-weight: 300;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .form-inline p {
         text-align: center;
         color: rgba(255, 255, 255, 0.603);
@@ -424,7 +424,7 @@ main {
     border-color: #fff;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .btn-outline-success {
         width: 80px;
         font-size: 13px;
@@ -451,7 +451,7 @@ placeholder {
     float: right;
 }
 
-@media only screen and (max-width:770px) {
+@media only screen and (max-width:767px) {
     .map {
         float: none;
         margin: 0 auto;
@@ -473,14 +473,7 @@ placeholder {
     float: right;
 }
 
-@media only screen and (max-width:770px) {
-    .artist-desc {
-        /* border: 1px pink solid; */
-        color: green;
-        float: none;
-        width: 100%;
-    }
-}
+
 
 /* __________________SEARCH RESULTS ________________ */
 
