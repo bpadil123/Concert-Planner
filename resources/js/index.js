@@ -49,7 +49,7 @@ $(document).ready(function () {
             console.log(response);
 
             console.log(response.artist.bio.summary)
-            artistBio = $("<p>").html(response.artist.bio.summary);
+            artistBio = $("<div>").html(response.artist.bio.summary);
             artistName = $("<p>").text(response.artist.name);
             artistBio.attr("id","bio");
             $(".artist-name").append(artistName);

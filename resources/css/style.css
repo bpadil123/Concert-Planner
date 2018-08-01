@@ -279,6 +279,20 @@ img.artist-image {
     border-radius: 50%;
 }
 
+@media only screen and (max-width:600px) {
+    .artist-image {
+        margin-bottom: 20px;
+    }
+    img.artist-image {
+        width: 200px;
+        height: 200px;
+    }
+    .image-container {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 main {
     margin-top: 120px;
     float: right;
@@ -293,7 +307,7 @@ main {
     main {
         position: relative;
         margin-top: 700px;
-        border: 1px red solid;
+        /* border: 1px red solid; */
         width: 100vw;
         float: none;
     }
@@ -308,6 +322,7 @@ main {
 @media only screen and (max-width:600px) {
     .info-container {
         float: none;
+        margin: 0 auto;
     }
 }
 
@@ -425,8 +440,15 @@ placeholder {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.map-right {
+.map {
     float: right;
+}
+
+@media only screen and (max-width:600px) {
+    .map {
+        float: none;
+        margin:0 auto;
+    }
 }
 
 #map {
@@ -440,9 +462,17 @@ placeholder {
     color: #fff;
 }
 
-
 .artist-desc {
     float: right;
+}
+
+@media only screen and (max-width:600px) {
+    .artist-desc {
+        /* border: 1px pink solid; */
+        color: green;
+        float: none;
+        width: 100%;
+    }
 }
 
 /* __________________SEARCH RESULTS ________________ */
@@ -601,11 +631,6 @@ placeholder {
     #login-page {
         margin-top: 100px;
     }
-    img.artist-image {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-    }
 }
 
 @media only screen and (max-width: 600px) {
@@ -696,18 +721,16 @@ placeholder {
         font-size: 20px;
         font-family: 'Roboto Condensed', sans-serif;
     }
-    
 }
 
 @media only screen and(max-width:600px) {
     .description {
         border: 1px blue solid;
-        width:100%;
-        color:green !important;
+        width: 100%;
+        color: green !important;
     }
-
-    #bio{
-        border:1px blue solid;
-        color:green !important;
+    #bio {
+        border: 1px blue solid;
+        color: green !important;
     }
 }
