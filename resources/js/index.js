@@ -313,8 +313,8 @@ $(document).ready(function () {
             citySelected = false;
 
         }
-        console.log("city selected is " + citySelected);
-
+       
+        $("#map").empty();
         $(".searchresult").empty();
         bandsInTownArtist();
         bandsInTownEvent();

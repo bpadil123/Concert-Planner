@@ -242,7 +242,7 @@ a>.far {
     color: rgba(255, 255, 255, 0.62);
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .searchresult {
         height: 330px;
         border: 1px white solid;
@@ -279,17 +279,24 @@ img.artist-image {
     border-radius: 50%;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .artist-image {
         margin-bottom: 20px;
     }
     img.artist-image {
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 300px;
     }
     .image-container {
         display: flex;
         justify-content: center;
+    }
+}
+
+@media only screen and (max-width:600px) {
+    img.artist-image {
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -303,7 +310,7 @@ main {
     float: right;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     main {
         position: relative;
         margin-top: 700px;
@@ -319,7 +326,7 @@ main {
     float: right;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .info-container {
         float: none;
         margin: 0 auto;
@@ -338,7 +345,7 @@ main {
     background-color: #9c9c9c7d;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .sidebar {
         position: absolute;
     }
@@ -353,7 +360,7 @@ main {
     overflow-y: auto;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .sidebar-sticky {
         position: absolute;
         /* border: 1px red solid; */
@@ -384,7 +391,7 @@ main {
     font-weight: 300;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .form-inline p {
         text-align: center;
         color: rgba(255, 255, 255, 0.603);
@@ -417,7 +424,7 @@ main {
     border-color: #fff;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .btn-outline-success {
         width: 80px;
         font-size: 13px;
@@ -444,10 +451,10 @@ placeholder {
     float: right;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .map {
         float: none;
-        margin:0 auto;
+        margin: 0 auto;
     }
 }
 
@@ -466,7 +473,7 @@ placeholder {
     float: right;
 }
 
-@media only screen and (max-width:600px) {
+@media only screen and (max-width:770px) {
     .artist-desc {
         /* border: 1px pink solid; */
         color: green;
@@ -720,17 +727,5 @@ placeholder {
         color: #fff;
         font-size: 20px;
         font-family: 'Roboto Condensed', sans-serif;
-    }
-}
-
-@media only screen and(max-width:600px) {
-    .description {
-        border: 1px blue solid;
-        width: 100%;
-        color: green !important;
-    }
-    #bio {
-        border: 1px blue solid;
-        color: green !important;
     }
 }
